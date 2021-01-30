@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="CtfHub良心网站 真是没得很！">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTFHUB">
+<meta property="og:url" content="http://yoursite.com/2020/03/02/CTFcomig/CTFHUB/index.html">
+<meta property="og:site_name" content="liduoan修炼笔记">
+<meta property="og:description" content="CtfHub良心网站 真是没得很！">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200302200002649.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200301185919127.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200301191150767.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020030121245421.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2020-03-02T02:22:51.000Z">
+<meta property="article:modified_time" content="2020-04-12T16:58:19.130Z">
+<meta property="article:author" content="liduoan">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200302200002649.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70">
+
+<link rel="canonical" href="http://yoursite.com/2020/03/02/CTFcomig/CTFHUB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CTFHUB | liduoan修炼笔记</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+    <a href="https://github.com/Liduoan" target="_blank" rel="noopener" class="github-corner" aria-label="View source on GitHub">
+    <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">liduoan修炼笔记</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/02/CTFcomig/CTFHUB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liduoan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liduoan修炼笔记">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CTFHUB
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-02 10:22:51" itemprop="dateCreated datePublished" datetime="2020-03-02T10:22:51+08:00">2020-03-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-13 00:58:19" itemprop="dateModified" datetime="2020-04-13T00:58:19+08:00">2020-04-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://img-blog.csdnimg.cn/20200302200002649.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70" alt="CTFHub"></p>
+<h1 id="CtfHub"><a href="#CtfHub" class="headerlink" title="CtfHub"></a>CtfHub</h1><p>良心网站 真是没得很！</p>
+<a id="more"></a>
+
+<h2 id="题目类型"><a href="#题目类型" class="headerlink" title="题目类型"></a>题目类型</h2><p>在CTF中主要包含以下5个大类的题目，有些比赛会根据自己的侧重点单独添加某个分类，例如<code>移动设备(Mobile)</code>, <code>电子取证(Forensics)</code>等，近年来也会出来混合类型的题目，例如在Web中存在一个二进制程序，需要选手先利用Web的漏洞获取到二进制程序，之后通过逆向或是Pwn等方式获得最终flag</p>
+<hr>
+<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><p>Web类题目大部分情况下和网、Web、HTTP等相关技能有关。主要考察选手对于Web攻防的一些知识技巧。诸如<code>SQL注入</code>、<code>XSS</code>、<code>代码执行</code>、<code>代码审计</code>等等都是很常见的考点。<br>一般情况下Web题目只会给出一个能够访问的URL。部分题目会给出附件</p>
+<h3 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h3><p>Misc意为杂项，即不包含在以上分类的题目都会放到这个分类。题目会给出一个附件。选手下载该附件进行分析，最终得出flag<br>常见的题型有图片隐写、视频隐写、文档隐写、流量分析、协议分析、游戏、IoT相关等等。五花八门，种类繁多。</p>
+<h2 id="WEB训练场"><a href="#WEB训练场" class="headerlink" title="WEB训练场"></a>WEB训练场</h2><h3 id="WEB前置技能–http协议"><a href="#WEB前置技能–http协议" class="headerlink" title="WEB前置技能–http协议"></a>WEB前置技能–http协议</h3><h4 id="请求方式"><a href="#请求方式" class="headerlink" title="请求方式"></a>请求方式</h4><p><img src="https://img-blog.csdnimg.cn/20200301185919127.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<p>我还尝试了八种请求方式</p>
+<p>。。。。</p>
+<p>八种请求方式：</p>
+<blockquote>
+<p>HTTP/1.1协议中共定义了八种方法（有时也叫“动作”）来表明Request-URI指定的资源的不同操作方式：</p>
+<p>OPTIONS<br>返回服务器针对特定资源所支持的HTTP请求方法。也可以利用向Web服务器发送’*’的请求来测试服务器的功能性。<br>HEAD<br>向服务器索要与GET请求相一致的响应，只不过响应体将不会被返回。这一方法可以在不必传输整个响应内容的情况下，就可以获取包含在响应消息头中的元信息。<br>GET<br>向特定的资源发出请求。注意：GET方法不应当被用于产生“副作用”的操作中。<br>POST<br>向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和/或已有资源的修改。<br>PUT<br>向指定资源位置上传其最新内容。<br>DELETE<br>请求服务器删除Request-URI所标识的资源。<br>TRACE<br>回显服务器收到的请求，主要用于测试或诊断。<br>CONNECT<br>HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器</p>
+</blockquote>
+<p>题解是 把头改成<code>CTFHUB</code>就可以！</p>
+<p><img src="https://img-blog.csdnimg.cn/20200301191150767.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h4 id="302跳转"><a href="#302跳转" class="headerlink" title="302跳转"></a>302跳转</h4><p>首先，让我们来了解一下，什么是302重定向。</p>
+<p>百度百科定义如下：<strong>302重定向又称之为暂时性转移(Temporarily Moved )，英文名称：302 redirect。 也被认为是暂时重定向（temporary redirect），一条对网站浏览器的指令来显示浏览器被要求显示的不同的URL，当一个网页经历过短期的URL的变化时使用。一个暂时重定向是一种服务器端的重定向，能够被搜索引擎蜘蛛正确地处理。</strong></p>
+<p>302跳转的解决方法有两个 </p>
+<p>1、使用<code>curl</code>命令 之间 <code>curl  目标url</code></p>
+<p>2、抓包审查</p>
+<p><img src="https://img-blog.csdnimg.cn/2020030121245421.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70" alt="img"></p>
+<h4 id="基础认证–Basic-Authentication"><a href="#基础认证–Basic-Authentication" class="headerlink" title="基础认证–Basic Authentication"></a>基础认证–<strong>Basic Authentication</strong></h4><p>这道题目是真的长知识</p>
+<blockquote>
+<p><strong>HTTP 基本认证</strong><br>大体流程就类似于牛翠花和王二狗接头的过程。<br>1、翠花：走到一个人面前说，二狗带我去吃麻辣烫吧。</p>
+<p>2、二狗：请说出你的暗号。</p>
+<p>3、翠花：天王盖地虎。</p>
+<p>4、二狗：张亮麻辣烫走起。。。</p>
+<p>映射到编程领域为：</p>
+<p><strong><em>客户端(例如Web浏览器)</em></strong>：服务器，请把/family/son.jpg 图片传给我。</p>
+<p><code>GET /family/son.jpg  HTTP/1.1</code></p>
+<p><strong><em>服务器</em></strong>：客户端你好，这个资源在安全区family里，是受限资源，需要基本认证，请带上你的用户名和密码再来</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;HTTP/1.1 401 Authorization Required</span><br><span class="line">&gt;www-Authenticate: Basic realm= "family"</span><br></pre></td></tr></table></figure>
+
+
+<p>服务器会返回401，告知客户端这个资源需要使用基本认证的方式访问，我们可以看到在 www-Authenticate这个Header里面 有两个值，Basic：说明需要基本认证，realm：说明客户端需要输入这个安全区的用户名和密码，而不是其他区的。因为服务器可以为不同的安全区设置不同的用户名和密码。如果服务器只有一个安全区，那么所有的基本认证用户名和密码都是一样的。</p>
+<p><strong><em>客户端</em></strong>： 服务器，我已经按照你的要求，携带了相应的用户名和密码信息了，你看一下</p>
+<p>如果客户端是浏览器，那么此时就会弹出一个弹窗，让用户输入用户名和密码。</p>
+<p><strong>Basic 内容为： <code>用户名:密码</code>后的base64 内容.假设我的用户名为<code>Shusheng007</code>,密码为<code>ss007</code> 那么我的Basic的内容为 <code>Shusheng007：ss007</code>对应的base64 编码内容<code>U2h1c2hlbmcwMDcldUZGMUFzczAwNw==</code></strong>，如下所示</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;GET /family/son.jpg  HTTP/1.1</span><br><span class="line">&gt;Authorization: Basic U2h1c2hlbmcwMDcldUZGMUFzczAwNw==</span><br></pre></td></tr></table></figure>
+
+
+<p><strong><em>服务器</em></strong>：客户端你好，我已经校验了你的用户名和密码，是正确的，这是你要的资源。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;HTTP/1.1 200 OK</span><br><span class="line">&gt;Content-type: image/jpg</span><br></pre></td></tr></table></figure>
+
+<p>至此这个HTTP事务就结束了，非常简单的一个认证机制</p>
+</blockquote>
+<p>而这道题目 他给了密码的文件</p>
+<p>很明显是爆破</p>
+<p>爆破点是</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/flag.html</span> HTTP/1.1</span><br><span class="line"><span class="attribute">Host</span>: challenge-4fd44b39b91d3871.sandbox.ctfhub.com:10080</span><br><span class="line"><span class="attribute">User-Agent</span>: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0</span><br><span class="line"><span class="attribute">Accept</span>: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line"><span class="attribute">Accept-Language</span>: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</span><br><span class="line"><span class="attribute">Accept-Encoding</span>: gzip, deflate</span><br><span class="line"><span class="attribute">Referer</span>: http://challenge-4fd44b39b91d3871.sandbox.ctfhub.com:10080/</span><br><span class="line"><span class="attribute">Authorization</span>: Basic YWRtaW46§admin§      §admin§这个就是爆破点</span><br><span class="line"><span class="attribute">Connection</span>: keep-alive</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span>: 1</span><br></pre></td></tr></table></figure>
+
+<p>那么就爆破呗</p>
+<p>然而我发现一个问题的存在</p>
+<p><code>YWRtaW46YWtzZGphc2pka2E%3d</code>经常出现<code>%3d</code>这样的问题</p>
+<p>这个是字符编码的一个问题</p>
+<p>需要你把攻击的<code>payloads</code>下面的那个<code>URL-encode these characters</code>取消勾选</p>
+<p>之后就得到答案了！ 奥里给。。</p>
+<h3 id="信息泄露"><a href="#信息泄露" class="headerlink" title="信息泄露"></a>信息泄露</h3><h4 id="备份文件下载"><a href="#备份文件下载" class="headerlink" title="备份文件下载"></a>备份文件下载</h4><p><strong>web源码泄漏</strong></p>
+<h3 id="0x01信息泄露"><a href="#0x01信息泄露" class="headerlink" title="0x01信息泄露"></a>0x01信息泄露</h3><p>有的时候运维或者说是部署人员工，当然也有可能是开发人员在打包项目的时候将。git也打包了而引起了，git的信息泄露，关于常用的其他信息泄露，各位看官可自行Google or 百度。这里贴一下git信息泄露利用的python脚本。下载完了之后利用python执行，python GitHack.py <a href="http://XXXXXXX/.git" target="_blank" rel="noopener">http://XXXXXXX/.git</a></p>
+<p>这样将会在dis目录下生成以ip地址以及端口号命名的文件夹，大家进去看一下里面是否存在.git文件夹</p>
+<p>0x03GIT命令使用<br>切换到该目录下面</p>
+<p>使用git log 查看当前版本，使用git reset –hard 9d9fab3bd7e53c454dee1c9a7abc01e499882815还原到以前的版本。然后就可以查看到flag.</p>
+<p>附录：常用git命令摘录自：<a href="http://www.cnblogs.com/lwzz/archive/2013/02/23/2921426.html" target="_blank" rel="noopener">http://www.cnblogs.com/lwzz/archive/2013/02/23/2921426.html</a></p>
+<p>最基本的命令：</p>
+<p>git clone 拷贝并跟踪远程的master分支。跟踪的好处是以后可以直接通过pull和push命令来提交或者获取远程最新的代码，而不需要指定远程分支名字。</p>
+<p>git submodule init</p>
+<p>git submodule update</p>
+<p>参考示意图</p>
+<p>HEAD 指向当前的commit 对象(可以想象为当前分支的别名)，同时也用来表明我们在哪个branch上工作。所以当我们使用HEAD来操作指针的时候，其实就是不改变当前的commit的指向。</p>
+<p>对照这张图来理解两段提交，工作区(working tree)，暂存区（index）和 branch之间的关系</p>
+<p>显示信息类命令<br>git ls-files -u 显示冲突的文件，-s是显示标记为冲突已解决的文件</p>
+<p>git diff 对比工作区和stage文件的差异<br>git diff –cached 对比stage和branch之间的差异</p>
+<p>git branch 列出当前repository下的所有branch<br>git branch –a 列出local 和remote下的所有branch</p>
+<p>git ls-files –stage 检查保存在stage的文件</p>
+<p>git log 显示到HEAD所指向的commit为止的所有commit记录 。使用reset HEAD~n 命令使HEAD指针向前移动，会导致HEAD之后的commit记录不会被显示。</p>
+<p>git log -g则会查询reflog去查看最近做了哪些动作，这样可以配合git branch 恢复之前因为移动HEAD指针所丢弃的commit对象。如果reflog丢失则可以通过git fsck –full来查看没被引用的commit对象。<br>git log -p -2 对比最新两次的commit对象<br>log -1 HEAD</p>
+<p>git log –pretty=oneline</p>
+<p>git log –stat 1a410e 查看sha1为1a410e的commit对象的记录</p>
+<p>git blame -L 12,22 sth.cs 如果你发现自己代码中 的一个方法存在缺陷,你可以用git blame来标注文件,查看那个方法的每一行分别是由谁 在哪一天修改的。下面这个例子使用了-L选项来限制输出范围在第12至22行</p>
+<p>创建类命令<br>git brach branchName 创建名为branchName的branch<br>git checkout branchName 切换到branchName的branch<br>git checkout -b 创建并切换，也就是上面两个命令的合并</p>
+<p>git brach branchName ef71 从commit ef71创建名为branchName的branch</p>
+<p>撤销类命令<br>如果是单个文件<br>1.use “git reset HEAD <file>…” to unstage<br>如果已经用add 命令把文件加入stage了，就先需要从stage中撤销</p>
+<p>然后再从工作区撤销<br>2.use “git checkout – <file>…” to discard changes in working directory</p>
+<p>git checkout a.txt  撤销a.txt的变动（工作区上的文件）<br>如果是多个文件<br>git chenkout .</p>
+<p>如果已经commit 了，则需要<br>git commit –amend 来修改，这个只能修改最近上一次的,也就是用一个新的提交来覆盖上一次的提交。因此如果push以后再做这个动作就会有危险</p>
+<p>$ git reset –hard HEAD 放弃工作区和index的改动,HEAD指针仍然指向当前的commit.（参照第一幅图）</p>
+<p>这条命令同时还可以用来撤销还没commit的merge,其实原理就是放弃index和工作区的改动，因为没commit的改动只存在于index和工作区中。</p>
+<p>$ git reset –hard HEAD^ 用来撤销已经commit的内容(等价于 git reset –hard HEAD~1) 。原理就是放弃工作区和index的改动，同时HEAD指针指向前一个commit对象。</p>
+<p>git revert 也是撤销命令，区别在于reset是指向原地或者向前移动指针，git revert是创建一个commit来覆盖当前的commit,指针向后移动</p>
+<p>提交类命令<br>git add 跟踪新文件或者已有文件的改动，或者用来解决冲突</p>
+<p>git commit 把文件从stage提交到branch</p>
+<p>git commit -a 把修改的文件先提交到stage,然后再从stash提交到branch</p>
+<p>删除类命令<br>git rm –cached readme.txt 只从stage中删除，保留物理文件</p>
+<p>git rm readme.txt 不但从stage中删除，同时删除物理文件</p>
+<p>git mv a.txt b.txt 把a.txt改名为b.txt</p>
+<p>Merge类命令</p>
+<p>在冲突状态下，需要解决冲突的文件会从index打回到工作区。</p>
+<p>1.用工具或者手工解决冲突<br>2.git add 命令来表明冲突已经解决。<br>3.再次commit 已解决冲突的文件。</p>
+<p>$ git reset –hard ORIG_HEAD 用来撤销已经commit 的merge.<br>$ git reset –hard HEAD 用来撤销还没commit 的merge,其实原理就是放弃index和工作区的改动。</p>
+<p>git reset –merge ORIG_HEAD，注意其中的–hard 换成了 –merge，这样就可以避免在回滚时清除working tree</p>
+<hr>
+<h3 id="hg源码泄漏："><a href="#hg源码泄漏：" class="headerlink" title=".hg源码泄漏："></a>.hg源码泄漏：</h3><p>漏洞成因：hg init的时候会生成.hg，<a href="http://www.xx.com/.hg/，" target="_blank" rel="noopener">http://www.xx.com/.hg/，</a></p>
+<p>工具：dvcs-ripper，（rip-hg.pl -v -u <a href="http://www.xx.com/.hg/）" target="_blank" rel="noopener">http://www.xx.com/.hg/）</a></p>
+<h3 id="git源码泄漏："><a href="#git源码泄漏：" class="headerlink" title=".git源码泄漏："></a>.git源码泄漏：</h3><p>漏洞成因：在运行git init初始化代码库的时候，会在当前目录下产生一个.git的隐藏文件，用来记录代码的变更记录等，没有删除这个文件，导致泄漏，<a href="http://www.xxx.com/.git/config" target="_blank" rel="noopener">http://www.xxx.com/.git/config</a></p>
+<p>工具：GitHack，dvcs-ripper，（GitHack.py <a href="http://www.xxx.com/.git，rip-hg.pl" target="_blank" rel="noopener">http://www.xxx.com/.git，rip-hg.pl</a> -v -u <a href="http://www.xx.com/.git/）" target="_blank" rel="noopener">http://www.xx.com/.git/）</a></p>
+<h3 id="DS-Store源码泄漏："><a href="#DS-Store源码泄漏：" class="headerlink" title=".DS_Store源码泄漏："></a>.DS_Store源码泄漏：</h3><p>漏洞成因：在发布代码时，没有删除文件夹中隐藏的.DS_store，被发现后，获取了敏感的文件名等信息，<a href="http://www.xxx.com/.ds_store" target="_blank" rel="noopener">http://www.xxx.com/.ds_store</a></p>
+<p>工具：dsstoreexp，（python ds_store_exp.py <a href="http://www.xxx.com/.DS_Store）" target="_blank" rel="noopener">http://www.xxx.com/.DS_Store）</a></p>
+<h3 id="网站备份压缩文件："><a href="#网站备份压缩文件：" class="headerlink" title="网站备份压缩文件："></a>网站备份压缩文件：</h3><p>在网站的使用过程中，往往需要对网站中的文件进行修改，升级，此时就需要对网站整或其中某一页面进行备份，当备份文件或修改过程中的缓存文件因为各种原因被留在网站web目录下，而该目录又没有设置访问权限，就有可能导致备份文件被下载，导致信息泄漏，给服务器安全埋下隐患。.rar， .zip， .7z， .tar.gz， .bak， .swp， .txt， .html，</p>
+<p>工具：可以使用一些扫描软件，进行扫描，如awvs之类的</p>
+<p>像.swp文件，就是vim源文件泄漏，/.index.php.swp或/index.php~ 可以直接用vim -r inde.php来读取文件</p>
+<hr>
+<h5 id="常见的网站源码备份文件后缀"><a href="#常见的网站源码备份文件后缀" class="headerlink" title="常见的网站源码备份文件后缀"></a>常见的网站源码备份文件后缀</h5><hr>
+<ul>
+<li>tar</li>
+<li>tar.gz</li>
+<li>zip</li>
+<li>rar</li>
+</ul>
+<h5 id="常见的网站源码备份文件名"><a href="#常见的网站源码备份文件名" class="headerlink" title="常见的网站源码备份文件名"></a>常见的网站源码备份文件名</h5><hr>
+<ul>
+<li>web</li>
+<li>website</li>
+<li>backup</li>
+<li>back</li>
+<li>www</li>
+<li>wwwroot</li>
+<li>temp</li>
+</ul>
+<p>我做这道题目的时候，找到了flag_2768649.txt  不过我真没想要用URL去加载</p>
+<p>回想起来 这毕竟是网站源码 那么我们去网站上查看嘛</p>
+<h3 id="SVN导致文件泄漏："><a href="#SVN导致文件泄漏：" class="headerlink" title="SVN导致文件泄漏："></a>SVN导致文件泄漏：</h3><p>版本控制系统</p>
+<p>工具：dvcs-ripper，Seay-Svn，（rip-svn.pl -v -u <a href="http://www.xxx.com/.svn/）" target="_blank" rel="noopener">http://www.xxx.com/.svn/）</a></p>
+<hr>
+<h3 id="我遇到的题目类型"><a href="#我遇到的题目类型" class="headerlink" title="我遇到的题目类型"></a>我遇到的题目类型</h3><ul>
+<li><p>bak文件</p>
+</li>
+<li><p>vim</p>
+</li>
+<li><p>. DS_Store</p>
+</li>
+<li><p>利用dvcs-rip来操作  .svn泄露 和 .hg泄露</p>
+<p>在泄露的时候可能文件中没有flag 但是给了文件名字</p>
+<p>可以尝试利用curl看看能不能得到。</p>
+</li>
+</ul>
+<p>我打算在四月初花费三天重做一遍CTFhub，然后再写这篇文章！</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>liduoan
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2020/03/02/CTFcomig/CTFHUB/" title="CTFHUB">http://yoursite.com/2020/03/02/CTFcomig/CTFHUB/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <div>
+        
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+        
+      </div>
+
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/28/CTFcomig/%E6%AF%8F%E6%97%A5%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="prev" title="CTF修炼笔记->2020.03.10">
+      <i class="fa fa-chevron-left"></i> CTF修炼笔记->2020.03.10
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/10/ACMcoming/%E6%97%A5%E5%B8%B8%E7%AE%97%E6%B3%95%E9%A2%98/" rel="next" title="算法训练->2020.03.10">
+      算法训练->2020.03.10 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CtfHub"><span class="nav-number">1.</span> <span class="nav-text">CtfHub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目类型"><span class="nav-number">1.1.</span> <span class="nav-text">题目类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web"><span class="nav-number">1.1.1.</span> <span class="nav-text">Web</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Misc"><span class="nav-number">1.1.2.</span> <span class="nav-text">Misc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB训练场"><span class="nav-number">1.2.</span> <span class="nav-text">WEB训练场</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WEB前置技能–http协议"><span class="nav-number">1.2.1.</span> <span class="nav-text">WEB前置技能–http协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求方式"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">请求方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#302跳转"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">302跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基础认证–Basic-Authentication"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">基础认证–Basic Authentication</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息泄露"><span class="nav-number">1.2.2.</span> <span class="nav-text">信息泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#备份文件下载"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">备份文件下载</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01信息泄露"><span class="nav-number">1.2.3.</span> <span class="nav-text">0x01信息泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hg源码泄漏："><span class="nav-number">1.2.4.</span> <span class="nav-text">.hg源码泄漏：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git源码泄漏："><span class="nav-number">1.2.5.</span> <span class="nav-text">.git源码泄漏：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DS-Store源码泄漏："><span class="nav-number">1.2.6.</span> <span class="nav-text">.DS_Store源码泄漏：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网站备份压缩文件："><span class="nav-number">1.2.7.</span> <span class="nav-text">网站备份压缩文件：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#常见的网站源码备份文件后缀"><span class="nav-number">1.2.7.0.1.</span> <span class="nav-text">常见的网站源码备份文件后缀</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常见的网站源码备份文件名"><span class="nav-number">1.2.7.0.2.</span> <span class="nav-text">常见的网站源码备份文件名</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVN导致文件泄漏："><span class="nav-number">1.2.8.</span> <span class="nav-text">SVN导致文件泄漏：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我遇到的题目类型"><span class="nav-number">1.2.9.</span> <span class="nav-text">我遇到的题目类型</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liduoan"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liduoan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yourname" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yourname" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liduoam</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i>
+  <span id="busuanzi_container_site_uv">
+    本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;| 
+  </span>
+  <span id="busuanzi_container_site_pv">
+      &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+  </div>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+
+
+</body>
+</html>
