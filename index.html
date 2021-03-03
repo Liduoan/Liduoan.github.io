@@ -163,6 +163,117 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/03/Shiro%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liduoan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="liduoan修炼笔记">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/03/Shiro%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">Shiro入门</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-03-03 16:51:20 / 修改时间：16:56:12" itemprop="dateCreated datePublished" datetime="2021-03-03T16:51:20+08:00">2021-03-03</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Shiro基本认识"><a href="#Shiro基本认识" class="headerlink" title="Shiro基本认识"></a>Shiro基本认识</h3><p>在Web系统中我们经常要涉及到权限问题，例如不同角色的人登录系统，他操作的功能、按钮、菜单是各不相同的，这就是所谓的权限。</p>
+<p>那么就需要进行一些权限校验了。比如说</p>
+<ul>
+<li><p>用户认证 - 用户身份识别，即登录</p>
+</li>
+<li><p>用户授权 - 访问控制</p>
+</li>
+<li><p>密码加密 - 加密敏感数据防止被偷窥</p>
+</li>
+<li><p>会话管理 - 与用户相关的时间敏感的状态信息</p>
+</li>
+</ul>
+<h4 id="三个主要概念"><a href="#三个主要概念" class="headerlink" title="三个主要概念"></a>三个主要概念</h4><p>Subject：就是与系统交互的当前”用户”，用户不仅仅是人，也可以是第三方服务，爬虫等正在与系统交互的任何事物。</p>
+<p>SecurityManager：是Shiro架构的核心，协调内部各个安全组件之间的交互</p>
+<p>Realms：在Shiro和用户的应用程序之间扮演着桥梁和连接器的作用。当需要验证或者授权的时候，Shiro从一个或者多个配置的Realms中查找。</p>
+<p>Realms是提供认证和授权的工作</p>
+<h4 id="详细架构"><a href="#详细架构" class="headerlink" title="详细架构"></a>详细架构</h4><p>Subject：主体，可以看到主体可以是任何可以与应用交互的“用户”；</p>
+<p>SecurityManager：相当于SpringMVC中的DispatcherServlet或者Struts2中的FilterDispatcher；是Shiro的心脏；所有具体的交互都通过SecurityManager进行控制；它管理着所有Subject、且负责进行认证和授权、及会话、缓存的管理。</p>
+<p>Authenticator：认证器，负责主体认证的，这是一个扩展点，如果用户觉得Shiro默认的不好，可以自定义实现；其需要认证策略（Authentication Strategy），即什么情况下算用户认证通过了；</p>
+<p>Authorizer：授权器，或者访问控制器，用来决定主体是否有权限进行相应的操作；即控制着用户能访问应用中的哪些功能；</p>
+<p>Realm：可以有1个或多个Realm，可以认为是安全实体数据源，即用于获取安全实体的；可以是JDBC实现，也可以是LDAP实现，或者内存实现等等；由用户提供；注意：Shiro不知道你的用户/权限存储在哪及以何种格式存储；<strong>所以我们一般在应用中都需要实现自己的Realm；</strong></p>
+<p>SessionManager：Session呢需要有人去管理它的生命周期，这个组件就是SessionManager；而Shiro并不仅仅可以用在Web环境，也可以用在如普通的JavaSE环境、EJB等环境</p>
+<p>SessionDAO：DAO大家都用过，数据访问对象，用于会话的CRUD，比如我们想把Session保存到数据库，那么可以实现自己的SessionDAO，通过如JDBC写到数据库；比如想把Session放到Memcached中，可以实现自己的Memcached SessionDAO；另外SessionDAO中可以使用Cache进行缓存，以提高性能；</p>
+<p>CacheManager：缓存控制器，来管理如用户、角色、权限等的缓存的；因为这些数据基本上很少去改变，放到缓存中后可以提高访问的性能</p>
+<p>Cryptography：密码模块，Shiro提高了一些常见的加密组件用于如密码加密/解密的。</p>
+<h3 id="用户认证流程"><a href="#用户认证流程" class="headerlink" title="用户认证流程"></a>用户认证流程</h3><p>1、首先调用Subject.login(token)进行登录，其会自动委托给Security Manager，调用之前必须通过SecurityUtils. setSecurityManager()设置；</p>
+<p>2、SecurityManager负责真正的身份验证逻辑；它会委托给Authenticator进行身份验证；</p>
+<p>3、Authenticator才是真正的身份验证者，Shiro API中核心的身份认证入口点，此处可以自定义插入自己的实现；</p>
+<p>4、Authenticator可能会委托给相应的AuthenticationStrategy进行多Realm身份验证，默认ModularRealmAuthenticator会调用AuthenticationStrategy进行多Realm身份验证；</p>
+<p>5、Authenticator会把相应的token传入Realm，从Realm获取身份验证信息，如果没有返回/抛出异常表示身份验证失败了。此处可以配置多个Realm，将按照相应的顺序及策略进行访问。</p>
+<h3 id="用户授权"><a href="#用户授权" class="headerlink" title="用户授权"></a>用户授权</h3><p>授权（Authorization）也叫做访问控制，是一个对资源的访问进行管理的过程，也就是说在应用程序汇总，谁有怎样的权限（用户可以看到什么内容，可以进行什么操作）。在授权中需了解的几个关键对象：主体（Subject）、资源（Resource）、权限（Permission）、角色（Role）</p>
+<p>1、首先调用Subject.isPermitted<em>/hasRole</em>接口，其会委托给SecurityManager，而SecurityManager接着会委托给Authorizer； </p>
+<p> 2、Authorizer是真正的授权者，如果我们调用如isPermitted(“user:view”)，其首先会通过PermissionResolver把字符串转换成相应的Permission实例； </p>
+<p> 3、在进行授权之前，其会调用相应的Realm获取Subject相应的角色/权限用于匹配传入的角色/权限； </p>
+<p> 4、Authorizer会判断Realm的角色/权限是否和传入的匹配，如果有多个Realm，会委托给ModularRealmAuthorizer进行循环判断，如果匹配如isPermitted<em>/hasRole</em>会返回true，否则返回false表示授权失败</p>
+<h4 id="四要素"><a href="#四要素" class="headerlink" title="四要素"></a>四要素</h4><p>主体</p>
+<p>主体，即访问应用的用户，在Shiro中使用Subject代表该用户。用户只有授权后才允许访问相应的资源。</p>
+<p>资源</p>
+<p>在应用中用户可以访问的任何东西，比如访问JSP页面、查看/编辑某些数据、访问某个业务方法、打印文本等等都是资源。用户只要授权后才能访问。</p>
+<p>权限</p>
+<p>安全策略中的原子授权单位，通过权限我们可以表示在应用中用户有没有操作某个资源的权力。即权限表示在应用中用户能不能访问某个资源，如：</p>
+<p>角色</p>
+<p>角色代表了操作集合，可以理解为权限的集合，一般情况下我们会赋予用户角色而不是权限，即这样用户可以拥有一组权限，赋予权限时比较方便。典型的如：项目经理、技术总监、CTO、开发工程师等都是角色，不同的角色拥有一组不同的权限。</p>
+<h3 id="Realm"><a href="#Realm" class="headerlink" title="Realm"></a>Realm</h3><p>Shiro从从Realm获取安全数据（如用户、角色、权限），就是说SecurityManager要验证用户身份，那么它需要从Realm获取相应的用户进行比较以确定用户身份是否合法；</p>
+<p>也需要从Realm得到用户相应的角色/权限进行验证用户是否能进行操作</p>
+<p>两个重要的操作</p>
+<p>认证和授权</p>
+<hr>
+<p>总的来说就是它是依靠Realm进行操作的</p>
+<p>一般的操作是先设置<code>ShiroConfig</code></p>
+<p>然后创建<code>AccountProfile</code></p>
+<p>在<code>Realm</code>中设置认证和授权操作</p>
+<p>回到<code>ShiroConfig</code>中设置<code>Filter</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/02/28/Eblog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -797,80 +908,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/12/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liduoan">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="liduoan修炼笔记">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/12/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">关于一些算法模板</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-12-12 10:43:54" itemprop="dateCreated datePublished" datetime="2020-12-12T10:43:54+08:00">2020-12-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-27 12:55:26" itemprop="dateModified" datetime="2021-01-27T12:55:26+08:00">2021-01-27</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在做剑指Offer的某道题目时，使用到了二分查找的算法。</p>
-<p>但是二分查找的算法 思路很好说，代码的细节不好说。</p>
-<p>故此在这里给叙述一下。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/12/12/%E5%85%B3%E4%BA%8E%E4%B8%80%E4%BA%9B%E7%AE%97%E6%B3%95%E6%A8%A1%E6%9D%BF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -942,7 +979,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

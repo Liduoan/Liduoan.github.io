@@ -20,23 +20,19 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="无数字无字母RCE这一篇我写的特别丑陋，推荐别点开。 https:&#x2F;&#x2F;www.leavesongs.com&#x2F;PENETRATION&#x2F;webshell-without-alphanum.html 常见的该类型代码如下： 123456&lt;?php	if(!preg_match(&#39;&#x2F;[a-zA-Z0-9]&#x2F;is&#39;,$_GET[&#39;shell&#39;]))&amp;">
+  <meta name="description" content="Shiro基本认识在Web系统中我们经常要涉及到权限问题，例如不同角色的人登录系统，他操作的功能、按钮、菜单是各不相同的，这就是所谓的权限。 那么就需要进行一些权限校验了。比如说  用户认证 - 用户身份识别，即登录  用户授权 - 访问控制  密码加密 - 加密敏感数据防止被偷窥  会话管理 - 与用户相关的时间敏感的状态信息   三个主要概念Subject：就是与系统交互的当前”用户”，用户不">
 <meta property="og:type" content="article">
-<meta property="og:title" content="无数字无字母RCE">
-<meta property="og:url" content="http://yoursite.com/2020/04/11/%E5%9B%9B%E6%9C%88/%E6%97%A0%E6%95%B0%E5%AD%97%E6%97%A0%E5%AD%97%E6%AF%8DRCE/index.html">
+<meta property="og:title" content="Shiro入门">
+<meta property="og:url" content="http://yoursite.com/2021/03/03/Shiro%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="liduoan修炼笔记">
-<meta property="og:description" content="无数字无字母RCE这一篇我写的特别丑陋，推荐别点开。 https:&#x2F;&#x2F;www.leavesongs.com&#x2F;PENETRATION&#x2F;webshell-without-alphanum.html 常见的该类型代码如下： 123456&lt;?php	if(!preg_match(&#39;&#x2F;[a-zA-Z0-9]&#x2F;is&#39;,$_GET[&#39;shell&#39;]))&amp;">
+<meta property="og:description" content="Shiro基本认识在Web系统中我们经常要涉及到权限问题，例如不同角色的人登录系统，他操作的功能、按钮、菜单是各不相同的，这就是所谓的权限。 那么就需要进行一些权限校验了。比如说  用户认证 - 用户身份识别，即登录  用户授权 - 访问控制  密码加密 - 加密敏感数据防止被偷窥  会话管理 - 与用户相关的时间敏感的状态信息   三个主要概念Subject：就是与系统交互的当前”用户”，用户不">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic4.zhimg.com/80/v2-e70ed860b81b4c5e5ec89b8f0edf805d_1440w.jpg">
-<meta property="og:image" content="https://www.leavesongs.com/media/attachment/2017/02/17/a386505b-1c14-48f0-88cb-66923770df33.8732f996cd67.jpg">
-<meta property="og:image" content="https://www.leavesongs.com/media/attachment/2017/02/17/4d0c6bc9-5417-41b2-91ca-4e110e8d1350.72f524026162.jpg">
-<meta property="article:published_time" content="2020-04-11T07:59:37.000Z">
-<meta property="article:modified_time" content="2020-04-12T16:04:04.082Z">
+<meta property="article:published_time" content="2021-03-03T08:51:20.000Z">
+<meta property="article:modified_time" content="2021-03-03T08:56:12.564Z">
 <meta property="article:author" content="liduoan">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-e70ed860b81b4c5e5ec89b8f0edf805d_1440w.jpg">
 
-<link rel="canonical" href="http://yoursite.com/2020/04/11/%E5%9B%9B%E6%9C%88/%E6%97%A0%E6%95%B0%E5%AD%97%E6%97%A0%E5%AD%97%E6%AF%8DRCE/">
+<link rel="canonical" href="http://yoursite.com/2021/03/03/Shiro%E5%85%A5%E9%97%A8/">
 
 
 <script id="page-configurations">
@@ -49,7 +45,7 @@
   };
 </script>
 
-  <title>无数字无字母RCE | liduoan修炼笔记</title>
+  <title>Shiro入门 | liduoan修炼笔记</title>
   
 
 
@@ -172,7 +168,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/11/%E5%9B%9B%E6%9C%88/%E6%97%A0%E6%95%B0%E5%AD%97%E6%97%A0%E5%AD%97%E6%AF%8DRCE/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/03/Shiro%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -185,7 +181,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          无数字无字母RCE
+          Shiro入门
         </h1>
 
         <div class="post-meta">
@@ -194,24 +190,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-04-11 15:59:37" itemprop="dateCreated datePublished" datetime="2020-04-11T15:59:37+08:00">2020-04-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-13 00:04:04" itemprop="dateModified" datetime="2020-04-13T00:04:04+08:00">2020-04-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
-                </span>
+              <time title="创建时间：2021-03-03 16:51:20 / 修改时间：16:56:12" itemprop="dateCreated datePublished" datetime="2021-03-03T16:51:20+08:00">2021-03-03</time>
             </span>
 
           
@@ -225,32 +206,59 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="无数字无字母RCE"><a href="#无数字无字母RCE" class="headerlink" title="无数字无字母RCE"></a>无数字无字母RCE</h2><p>这一篇我写的特别丑陋，推荐别点开。</p>
-<p><a href="https://www.leavesongs.com/PENETRATION/webshell-without-alphanum.html" target="_blank" rel="noopener">https://www.leavesongs.com/PENETRATION/webshell-without-alphanum.html</a></p>
-<p>常见的该类型代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">	if(!preg_match(&#39;&#x2F;[a-zA-Z0-9]&#x2F;is&#39;,$_GET[&#39;shell&#39;]))&#123;</span><br><span class="line">	eval($_GET[&#39;shell&#39;]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<p>核心思路，将非字母非数字的字符进行各种变换，最好构造出a-z任意一个字符。利用PHP允许动态函数执行的特点，拼接一个函数名，然后动态执行。</p>
-<a id="more"></a>
-
-<p>P神说了可以有三种方法实现</p>
-<p>1、异或</p>
-<p>PHP的字符串，两个字符串异或的结果是一个新的字符串。【我不明白其中原理</p>
-<p>写写脚本吧</p>
-<p><img src="https://pic4.zhimg.com/80/v2-e70ed860b81b4c5e5ec89b8f0edf805d_1440w.jpg" alt=""></p>
-<p>也可以像P神一样查出每个字母 拼接就好</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$_=(<span class="string">'%01'</span>^<span class="string">'`'</span>).(<span class="string">'%13'</span>^<span class="string">'`'</span>).(<span class="string">'%13'</span>^<span class="string">'`'</span>).(<span class="string">'%05'</span>^<span class="string">'`'</span>).(<span class="string">'%12'</span>^<span class="string">'`'</span>).(<span class="string">'%14'</span>^<span class="string">'`'</span>); <span class="comment">// $_='assert';</span></span><br><span class="line">$__=<span class="string">'_'</span>.(<span class="string">'%0D'</span>^<span class="string">']'</span>).(<span class="string">'%2F'</span>^<span class="string">'`'</span>).(<span class="string">'%0E'</span>^<span class="string">']'</span>).(<span class="string">'%09'</span>^<span class="string">']'</span>); <span class="comment">// $__='_POST';</span></span><br><span class="line">$___=$$__;</span><br><span class="line">$_($___[_]); <span class="comment">// assert($_POST[_]);</span></span><br></pre></td></tr></table></figure>
-
-<p>方法三、</p>
-<p>那么，如果不用位运算这个套路，能不能搞定这题呢？有何不可。</p>
-<p>这就得借助PHP的一个小技巧，先看文档： <a href="http://php.net/manual/zh/language.operators.increment.php" target="_blank" rel="noopener">http://php.net/manual/zh/language.operators.increment.php</a></p>
-<p><a href="https://www.leavesongs.com/media/attachment/2017/02/17/a386505b-1c14-48f0-88cb-66923770df33.jpg" target="_blank" rel="noopener"><img src="https://www.leavesongs.com/media/attachment/2017/02/17/a386505b-1c14-48f0-88cb-66923770df33.8732f996cd67.jpg" alt="14872693882387.jpg"></a></p>
-<p>也就是说，<code>&#39;a&#39;++ =&gt; &#39;b&#39;</code>，<code>&#39;b&#39;++ =&gt; &#39;c&#39;</code>… 所以，我们只要能拿到一个变量，其值为<code>a</code>，通过自增操作即可获得a-z中所有字符。</p>
-<p>那么，如何拿到一个值为字符串’a’的变量呢？</p>
-<p>巧了，数组（Array）的第一个字母就是大写A，而且第4个字母是小写a。也就是说，我们可以同时拿到小写和大写A，等于我们就可以拿到a-z和A-Z的所有字母。</p>
-<p>在PHP中，如果强制连接数组和字符串的话，数组将被转换成字符串，其值为<code>Array</code>：</p>
-<p><a href="https://www.leavesongs.com/media/attachment/2017/02/17/4d0c6bc9-5417-41b2-91ca-4e110e8d1350.jpg" target="_blank" rel="noopener"><img src="https://www.leavesongs.com/media/attachment/2017/02/17/4d0c6bc9-5417-41b2-91ca-4e110e8d1350.72f524026162.jpg" alt="14872697183159.jpg"></a></p>
-<p>再取这个字符串的第一个字母，就可以获得’A’了。</p>
+        <h3 id="Shiro基本认识"><a href="#Shiro基本认识" class="headerlink" title="Shiro基本认识"></a>Shiro基本认识</h3><p>在Web系统中我们经常要涉及到权限问题，例如不同角色的人登录系统，他操作的功能、按钮、菜单是各不相同的，这就是所谓的权限。</p>
+<p>那么就需要进行一些权限校验了。比如说</p>
+<ul>
+<li><p>用户认证 - 用户身份识别，即登录</p>
+</li>
+<li><p>用户授权 - 访问控制</p>
+</li>
+<li><p>密码加密 - 加密敏感数据防止被偷窥</p>
+</li>
+<li><p>会话管理 - 与用户相关的时间敏感的状态信息</p>
+</li>
+</ul>
+<h4 id="三个主要概念"><a href="#三个主要概念" class="headerlink" title="三个主要概念"></a>三个主要概念</h4><p>Subject：就是与系统交互的当前”用户”，用户不仅仅是人，也可以是第三方服务，爬虫等正在与系统交互的任何事物。</p>
+<p>SecurityManager：是Shiro架构的核心，协调内部各个安全组件之间的交互</p>
+<p>Realms：在Shiro和用户的应用程序之间扮演着桥梁和连接器的作用。当需要验证或者授权的时候，Shiro从一个或者多个配置的Realms中查找。</p>
+<p>Realms是提供认证和授权的工作</p>
+<h4 id="详细架构"><a href="#详细架构" class="headerlink" title="详细架构"></a>详细架构</h4><p>Subject：主体，可以看到主体可以是任何可以与应用交互的“用户”；</p>
+<p>SecurityManager：相当于SpringMVC中的DispatcherServlet或者Struts2中的FilterDispatcher；是Shiro的心脏；所有具体的交互都通过SecurityManager进行控制；它管理着所有Subject、且负责进行认证和授权、及会话、缓存的管理。</p>
+<p>Authenticator：认证器，负责主体认证的，这是一个扩展点，如果用户觉得Shiro默认的不好，可以自定义实现；其需要认证策略（Authentication Strategy），即什么情况下算用户认证通过了；</p>
+<p>Authorizer：授权器，或者访问控制器，用来决定主体是否有权限进行相应的操作；即控制着用户能访问应用中的哪些功能；</p>
+<p>Realm：可以有1个或多个Realm，可以认为是安全实体数据源，即用于获取安全实体的；可以是JDBC实现，也可以是LDAP实现，或者内存实现等等；由用户提供；注意：Shiro不知道你的用户/权限存储在哪及以何种格式存储；<strong>所以我们一般在应用中都需要实现自己的Realm；</strong></p>
+<p>SessionManager：Session呢需要有人去管理它的生命周期，这个组件就是SessionManager；而Shiro并不仅仅可以用在Web环境，也可以用在如普通的JavaSE环境、EJB等环境</p>
+<p>SessionDAO：DAO大家都用过，数据访问对象，用于会话的CRUD，比如我们想把Session保存到数据库，那么可以实现自己的SessionDAO，通过如JDBC写到数据库；比如想把Session放到Memcached中，可以实现自己的Memcached SessionDAO；另外SessionDAO中可以使用Cache进行缓存，以提高性能；</p>
+<p>CacheManager：缓存控制器，来管理如用户、角色、权限等的缓存的；因为这些数据基本上很少去改变，放到缓存中后可以提高访问的性能</p>
+<p>Cryptography：密码模块，Shiro提高了一些常见的加密组件用于如密码加密/解密的。</p>
+<h3 id="用户认证流程"><a href="#用户认证流程" class="headerlink" title="用户认证流程"></a>用户认证流程</h3><p>1、首先调用Subject.login(token)进行登录，其会自动委托给Security Manager，调用之前必须通过SecurityUtils. setSecurityManager()设置；</p>
+<p>2、SecurityManager负责真正的身份验证逻辑；它会委托给Authenticator进行身份验证；</p>
+<p>3、Authenticator才是真正的身份验证者，Shiro API中核心的身份认证入口点，此处可以自定义插入自己的实现；</p>
+<p>4、Authenticator可能会委托给相应的AuthenticationStrategy进行多Realm身份验证，默认ModularRealmAuthenticator会调用AuthenticationStrategy进行多Realm身份验证；</p>
+<p>5、Authenticator会把相应的token传入Realm，从Realm获取身份验证信息，如果没有返回/抛出异常表示身份验证失败了。此处可以配置多个Realm，将按照相应的顺序及策略进行访问。</p>
+<h3 id="用户授权"><a href="#用户授权" class="headerlink" title="用户授权"></a>用户授权</h3><p>授权（Authorization）也叫做访问控制，是一个对资源的访问进行管理的过程，也就是说在应用程序汇总，谁有怎样的权限（用户可以看到什么内容，可以进行什么操作）。在授权中需了解的几个关键对象：主体（Subject）、资源（Resource）、权限（Permission）、角色（Role）</p>
+<p>1、首先调用Subject.isPermitted<em>/hasRole</em>接口，其会委托给SecurityManager，而SecurityManager接着会委托给Authorizer； </p>
+<p> 2、Authorizer是真正的授权者，如果我们调用如isPermitted(“user:view”)，其首先会通过PermissionResolver把字符串转换成相应的Permission实例； </p>
+<p> 3、在进行授权之前，其会调用相应的Realm获取Subject相应的角色/权限用于匹配传入的角色/权限； </p>
+<p> 4、Authorizer会判断Realm的角色/权限是否和传入的匹配，如果有多个Realm，会委托给ModularRealmAuthorizer进行循环判断，如果匹配如isPermitted<em>/hasRole</em>会返回true，否则返回false表示授权失败</p>
+<h4 id="四要素"><a href="#四要素" class="headerlink" title="四要素"></a>四要素</h4><p>主体</p>
+<p>主体，即访问应用的用户，在Shiro中使用Subject代表该用户。用户只有授权后才允许访问相应的资源。</p>
+<p>资源</p>
+<p>在应用中用户可以访问的任何东西，比如访问JSP页面、查看/编辑某些数据、访问某个业务方法、打印文本等等都是资源。用户只要授权后才能访问。</p>
+<p>权限</p>
+<p>安全策略中的原子授权单位，通过权限我们可以表示在应用中用户有没有操作某个资源的权力。即权限表示在应用中用户能不能访问某个资源，如：</p>
+<p>角色</p>
+<p>角色代表了操作集合，可以理解为权限的集合，一般情况下我们会赋予用户角色而不是权限，即这样用户可以拥有一组权限，赋予权限时比较方便。典型的如：项目经理、技术总监、CTO、开发工程师等都是角色，不同的角色拥有一组不同的权限。</p>
+<h3 id="Realm"><a href="#Realm" class="headerlink" title="Realm"></a>Realm</h3><p>Shiro从从Realm获取安全数据（如用户、角色、权限），就是说SecurityManager要验证用户身份，那么它需要从Realm获取相应的用户进行比较以确定用户身份是否合法；</p>
+<p>也需要从Realm得到用户相应的角色/权限进行验证用户是否能进行操作</p>
+<p>两个重要的操作</p>
+<p>认证和授权</p>
+<hr>
+<p>总的来说就是它是依靠Realm进行操作的</p>
+<p>一般的操作是先设置<code>ShiroConfig</code></p>
+<p>然后创建<code>AccountProfile</code></p>
+<p>在<code>Realm</code>中设置认证和授权操作</p>
+<p>回到<code>ShiroConfig</code>中设置<code>Filter</code></p>
 
     </div>
 
@@ -266,7 +274,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2020/04/11/%E5%9B%9B%E6%9C%88/%E6%97%A0%E6%95%B0%E5%AD%97%E6%97%A0%E5%AD%97%E6%AF%8DRCE/" title="无数字无字母RCE">http://yoursite.com/2020/04/11/四月/无数字无字母RCE/</a>
+    <a href="http://yoursite.com/2021/03/03/Shiro%E5%85%A5%E9%97%A8/" title="Shiro入门">http://yoursite.com/2021/03/03/Shiro入门/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -296,13 +304,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/04/08/CTFcomig/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C-%E6%80%BB%E7%BB%931-0/" rel="prev" title="命令执行-总结1.0">
-      <i class="fa fa-chevron-left"></i> 命令执行-总结1.0
+    <a href="/2021/02/28/Eblog/" rel="prev" title="Eblog项目笔记">
+      <i class="fa fa-chevron-left"></i> Eblog项目笔记
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/04/11/%E5%9B%9B%E6%9C%88/%E8%BF%84%E4%BB%8A%E4%B8%BA%E6%AD%A2/" rel="next" title="迄今为止">
-      迄今为止 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -361,7 +366,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#无数字无字母RCE"><span class="nav-number">1.</span> <span class="nav-text">无数字无字母RCE</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shiro基本认识"><span class="nav-number">1.</span> <span class="nav-text">Shiro基本认识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#三个主要概念"><span class="nav-number">1.1.</span> <span class="nav-text">三个主要概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#详细架构"><span class="nav-number">1.2.</span> <span class="nav-text">详细架构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户认证流程"><span class="nav-number">2.</span> <span class="nav-text">用户认证流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户授权"><span class="nav-number">3.</span> <span class="nav-text">用户授权</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#四要素"><span class="nav-number">3.1.</span> <span class="nav-text">四要素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Realm"><span class="nav-number">4.</span> <span class="nav-text">Realm</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
