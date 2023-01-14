@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            webSocket |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":null,"font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">webSocket</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2021-03-10 15:40:08</span>
+        <span class="mobile">2021-03-10 15:40</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-01-14 23:04:19</span>
+    </span>
+    
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/2021/">2021</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.3k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>12 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span>
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>由于面试被问到WebSocket，所以需要深入了解清楚</p>
+<p>webSocket常用在消息通信方面，那么当我们需要服务端有新的消息时，如何通知客户端进行实时响应？</p>
+<p>可以使用的是消息队列和websocket</p>
+<h2 id="WebSocket协议的特点"><a href="#WebSocket协议的特点" class="headerlink" title="WebSocket协议的特点"></a>WebSocket协议的特点</h2><ul>
+<li>建立在 TCP 协议之上，它需要通过握手连接之后才能通信，服务器端的实现比较容易。</li>
+<li>与 HTTP 协议有着良好的兼容性。默认端口也是80或443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。</li>
+<li>数据格式比较轻量，性能开销小，通信高效。可以发送文本，也可以发送二进制数据。</li>
+<li>没有同源限制，客户端可以与任意服务器通信。</li>
+<li>协议标识符是ws（如果加密，则为wss），服务器网址就是URL。（例如：ws:&#x2F;&#x2F;<a class="link"   target="_blank" rel="noopener" href="http://www.example.com/chat%EF%BC%89" >www.example.com/chat）<i class="fas fa-external-link-alt"></i></a></li>
+<li>它是一种双向通信协议，采用异步回调的方式接受消息，当建立通信连接，可以做到持久性的连接，WebSocket服务器和Browser都能主动的向对方发送或接收数据，实质的推送方式是服务器主动推送，只要有数据就推送到请求方。</li>
+</ul>
+<h2 id="HTTP1-1与WebSocket的异同"><a href="#HTTP1-1与WebSocket的异同" class="headerlink" title="HTTP1.1与WebSocket的异同"></a>HTTP1.1与WebSocket的异同</h2><p>最后，作为总结，让我们再来回顾一下HTTP1.1与WebSocket的相同与不同。加深对WebSocket的理解。</p>
+<h2 id="协议层面的异同"><a href="#协议层面的异同" class="headerlink" title="协议层面的异同"></a>协议层面的异同</h2><h3 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h3><ul>
+<li>都是基于TCP的应用层协议。</li>
+<li>都使用Request&#x2F;Response模型进行连接的建立。</li>
+<li>在连接的建立过程中对错误的处理方式相同，在这个阶段WebSocket可能返回和HTTP相同的返回码。</li>
+</ul>
+<h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h3><ul>
+<li>HTTP协议基于Request&#x2F;Response，只能做单向传输，是半双工协议，而WebSocket是全双工协议，类似于Socket通信，双方都可以在任何时刻向另一方发送数据。</li>
+<li>WebSocket使用HTTP来建立连接，但是定义了一系列新的Header域，这些域在HTTP中并不会使用。换言之，二者的请求头不同。</li>
+<li>WebSocket的连接不能通过中间人来转发，它必须是一个直接连接。如果通过代理转发，一个代理要承受如此多的WebSocket连接不释放，就类似于一次DDOS攻击了。</li>
+<li>WebSocket在建立握手连接时，数据是通过HTTP协议传输的，但在建立连接之后，真正的数据传输阶段是不需要HTTP协议参与的。</li>
+<li>WebSocket传输的数据是二进制流，是以帧为单位的，HTTP传输的是明文传输，是字符串传输，WebSocket的数据帧有序。</li>
+</ul>
+<hr>
+<h3 id="Tip1"><a href="#Tip1" class="headerlink" title="Tip1"></a>Tip1</h3><p>都是为了保持住两者连接，但是http是保持在应用层方面，而websocket是保持在TCP方面，也就是传输层。</p>
+<p>省去了HTTP的大量的request和response的头部。节省了流量。</p>
+<hr>
+<p><strong>WebSocket</strong>协议上并没有规定其消息发送的详细格式。那就意味着每个使用WebSocket的开发者，都需要自己在服务端和客户端定义一套规则，来传输信息。那么，有没有已经造好的轮子呢？答案肯定是有的。这就是<strong>STOMP</strong>。</p>
+<h2 id="STOMP-Simple-Text-Oriented-Messaging-Protocol-简介"><a href="#STOMP-Simple-Text-Oriented-Messaging-Protocol-简介" class="headerlink" title="STOMP(Simple Text Oriented Messaging Protocol)简介"></a>STOMP(Simple Text Oriented Messaging Protocol)简介</h2><p>STOMP是一个用于C&#x2F;S之间进行异步消息传输的简单文本协议, 全称是Simple Text Oriented Messaging Protocol。</p>
+<blockquote>
+<p><a class="link"   target="_blank" rel="noopener" href="http://stomp.github.io/index.html" >STOMP官方网站<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
+<p>其实STOMP协议并不是为WS所设计的, 它其实是消息队列的一种协议, 和AMQP,JMS是平级的。 只不过由于它的简单性恰巧可以用于定义WS的消息体格式。 目前很多服务端消息队列都已经支持了STOMP, 比如RabbitMQ, Apache ActiveMQ等。很多语言也都有STOMP协议的客户端解析库，像JAVA的Gozirra，C的libstomp，Python的pyactivemq，JavaScript的stomp.js等等。</p>
+<h2 id="STOMP协议"><a href="#STOMP协议" class="headerlink" title="STOMP协议"></a>STOMP协议</h2><p>STOMP是一种基于帧的协议，一帧由一个命令，一组可选的Header和一个可选的Body组成。 STOMP是基于Text的，但也允许传输二进制数据。 它的默认编码是UTF-8，但它的消息体也支持其他编码方式，比如压缩编码。</p>
+<h3 id="STOMP服务端"><a href="#STOMP服务端" class="headerlink" title="STOMP服务端"></a>STOMP服务端</h3><p>STOMP服务端被设计为客户端可以向其发送消息的一组目标地址。STOMP协议并没有规定目标地址的格式，它由使用协议的应用自己来定义。 例如&#x2F;topic&#x2F;a，&#x2F;queue&#x2F;a，queue-a对于STOMP协议来说都是正确的。应用可以自己规定不同的格式以此来表明不同格式代表的含义。比如应用自己可以定义以&#x2F;topic打头的为发布订阅模式，消息会被所有消费者客户端收到，以&#x2F;user开头的为点对点模式，只会被一个消费者客户端收到。</p>
+<h3 id="STOMP客户端"><a href="#STOMP客户端" class="headerlink" title="STOMP客户端"></a>STOMP客户端</h3><p>对于STOMP协议来说, 客户端会扮演下列两种角色的任意一种：</p>
+<ul>
+<li>作为生产者，通过SEND帧发送消息到指定的地址</li>
+<li>作为消费者，通过发送SUBSCRIBE帧到已知地址来进行消息订阅，而当生产者发送消息到这个订阅地址后，订阅该地址的其他消费者会受到通过MESSAGE帧收到该消息</li>
+</ul>
+<p>实际上，WebSocket结合STOMP相当于构建了一个消息分发队列，客户端可以在上述两个角色间转换，订阅机制保证了一个客户端消息可以通过服务器广播到多个其他客户端，作为生产者，又可以通过服务器来发送点对点消息。</p>
+<h3 id="STOMP帧结构"><a href="#STOMP帧结构" class="headerlink" title="STOMP帧结构"></a>STOMP帧结构</h3><blockquote>
+<p>COMMAND<br> header1:value1<br> header2:value2</p>
+<p>Body^@</p>
+</blockquote>
+<p>^@表示行结束符</p>
+<p>一个STOMP帧由三部分组成:命令，Header(头信息)，Body（消息体）</p>
+<ul>
+<li>命令使用UTF-8编码格式，命令有SEND、SUBSCRIBE、MESSAGE、CONNECT、CONNECTED等。</li>
+<li>Header也使用UTF-8编码格式，它类似HTTP的Header，有content-length,content-type等。</li>
+<li>Body可以是二进制也可以是文本。注意Body与Header间通过一个空行（EOL）来分隔。</li>
+</ul>
+<p>来看一个实际的帧例子：</p>
+<blockquote>
+<p>SEND<br> destination:&#x2F;broker&#x2F;roomId&#x2F;1<br> content-length:57</p>
+<p>{“type”:”ENTER”,”content”:”o7jD64gNifq-wq-C13Q5CRisJx5E”}</p>
+</blockquote>
+<ul>
+<li>第1行：表明此帧为SEND帧，是COMMAND字段。</li>
+<li>第2行：Header字段，消息要发送的目的地址，是相对地址。</li>
+<li>第3行：Header字段，消息体字符长度。</li>
+<li>第4行：空行，间隔Header与Body。</li>
+<li>第5行：消息体，为自定义的JSON结构。</li>
+</ul>
+<p>更多STOMP协议的细节，如果大家感兴趣，可以参考上述的官方网页，有更多详细的帧结构介绍。下面，我们将主要介绍用Springboot和JS实现后端和前端，构建一个WebSocket的小型应用场景。</p>
+<hr>
+<h3 id="spring中的WebSocket架构"><a href="#spring中的WebSocket架构" class="headerlink" title="spring中的WebSocket架构"></a>spring中的WebSocket架构</h3><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://user-gold-cdn.xitu.io/2018/8/13/1652f420d66bb9a0?imageView2/0/w/1280/h/960/format/webp/ignore-error/1"
+                      alt="img"
+                ></p>
+<h3 id="图中各个组件介绍："><a href="#图中各个组件介绍：" class="headerlink" title="图中各个组件介绍："></a>图中各个组件介绍：</h3><ul>
+<li><strong>生产者型客户端（左上组件）</strong>: 发送SEND命令到某个目的地址(destination)的客户端。</li>
+<li><strong>消费者型客户端（左下组件）</strong>: 订阅某个目的地址(destination), 并接收此目的地址所推送过来的消息的客户端。</li>
+<li><strong>request channel</strong>: 一组用来接收生产者型客户端所推送过来的消息的线程池。</li>
+<li><strong>response channel</strong>: 一组用来推送消息给消费者型客户端的线程池。</li>
+<li><strong>broker</strong>: 消息队列管理者，也可以成为消息代理。它有自己的地址（例如“&#x2F;topic”），客户端可以向其发送订阅指令，它会记录哪些订阅了这个目的地址(destination)。</li>
+<li><strong>应用目的地址(图中的”&#x2F;app”)</strong>: 发送到这类目的地址的消息在到达broker之前，会先路由到由应用写的某个方法。相当于对进入broker的消息进行一次拦截，目的是针对消息做一些业务处理。</li>
+<li><strong>非应用目的地址(图中的”&#x2F;topic”</strong>，也是消息代理地址): 发送到这类目的地址的消息会直接转到broker。不会被应用拦截。</li>
+<li><strong>SimpAnnotatonMethod</strong>: 发送到应用目的地址的消息在到达broker之前, 先路由到的方法. 这部分代码是由应用控制的。</li>
+</ul>
+<h3 id="消息从生产者发出到消费者消费的流转流程"><a href="#消息从生产者发出到消费者消费的流转流程" class="headerlink" title="消息从生产者发出到消费者消费的流转流程"></a>消息从生产者发出到消费者消费的流转流程</h3><p>首先，生产者通过发送一条SEND命令消息到某个目的地址(destination)，服务端request channel接受到这条SEND命令消息，如果目的地址是应用目的地址则转到相应的由应用自己写的业务方法做处理（对应图中的SimpAnnotationMethod），再转到broker(SimpleBroker)。如果目的地址是非应用目的地址则直接转到broker。broker通过SEND命令消息来构建MESSAGE命令消息, 再通过response channel推送MESSAGE命令消息到所有订阅此目的地址的消费者。 废话不多说，下面直接上代码。</p>
+<hr>
+<p>代码上主要配置一下broker和对相应方法进行书写</p>
+<p>对Controller进行处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.xnpe.club.wbs.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.xnpe.club.wbs.data.Greeting;</span><br><span class="line"><span class="keyword">import</span> com.xnpe.club.wbs.data.HelloMessage;</span><br><span class="line"><span class="keyword">import</span> org.springframework.messaging.handler.annotation.MessageMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.messaging.handler.annotation.SendTo;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.util.HtmlUtils;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span> <span class="comment">//使用Controller注解来标识这是一个控制器类</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">GreetingController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@MessageMapping(&quot;/hello&quot;)</span> </span><br><span class="line">    <span class="comment">//使用MessageMapping注解来标识所有发送到“/hello”这个destination的消息，都会被路由到这个方法进行处理.</span></span><br><span class="line">    <span class="meta">@SendTo(&quot;/topic/greetings&quot;)</span></span><br><span class="line">    <span class="comment">//使用SendTo注解来标识这个方法返回的结果，都会被发送到它指定的destination，“/topic/greetings”.</span></span><br><span class="line">    <span class="comment">//传入的参数HelloMessage为客户端发送过来的消息，是自动绑定的。</span></span><br><span class="line">    <span class="keyword">public</span> Greeting <span class="title function_">greeting</span><span class="params">(HelloMessage message)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        Thread.sleep(<span class="number">1000</span>); <span class="comment">// 模拟处理延时</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Greeting</span>(<span class="string">&quot;Hello, &quot;</span> + HtmlUtils.htmlEscape(message.getName()) + <span class="string">&quot;!&quot;</span>); </span><br><span class="line">        <span class="comment">//根据传入的信息，返回一个欢迎消息.</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里表示 有关的消息发送之后会先到这个Controller</p>
+<p>结束之后会到消息队列&#x2F;topic&#x2F;greetings</p>
+<h3 id="为Spring配置STOMP消息"><a href="#为Spring配置STOMP消息" class="headerlink" title="为Spring配置STOMP消息"></a>为Spring配置STOMP消息</h3><p>刚才我们已经创建了消息处理控制器，也就是我们的业务处理逻辑。现在我们要为Spring配置WebSocket和STOMP消息设置。 创建一个名为WebSocketController的类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span> </span><br><span class="line"><span class="comment">//使用Configuration注解标识这是一个Springboot的配置类.</span></span><br><span class="line"><span class="meta">@EnableWebSocketMessageBroker</span> </span><br><span class="line"><span class="comment">//使用此注解来标识使能WebSocket的broker.即使用broker来处理消息.</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">WebSocketConfig</span> <span class="keyword">implements</span> <span class="title class_">WebSocketMessageBrokerConfigurer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">//实现WebSocketMessageBrokerConfigurer中的此方法，配置消息代理（broker）</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">configureMessageBroker</span><span class="params">(MessageBrokerRegistry config)</span> &#123;</span><br><span class="line">        config.enableSimpleBroker(<span class="string">&quot;/topic&quot;</span>); </span><br><span class="line">        <span class="comment">//启用SimpleBroker，使得订阅到此&quot;topic&quot;前缀的客户端可以收到greeting消息.</span></span><br><span class="line">        config.setApplicationDestinationPrefixes(<span class="string">&quot;/app&quot;</span>); </span><br><span class="line">        <span class="comment">//将&quot;app&quot;前缀绑定到MessageMapping注解指定的方法上。如&quot;app/hello&quot;被指定用greeting()方法来处理.</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="comment">//用来注册Endpoint，“/gs-guide-websocket”即为客户端尝试建立连接的地址。</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">registerStompEndpoints</span><span class="params">(StompEndpointRegistry registry)</span> &#123;</span><br><span class="line">        registry.addEndpoint(<span class="string">&quot;/gs-guide-websocket&quot;</span>).withSockJS();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置主要包含两部分内容，一个是消息代理，另一个是Endpoint，消息代理指定了客户端订阅地址，以及发送消息的路由地址；Endpoint指定了客户端建立连接时的请求地址。</p>
+<p>至此，服务端的配置工作就完成了，非常简单。现在，让我们实现一个前端页面，来验证服务的工作情况。</p>
+<h3 id="创建前端实现页面"><a href="#创建前端实现页面" class="headerlink" title="创建前端实现页面"></a>创建前端实现页面</h3><p>针对STOMP，前端我们采用JavaScript的stomp的客户端实现stomp.js以及WebSocket的实现SockJS。此处只展示核心代码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用SockJS和stomp.js来打开“gs-guide-websocket”地址的连接，这也是我们使用Spring构建的SockJS服务。</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">connect</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> socket = <span class="keyword">new</span> <span class="title class_">SockJS</span>(<span class="string">&#x27;/gs-guide-websocket&#x27;</span>);</span><br><span class="line">    stompClient = <span class="title class_">Stomp</span>.<span class="title function_">over</span>(socket);</span><br><span class="line">    stompClient.<span class="title function_">connect</span>(&#123;&#125;, <span class="keyword">function</span> (<span class="params">frame</span>) &#123;</span><br><span class="line">        <span class="comment">//连接成功后的回调方法</span></span><br><span class="line">        <span class="title function_">setConnected</span>(<span class="literal">true</span>);</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;Connected: &#x27;</span> + frame);</span><br><span class="line">        <span class="comment">//订阅/topic/greetings地址，当服务端向此地址发送消息时，客户端即可收到。</span></span><br><span class="line">        stompClient.<span class="title function_">subscribe</span>(<span class="string">&#x27;/topic/greetings&#x27;</span>, <span class="keyword">function</span> (<span class="params">greeting</span>) &#123;</span><br><span class="line">            <span class="comment">//收到消息时的回调方法，展示欢迎信息。</span></span><br><span class="line">            <span class="title function_">showGreeting</span>(<span class="title class_">JSON</span>.<span class="title function_">parse</span>(greeting.<span class="property">body</span>).<span class="property">content</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//断开连接的方法</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">disconnect</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (stompClient !== <span class="literal">null</span>) &#123;</span><br><span class="line">        stompClient.<span class="title function_">disconnect</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">setConnected</span>(<span class="literal">false</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Disconnected&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//将用户输入的名字信息,使用STOMP客户端发送到“/app/hello”地址。它正是我们在GreetingController中定义的greeting()方法所处理的地址.</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sendName</span>(<span class="params"></span>) &#123;</span><br><span class="line">    stompClient.<span class="title function_">send</span>(<span class="string">&quot;/app/hello&quot;</span>, &#123;&#125;, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123;<span class="string">&#x27;name&#x27;</span>: $(<span class="string">&quot;#name&quot;</span>).<span class="title function_">val</span>()&#125;));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h3><p>这里只需要做好配置操作和对应的Controller进行处理就好了</p>
+<p>配置主要包含两部分内容，一个是消息代理，另一个是Endpoint</p>
+<p>消息代理说明了消息发送过来，需要在哪个位置处理</p>
+<p>同时说明处理完成需要放在哪个队列里面</p>
+<p>简易做法就是这样</p>
+<p>再来论述一遍WebSocket的相关知识</p>
+<p>WebSocket一般可以说明消费者、生产者、broker【消息队列管理者】</p>
+<p>地址可以简易分为两类，应用目的地址、非应用目的地址</p>
+<p>应用目的地址相当于进入broker之前会进行一个操作</p>
+<p>非应用目的地址会直接到达broker</p>
+<p>然后由broker进行处理，放到队列中去</p>
+<p>broker:它有自己的地址（例如“&#x2F;topic”），客户端可以向其发送订阅指令，它会记录哪些订阅了这个目的地址(destination)。</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">webSocket</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2021-03-10 15:40:08</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2021/03/10/2021/webSocket/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/2021/">#2021</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2021/03/11/2021/ElasticSearch/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">ElasticSearch</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2020/12/29/2021/2020-All/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">2020 All</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebSocket%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">WebSocket协议的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP1-1%E4%B8%8EWebSocket%E7%9A%84%E5%BC%82%E5%90%8C"><span class="nav-number">3.</span> <span class="nav-text">HTTP1.1与WebSocket的异同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8F%E8%AE%AE%E5%B1%82%E9%9D%A2%E7%9A%84%E5%BC%82%E5%90%8C"><span class="nav-number">4.</span> <span class="nav-text">协议层面的异同</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%90%8C%E7%82%B9"><span class="nav-number">4.1.</span> <span class="nav-text">相同点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%82%B9"><span class="nav-number">4.2.</span> <span class="nav-text">不同点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tip1"><span class="nav-number">4.3.</span> <span class="nav-text">Tip1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#STOMP-Simple-Text-Oriented-Messaging-Protocol-%E7%AE%80%E4%BB%8B"><span class="nav-number">5.</span> <span class="nav-text">STOMP(Simple Text Oriented Messaging Protocol)简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#STOMP%E5%8D%8F%E8%AE%AE"><span class="nav-number">6.</span> <span class="nav-text">STOMP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#STOMP%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">6.1.</span> <span class="nav-text">STOMP服务端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STOMP%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">6.2.</span> <span class="nav-text">STOMP客户端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STOMP%E5%B8%A7%E7%BB%93%E6%9E%84"><span class="nav-number">6.3.</span> <span class="nav-text">STOMP帧结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spring%E4%B8%AD%E7%9A%84WebSocket%E6%9E%B6%E6%9E%84"><span class="nav-number">6.4.</span> <span class="nav-text">spring中的WebSocket架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E4%B8%AD%E5%90%84%E4%B8%AA%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8D%EF%BC%9A"><span class="nav-number">6.5.</span> <span class="nav-text">图中各个组件介绍：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%BB%8E%E7%94%9F%E4%BA%A7%E8%80%85%E5%8F%91%E5%87%BA%E5%88%B0%E6%B6%88%E8%B4%B9%E8%80%85%E6%B6%88%E8%B4%B9%E7%9A%84%E6%B5%81%E8%BD%AC%E6%B5%81%E7%A8%8B"><span class="nav-number">6.6.</span> <span class="nav-text">消息从生产者发出到消费者消费的流转流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BASpring%E9%85%8D%E7%BD%AESTOMP%E6%B6%88%E6%81%AF"><span class="nav-number">6.7.</span> <span class="nav-text">为Spring配置STOMP消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%89%8D%E7%AB%AF%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2"><span class="nav-number">6.8.</span> <span class="nav-text">创建前端实现页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips"><span class="nav-number">6.9.</span> <span class="nav-text">Tips</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

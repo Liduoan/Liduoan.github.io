@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            性能调优-Mysql |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":null,"font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">性能调优-Mysql</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2021-03-29 19:01:26</span>
+        <span class="mobile">2021-03-29 19:01</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-01-14 23:05:42</span>
+    </span>
+    
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/2021/">2021</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>6.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>25 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span>
+
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/04/03/aUeom4JIjB6VkZQ.jpg"
+                      alt="Screenshot_23.jpg"
+                ></p>
+<h1 id="Mysql索引数据结构"><a href="#Mysql索引数据结构" class="headerlink" title="Mysql索引数据结构"></a>Mysql索引数据结构</h1><h2 id="索引结构"><a href="#索引结构" class="headerlink" title="索引结构"></a>索引结构</h2><p>一般的索引结构开始被认为是</p>
+<ul>
+<li>二叉树</li>
+<li>红黑树</li>
+<li>Hash表</li>
+<li>B-Tree</li>
+</ul>
+<h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><p>二叉树一般用平衡二叉树作为索引结点，但是可能出现这样的情况</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/03/29/TAqPR25NMlYpnkB.jpg"
+                      alt="Screenshot_12.jpg"
+                ></p>
+<p>这样磁盘IO的次数在大量数据的情况下会很多。显而易见不是很好</p>
+<h3 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h3><p>红黑树会自旋，不会出现二叉树这样在一条路上走到黑的情况。那么红黑树有什么缺点呢？</p>
+<p>可以看到在大容量的数据下，磁盘IO的次数是树的高度。而二叉树每个节点只有一个数据。</p>
+<p>可以试想千万级的数据下，二叉树的高度为log2(千万)，大概二十次左右，也就是需要进行二十次的磁盘IO。</p>
+<p>【我觉得这个量级还行，但是工程上肯定是还有更好的</p>
+<h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><p>Hash表指的对索引按照哈希算法得到对应的空间</p>
+<p>显然使用Hash索引可以很快的得到对应的文件，这是它最大的优点。</p>
+<p>但是为什么不使用Hash表索引呢？</p>
+<p>无法范围查找 </p>
+<h3 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B-Tree"></a>B-Tree</h3><p>B树的优点在于每一个节点有多个数据，而不是想上面的一样，一个节点只有一个数据。</p>
+<p>总的来说B-Tree就是帮助节点横向延申了，但还是可以继续优化的【前辈们真是厉害啊 </p>
+<p>这时候就出现了B+ 树。为了更加的大</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/03/30/ED6OMvyeVrBm58z.jpg"
+                      alt="Screenshot_13.jpg"
+                ></p>
+<p>【那个红色字体没写完–</p>
+<p>总的来说 一个节点可以存放 16KB&#x2F;14B &#x3D; 1170个小整体</p>
+<p>那么按图上说的 最后有多少个节点？ 1170*1170 个大节点</p>
+<p>而大节点中存放的数据有多少个？ 假设一份数据大小为1kb，则大节点中有16个数据。</p>
+<p>对应的 上图可以有1170 x 1170  x 16 &#x3D;2.1千万。</p>
+<p>这样来看，千万级数据，高度为三就可以，也就是说，只需要进行三次磁盘IO就可以查到元素。</p>
+<p>【谨记 磁盘IO的速度绝对比内存的运算慢</p>
+<p> <strong>B+Tree 底部指针</strong></p>
+<p>B+Tree 在常规数据结构的时候，是单向指针，但是在Mysql中对底层做了优化，变成了双向指针</p>
+<h2 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h2><p>常见的MyISAM  innoDB</p>
+<p><strong>小常识</strong> </p>
+<p>存储引擎是对表而言  也就是说 库里面不同表可以用不同的存储引擎</p>
+<p>表和索引文件存储在<code>C:\Program Files\MYSQL\mysql-8.0.17-winx64\data\</code>下</p>
+<h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3><p><code>表的结构 .frm | 表中存储的数据行 .MYD | 索引字段 .MYI</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/03/30/hbZNkTncFDmCytO.jpg"
+                      alt="Screenshot_14.jpg"
+                ></p>
+<p>索引和数据分开，称之为非聚集索引</p>
+<h3 id="innoDB"><a href="#innoDB" class="headerlink" title="innoDB"></a>innoDB</h3><p><code>表结构 .frm  数据+索引 .ibd</code></p>
+<p>innoDB是聚集索引，它的索引和数据是在一个文件里面的</p>
+<p>innoDB设计的就是需要一个B+Tree来组织好文件，毕竟<code>.ibd</code>是把索引和数据和在一起了</p>
+<p>表数据文件本身就是按B+Tree组织的一个索引结构文件</p>
+<p>聚集索引-叶节点包含了完整的数据记录</p>
+<blockquote>
+<p><strong>为什么InnoDB表必须有主键，并且推荐使用整型的自增主键？</strong></p>
+</blockquote>
+<p>这是个好问题</p>
+<p>首先 innoDB的设计就是需要有索引-数据配合在一个文件里面的，这样才能构成B+树</p>
+<p>那么 如果你没有手动设置主键，Mysql可能在innoDB中找了一列作为唯一索引</p>
+<p>如果没有一列可以被认为是唯一索引，那么会在末尾建立一列 <code>Rowid</code>，以这列作为索引</p>
+<p>当然这个是不会显示出来的</p>
+<p>此外用整形是为了占用内存少，比较速度快</p>
+<p>而自增是因为 如果不自增的话，你插入到中间，可能会触发B+树的分裂和自增</p>
+<blockquote>
+<p><strong>为什么非主键索引结构叶子节点存储的是主键值？(一致性和节省存储空间)</strong></p>
+</blockquote>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/03/30/64PTkpCwJSabt1x.jpg"
+                      alt="Screenshot_15.jpg"
+                ></p>
+<p>如果各自索引文件存数据，可能出现事务问题，即索引一数据没改动  索引二数据改动了 【注意 索引树都在<code>ibd</code>文件中</p>
+<p>所以维护一致性原则，可以把数据统一放在主键索引处。</p>
+<p>这也就是为什么非主键索引叶子节点存储的是主键值。</p>
+<p>当然这也可以节省空间，但是我觉得更加重要的是一致性问题</p>
+<blockquote>
+<p>联合索引</p>
+</blockquote>
+<p>联合索引当然要看到其底层结构（id,name,data）</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/03/30/rBZ9GNvzeXS5uPy.jpg"
+                      alt="Screenshot_16.jpg"
+                ></p>
+<p>联合索引还是有本质特点，排好序的。</p>
+<p>可以看到下面这个排序是使用索引最左前缀原理的方式</p>
+<h1 id="Mysql执行计划与索引详解"><a href="#Mysql执行计划与索引详解" class="headerlink" title="Mysql执行计划与索引详解"></a>Mysql执行计划与索引详解</h1><p>注意：一个表定然会有主键索引，但是除了主键索引之外，可以有其他的索引，只是其他索引的叶子节点的值是主键</p>
+<h2 id="Explain工具介绍"><a href="#Explain工具介绍" class="headerlink" title="Explain工具介绍"></a>Explain工具介绍</h2><p>使用EXPLAIN关键字可以模拟优化器执行SQL语句，分析你的查询语句或是结构的性能瓶颈 在 select 语句之前增加 explain 关键字，MySQL 会在查询上设置一个标记，执行查询会返 回执行计划的信息，而不是执行这条SQL 注意：如果 from 中包含子查询，仍会执行该子查询，将结果放入临时表中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">EXPLAIN SELECT * FROM m_user WHERE ID = 1 </span><br></pre></td></tr></table></figure>
+
+<p>可以看到：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/03/31/Bu1q2WniQShZoOe.jpg"
+                      alt="Screenshot_17.jpg"
+                >可以看到对应的一些列</p>
+<p>下面分析一下对应的列的信息表示什么？</p>
+<h3 id="explain中的列"><a href="#explain中的列" class="headerlink" title="explain中的列"></a><strong>explain中的列</strong></h3><p><strong>1. id列</strong> </p>
+<p>id列的编号是 select 的序列号，有几个 select 就有几个id，并且id的顺序是按select 出现的顺序增长的。 </p>
+<p>id列越大执行优先级越高，id相同则从上往下执行，id为NULL最后执行。 </p>
+<p>这里显示了ID的作用 越大优先级越高 同等大小 则从上往下执行</p>
+<p><strong>2. select_type列</strong> </p>
+<p>select_type 表示对应行是简单还是复杂的查询</p>
+<p>1）simple：简单查询。查询不包含子查询和union </p>
+<p>2）primary：复杂查询中最外层的 select</p>
+<p>3）subquery：包含在 select 中的子查询（不在 from 子句中） </p>
+<p>4）derived：包含在 from 子句中的子查询。MySQL会将结果存放在一个临时表中，也称为派生表（derived的英文含义） </p>
+<p><strong>3. table列</strong> </p>
+<p>这一列表示 explain 的一行正在访问哪个表。 </p>
+<p>当 from 子句中有子查询时，table列是<code>&lt;derivenN&gt;</code>格式，表示当前查询依赖 id&#x3D;N 的查 询，于是先执行 id&#x3D;N 的查询。 </p>
+<p>当有 union 时，UNION RESULT 的 table 列的值为&lt;union1,2&gt;，1和2表示参与 union 的 select 行id。</p>
+<p><strong>4. type列</strong> </p>
+<p>这一列表示关联类型或访问类型，即MySQL决定如何查找表中的行，查找数据行记录的大概范围。 </p>
+<p>依次从最优到最差分别为：<strong>system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL</strong> </p>
+<p>一般来说，得保证查询达到range级别，最好达到ref </p>
+<p>NULL：mysql能够在优化阶段分解查询语句，在执行阶段用不着再访问表或索引。例如：在索引列中选取最小值，可以单独查找索引来完成，不需要在执行时访问表 </p>
+<p>mysql&gt; explain select min(id) from film;</p>
+<p><strong>const, system</strong>：mysql能对查询的某部分进行优化并将其转化成一个常量（可以看show warnings 的结果）。用于 primary key 或 unique key 的所有列与常数比较时，所以表最多有一个匹配行，读取1次，速度比较快。system是const的特例，表里只有一条元组匹配时为system </p>
+<p><strong>eq_ref</strong>：primary key 或 unique key 索引的所有部分被连接使用 ，最多只会返回一条符合条件的记录。这可能是在 const 之外最好的联接类型了，简单的 select 查询不会出现这种type。 </p>
+<p><strong>ref</strong>：相比 eq_ref，不使用唯一索引，而是使用普通索引或者唯一性索引的部分前缀，索引要和某个值相比较，可能会找到多个符合条件的行。</p>
+<ol>
+<li>简单 select 查询，name是普通索引（非唯一索引）</li>
+</ol>
+<p><code>mysql&gt; explain select * from film where name = &#39;film1&#39;; </code></p>
+<p>​	2.关联表查询，idx_film_actor_id是film_id和actor_id的联合索引，这里使用到了film_actor 的左边前缀film_id部分。 </p>
+<p><code>mysql&gt; explain select film_id from film left join film_actor on film.id = film_actor.film_id;  </code></p>
+<p><strong>range</strong>：范围扫描通常出现在 in(), between ,&gt; ,&lt;, &gt;&#x3D; 等操作中。使用一个索引来检索给定范围的行。 </p>
+<p><strong>index</strong>：扫描全表索引，这通常比ALL快一些。</p>
+<p><strong>ALL</strong>：即全表扫描，意味着mysql需要从头到尾去查找所需要的行。通常情况下这需要增加索引来进行优化了 </p>
+<p><strong>ref列</strong> </p>
+<p>这一列显示了在key列记录的索引中，表查找值所用到的列或常量，常见的有：const（常量），字段名（例：film.id）【表示右边的值</p>
+<p><strong>rows列</strong> </p>
+<p>这一列是mysql估计要读取并检测的行数，注意这个不是结果集里的行数。</p>
+<h2 id="调优关键列-Extra列"><a href="#调优关键列-Extra列" class="headerlink" title="调优关键列-Extra列"></a>调优关键列-<strong>Extra列</strong></h2><p>这一列展示的是额外信息。常见的重要值如下： </p>
+<p>1）Using index：使用覆盖索引 </p>
+<p>mysql&gt; explain select film_id from film_actor where film_id &#x3D; 1; </p>
+<blockquote>
+<p>什么是覆盖索引？</p>
+</blockquote>
+<p><code>select file_id from film_actor where film_id = 1</code></p>
+<p>注意到<code>select</code>的值是什么？这里的值是索引里面的值。所以说如果结果集是索引的值，那么被认为是覆盖索引。</p>
+<p>也就是说<code>select film_id remake from film_actor hwere film_id = 1</code>这是不走覆盖索引的，因为<code>remake</code>不是索引的值</p>
+<p>2）Using where：使用 where 语句来处理结果，查询的列未被索引覆盖 </p>
+<p><code>mysql&gt; explain select * from actor where name = &#39;a&#39;; </code></p>
+<p>name没有被索引</p>
+<p>3）Using index condition：查询的列不完全被索引覆盖，where条件中是一个前导列的范围；</p>
+<p><code>mysql&gt; explain select * from film_actor where film_id &gt; 1;</code></p>
+<p>4）Using temporary：mysql需要创建一张临时表来处理查询。出现这种情况一般是要进行 </p>
+<p>优化的，首先是想到用索引来优化。 </p>
+<ol>
+<li>actor.name没有索引，此时创建了张临时表来distinct</li>
+</ol>
+<p><code>mysql&gt; explain select distinct name from actor; </code></p>
+<ol start="2">
+<li>film.name建立了idx_name索引，此时查询时extra是using index,没有用临时表</li>
+</ol>
+<p><code>mysql&gt; explain select distinct name from film; </code></p>
+<p>去重的话，可以使用加索引</p>
+<p>5）Using filesort：将用外部排序而不是索引排序，数据较小时从内存排序，否则需要在磁盘完成排序。这种情况下一般也是要考虑使用索引来优化的。</p>
+<ol>
+<li>actor.name未创建索引，会浏览actor整个表，保存排序关键字name和对应的id，然后排序name并检索行记录</li>
+</ol>
+<p><code>mysql&gt; explain select * from actor order by name;</code> </p>
+<ol start="2">
+<li>film.name建立了idx_name索引,此时查询时extra是using index</li>
+</ol>
+<p><code>mysql&gt; explain select * from film order by name;</code></p>
+<p>可以看到排序可以加索引</p>
+<p>6）Select tables optimized away：使用某些聚合函数（比如 max、min）来访问存在索引的某个字段是 </p>
+<p><code>mysql&gt; explain select min(id) from film; </code></p>
+<h2 id="例子演示"><a href="#例子演示" class="headerlink" title="例子演示"></a>例子演示</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- sql例子</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> `employees`;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `employees`  (</span><br><span class="line">  `id` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">  `name` <span class="type">varchar</span>(<span class="number">24</span>) <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span> COMMENT <span class="string">&#x27;姓名&#x27;</span>,</span><br><span class="line">  `age` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> COMMENT <span class="string">&#x27;年龄&#x27;</span>,</span><br><span class="line">  `position` <span class="type">varchar</span>(<span class="number">20</span>) <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_general_ci <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span> COMMENT <span class="string">&#x27;职位&#x27;</span>,</span><br><span class="line">  `hire_time` <span class="type">timestamp</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span> COMMENT <span class="string">&#x27;入职时 间&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`) <span class="keyword">USING</span> BTREE,</span><br><span class="line">  INDEX `idx_name_age_position`(`name`, `age`, `position`) <span class="keyword">USING</span> BTREE</span><br><span class="line">) ENGINE <span class="operator">=</span> InnoDB AUTO_INCREMENT <span class="operator">=</span> <span class="number">4</span> <span class="type">CHARACTER</span> <span class="keyword">SET</span> <span class="operator">=</span> utf8 <span class="keyword">COLLATE</span> <span class="operator">=</span> utf8_general_ci COMMENT <span class="operator">=</span> <span class="string">&#x27;员工记录表&#x27;</span> ROW_FORMAT <span class="operator">=</span> <span class="keyword">Dynamic</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `employees` <span class="keyword">VALUES</span> (<span class="number">4</span>, <span class="string">&#x27;LiLei&#x27;</span>, <span class="number">22</span>, <span class="string">&#x27;mana ger&#x27;</span>, <span class="string">&#x27;2021-03-31 16:53:50&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `employees` <span class="keyword">VALUES</span> (<span class="number">5</span>, <span class="string">&#x27;HanMeimei&#x27;</span>, <span class="number">23</span>, <span class="string">&#x27;dev&#x27;</span>, <span class="string">&#x27;2021-03-31 16:53:50&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> `employees` <span class="keyword">VALUES</span> (<span class="number">6</span>, <span class="string">&#x27;Lucy&#x27;</span>, <span class="number">23</span>, <span class="string">&#x27;dev&#x27;</span>, <span class="string">&#x27;2021-03-31 16:53:50&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="全值匹配"><a href="#全值匹配" class="headerlink" title="全值匹配"></a>全值匹配</h3><p>也就是说走索引</p>
+<h3 id="最左前缀法则"><a href="#最左前缀法则" class="headerlink" title="最左前缀法则"></a><strong>最左前缀法则</strong></h3><p>如果索引了多列，要遵守最左前缀法则。指的是查询从索引的最左前列开始并且不跳过索引中的列。</p>
+<h3 id="不对索引进行修饰"><a href="#不对索引进行修饰" class="headerlink" title="不对索引进行修饰"></a>不对索引进行修饰</h3><p>不在索引列上做任何操作（计算、函数、（自动or手动）类型转换），会导致索引失效而转向全表扫描</p>
+<h3 id="存储引擎不能使用索引中范围条件右边的列"><a href="#存储引擎不能使用索引中范围条件右边的列" class="headerlink" title="存储引擎不能使用索引中范围条件右边的列"></a><strong>存储引擎不能使用索引中范围条件右边的列</strong></h3><p><code>EXPLAIN SELECT * FROM employees WHERE name= &#39;LiLei&#39; AND age = 22 AND position =&#39;manager&#39;; </code></p>
+<p><code>EXPLAIN SELECT * FROM employees WHERE name= &#39;LiLei&#39; AND age &gt; 22 AND position =&#39;manager&#39;; </code></p>
+<h3 id="少用select"><a href="#少用select" class="headerlink" title="少用select *"></a>少用select *</h3><p>尽量使用覆盖索引（只访问索引的查询（索引列包含查询列）），减少select *语句</p>
+<h3 id="不等于不走索引"><a href="#不等于不走索引" class="headerlink" title="不等于不走索引"></a>不等于不走索引</h3><p>mysql在使用不等于（！&#x3D;或者&lt;&gt;）的时候无法使用索引会导致全表扫描 </p>
+<p>is null,is not null 也无法使用索引</p>
+<h3 id="通配符小心"><a href="#通配符小心" class="headerlink" title="通配符小心"></a>通配符小心</h3><p>like以通配符开头（’$abc…’）mysql索引失效会变成全表扫描操作</p>
+<h3 id="数据类型转换"><a href="#数据类型转换" class="headerlink" title="数据类型转换"></a>数据类型转换</h3><p>字符串不加单引号索引失效 ，MYSQL底层会对字符串类型进行转变，这就违反了对索引不可进行修饰的原则。</p>
+<h3 id="少用or或in"><a href="#少用or或in" class="headerlink" title="少用or或in"></a>少用or或in</h3><p> 少用or或in，用它查询时，mysql不一定使用索引，mysql内部优化器会根据检索比例、表大小等多个因素整体评估是否使用索引，详见范围查询优化 </p>
+<h3 id="范围查询优化"><a href="#范围查询优化" class="headerlink" title="范围查询优化"></a><strong>范围查询优化</strong></h3><p>给年龄添加单值索引 </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ADD</span> INDEX `idx_age` (`age`) <span class="keyword">USING</span> BTREE ; </span><br><span class="line"></span><br><span class="line">explain <span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> employees <span class="keyword">where</span> age <span class="operator">&gt;=</span><span class="number">1</span> <span class="keyword">and</span> age <span class="operator">&lt;=</span><span class="number">2000</span>; </span><br></pre></td></tr></table></figure>
+
+<p>没走索引原因：mysql内部优化器会根据检索比例、表大小等多个因素整体评估是否使用索引。比如这个例子，可能是由于单次数据量查询过大导致优化器最终选择不走索引 </p>
+<p>优化方法：可以讲大的范围拆分成多个小范围 </p>
+<p>也就是说 大范围的改成小范围的可以走索引路径</p>
+<h2 id="索引使用总结"><a href="#索引使用总结" class="headerlink" title="索引使用总结"></a>索引使用总结</h2><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/04/01/gFIhkpr7csBmEDG.jpg"
+                      alt="Screenshot_21.jpg"
+                ></p>
+<h1 id="索引优化-order、group"><a href="#索引优化-order、group" class="headerlink" title="索引优化-order、group"></a>索引优化-order、group</h1><p>索引优化的话 还是从数据结构上来检查和审阅</p>
+<p>但是，我们也可以使用<code>trace工具</code>来查看mysql到底是怎么执行的？</p>
+<p><em>总的来说 sql走不走索引？ 执行计划真正是怎么样的？</em></p>
+<p><em>如果order by 排序底层是怎么排的？走index 还是 filesort</em></p>
+<p><em>filesort有哪两种？分别解决什么问题 有什么帮助？</em></p>
+<h2 id="常见sql深入优化"><a href="#常见sql深入优化" class="headerlink" title="常见sql深入优化"></a><strong>常见sql深入优化</strong></h2><p><strong>Order by与Group by优化</strong> </p>
+<p>一般都是最左前缀准则来看，同时看是否经过了索引字段</p>
+<p>或者<strong>覆盖索引</strong></p>
+<h2 id="优化总结："><a href="#优化总结：" class="headerlink" title="优化总结："></a><strong>优化总结：</strong></h2><p>1、MySQL支持两种方式的排序filesort和index，Using index是指MySQL扫描索引本身完成排序。index 效率高，filesort效率低。 </p>
+<p>2、<strong>order by</strong>满足两种情况会使用Using index。 </p>
+<ol>
+<li><p>order by语句使用索引最左前列。 </p>
+</li>
+<li><p>使用where子句与order by子句条件列组合满足索引最左前列。</p>
+</li>
+</ol>
+<p>3、尽量在索引列上完成排序，遵循索引建立（索引创建的顺序）时的最左前缀法则。 </p>
+<p>4、如果order by的条件不在索引列上，就会产生Using filesort。 </p>
+<p>5、能用覆盖索引尽量用覆盖索引 </p>
+<p>6、<strong>group by</strong>与order by很类似，其实质是先排序后分组，遵照索引创建顺序的最左前缀法则。对于group by的优化如果不需要排序的可以加上<strong>order by null禁止排序</strong>。注意，where高于having，能写在where中的限定条件就不要去having限定了。</p>
+<ul>
+<li><p>TIP</p>
+<p>总的来说，它的order by是依靠着走索引的方式来帮助的</p>
+<p>group by则是先排序 后优化 也和order by的处理方式一致</p>
+</li>
+</ul>
+<h2 id="Using-filesort文件排序原理详解"><a href="#Using-filesort文件排序原理详解" class="headerlink" title="Using filesort文件排序原理详解"></a><strong>Using filesort文件排序原理详解</strong></h2><h3 id="filesort文件排序方式"><a href="#filesort文件排序方式" class="headerlink" title="filesort文件排序方式"></a><strong>filesort文件排序方式</strong></h3><p><strong>单路排序</strong>：是一次性取出满足条件行的所有字段，然后在sort buffer中进行排序；用trace工具可以看到sort_mode信息里显示&lt; sort_key, additional_fields &gt;或者&lt; sort_key, packed_additional_fields &gt;</p>
+<p><strong>双路排序</strong>（又叫<strong>回表</strong>排序模式）：是首先根据相应的条件取出相应的<strong>排序字段</strong>和<strong>可以直接定位行数据的行 ID</strong>，然后在 sort buffer 中进行排序，排序完后需要再次取回其它需要的字段；用trace工具 可以看到sort_mode信息里显示&lt; sort_key, rowid &gt; </p>
+<p>MySQL 通过比较系统变量 max_length_for_sort_data(<strong>默认1024字节</strong>) 的大小和需要查询的字段总大小来 </p>
+<p>判断使用哪种排序模式。 </p>
+<p>如果 max_length_for_sort_data 比查询字段的总长度大，那么使用 单路排序模式； </p>
+<p>如果 max_length_for_sort_data 比查询字段的总长度小，那么使用 双路排序模式。</p>
+<hr>
+<p>我们先看<strong>单路排序</strong>的详细过程： </p>
+<ol>
+<li><p>从索引name找到第一个满足 name &#x3D; ‘zhuge’ 条件的主键 id </p>
+</li>
+<li><p>根据主键 id 取出整行，<strong>取出所有字段的值，存入 sort_buffer 中</strong> </p>
+</li>
+<li><p>从索引name找到下一个满足 name &#x3D; ‘zhuge’ 条件的主键 id </p>
+</li>
+<li><p>重复步骤 2、3 直到不满足 name &#x3D; ‘zhuge’ </p>
+</li>
+<li><p>对 sort_buffer 中的数据按照字段 position 进行排序 </p>
+</li>
+<li><p>返回结果给客户端</p>
+</li>
+</ol>
+<p>我们再看下<strong>双路排序</strong>的详细过程： </p>
+<ol>
+<li><p>从索引 name 找到第一个满足 name &#x3D; ‘zhuge’ 的主键id </p>
+</li>
+<li><p>根据主键 id 取出整行，<strong>把排序字段 position 和主键 id 这两个字段放到 sort buffer 中</strong> </p>
+</li>
+<li><p>从索引 name 取下一个满足 name &#x3D; ‘zhuge’ 记录的主键 id </p>
+</li>
+<li><p>重复 3、4 直到不满足 name &#x3D; ‘zhuge’5. 对 sort_buffer 中的字段 position 和主键 id 按照字段 position 进行排序 </p>
+</li>
+<li><p>遍历排序好的 id 和字段 pos ition，按照 id 的值<strong>回到原表</strong>中取出 所有字段的值返回给客户端</p>
+</li>
+</ol>
+<p>其实对比两个排序模式，单路排序会把所有需要查询的字段都放到 sort buffer 中，而双路排序只会把主键和需要排序的字段放到 sort buffer 中进行排序，然后再通过主键回到原表查询需要的字段。 </p>
+<p>如果 MySQL 排序内存配置的比较小并且没有条件继续增加了，可以适当把 max_length_for_sort_data 配置小点，让优化器选择使用<strong>双路排序</strong>算法，可以在sort_buffer 中一次排序更多的行，只是需要再根据主键回到原表取数据。 </p>
+<p>如果 MySQL 排序内存有条件可以配置比较大，可以适当增大 max_length_for_sort_data 的值，让优化器优先选择全字段排序(<strong>单路排序</strong>)，把需要的字段放到 sort_buffer 中，这样排序后就会直接从内存里返回查询结果了。 </p>
+<p>所以，MySQL通过 <strong>max_length_for_sort_data</strong> 这个参数来控制排序，在不同场景使用不同的排序模式，从而提升排序效率。 </p>
+<p><strong>注意</strong>，如果全部使用sort_buffer内存排序一般情况下效率会高于磁盘文件排序，但不能因为这个就随便增大sort_buffer(默认1M)，mysql很多参数设置都是做过优化的，不要轻易调整。</p>
+<h1 id="常见sql深入优化2"><a href="#常见sql深入优化2" class="headerlink" title="常见sql深入优化2"></a><strong>常见sql深入优化</strong>2</h1><h2 id="理解分页"><a href="#理解分页" class="headerlink" title="理解分页"></a>理解分页</h2><p>很多时候我们业务系统实现分页功能可能会用如下sql实现 </p>
+<p><code>mysql&gt; select * from employees limit 10000,10;</code></p>
+<p>表示从表 employees 中取出从 10001 行开始的 10 行记录。看似只查询了 10 条记录，实际这条 SQL 是先读取 10010条记录，然后抛弃前 10000 条记录，然后读到后面 10 条想要的数据。因此要查询一张大表比较靠后的数据，执行效率是非常低的。</p>
+<p>其中可使用的我知道的两种优化：</p>
+<h3 id="根据自增且连续的主键排序的分页查询"><a href="#根据自增且连续的主键排序的分页查询" class="headerlink" title="根据自增且连续的主键排序的分页查询"></a>根据自增且连续的主键排序的分页查询</h3><p><code>select * from employees limit 90000,5; </code></p>
+<p>这样的语句不会走索引，原因是走索引之后：<strong>扫描整个索引并查找到没索引的行(可能要遍历多个索引树)的成本比扫描全表的成本更高，所以优化器放弃使用索引</strong>。</p>
+<p>所以有优化可以是</p>
+<p><code>select * from employees where id &gt; 90000 limit 5;</code></p>
+<p>这样通过id来帮助走索引是可以有所优化的</p>
+<h3 id="根据非主键字段排序的分页查询"><a href="#根据非主键字段排序的分页查询" class="headerlink" title="根据非主键字段排序的分页查询"></a><strong>根据非主键字段排序的分页查询</strong></h3><p><code>select * from employees ORDER BY name limit 90000,5;</code></p>
+<p>这条语句理论上走到name索引，但是实际上没有走索引</p>
+<p>理由同上↑</p>
+<p>可以改成这样的形式<code>select * from employees e inner join (select id from employees order by name limit 90000,5) ed on e.id = ed.id;</code></p>
+<p>后面的<code>select</code>是走的name索引，注意到了id覆盖索引。</p>
+<p>所有优化效果好</p>
+<hr>
+<p>综上 关于limit的优化其实很有限，如果是主键自增分页，不太好优化，有很大限制</p>
+<p>而非主键字段排序可以试试加索引，然后通过覆盖索引的形式来优化效果</p>
+<h2 id="Join关联查询优化"><a href="#Join关联查询优化" class="headerlink" title="Join关联查询优化"></a><strong>Join关联查询优化</strong></h2><p>表关联的两种方式：</p>
+<p>Nested-Loop Join 算法 </p>
+<p>Block Nested-Loop Join 算法 </p>
+<h3 id="嵌套循环连接Nested-Loop-Join-NLJ-算法"><a href="#嵌套循环连接Nested-Loop-Join-NLJ-算法" class="headerlink" title="嵌套循环连接Nested-Loop Join(NLJ) 算法"></a><strong>嵌套循环连接Nested-Loop Join(NLJ) 算法</strong></h3><p>什么意思呢？举例说明：</p>
+<p>一次一行循环地从第一张表（称为<strong>驱动表</strong>）中读取行，在这行数据中取到关联字段，根据关联字段在另一张表（<strong>被驱动表</strong>）里取出满足条件的行，然后取出两张表的结果合集。 </p>
+<p><strong>mysql&gt; EXPLAIN select*from t1 inner join t2 on t1.a&#x3D; t2.a;</strong> </p>
+<p>驱动表是 t2，被驱动表是 t1。</p>
+<p>因为小表驱动大表</p>
+<p>先执行的就是驱动表(执行计划结果的id如果一样则按从上到下顺序执行sql)；优化器一般会优先选择小表做驱动表。<strong>所以使用 inner join 时，排在前面的表并不一定就是驱动表。</strong> </p>
+<p>一般 join 语句中，如果执行计划 Extra 中未出现 <strong>Using join buffer</strong> 则表示使用的 join 算法是 NLJ。 </p>
+<p><strong>上面sql的大致流程如下：</strong> </p>
+<ol>
+<li><p>从表 t2 中读取一行数据； </p>
+</li>
+<li><p>从第 1 步的数据中，取出关联字段 a，到表 t1 中查找； </p>
+</li>
+<li><p>取出表 t1 中满足条件的行，跟 t2 中获取到的结果合并，作为结果返回给客户端； </p>
+</li>
+<li><p>重复上面 3 步。</p>
+</li>
+</ol>
+<p>整个过程会读取 t2 表的所有数据(扫描100行)，然后遍历这每行数据中字段 a 的值，根据 t2 表中 a 的值索引扫描 t1 表中的对应行(<strong>扫描100次 t1 表的索引，1次扫描可以认为最终只扫描 t1 表一行完整数据，也就是总共 t1 表也扫描了100行</strong>)。因此整个过程扫描了 <strong>200 行</strong>。 </p>
+<p>如果被驱动表的关联字段没索引，**使用NLJ算法性能会比较低(下面有详细解释)**，mysql会选择Block Nested-Loop Join算法。 </p>
+<hr>
+<p>注意到，他其实是先取驱动表中一条，去被驱动表找值。</p>
+<h3 id="基于块的嵌套循环连接-Block-Nested-Loop-Join-BNL-算法"><a href="#基于块的嵌套循环连接-Block-Nested-Loop-Join-BNL-算法" class="headerlink" title="基于块的嵌套循环连接 Block Nested-Loop Join(BNL)算法"></a><strong>基于块的嵌套循环连接</strong> <strong>Block Nested-Loop Join(BNL)算法</strong></h3><p>这种算法是使用到了join_buffer这个缓存。在缓存中进行查找明显是比磁盘快的</p>
+<p><code>mysql&gt;EXPLAIN select*from t1 inner join t2 on t1.b= t2.b;</code></p>
+<p>说下流程：先是驱动表读入到join_buffer中，然后从被驱动表中抽取一条，和join_buffer进行匹配</p>
+<p><strong>大致流程如下：</strong></p>
+<ol>
+<li><p>把 t2 的所有数据放入到 join_buffer 中 </p>
+</li>
+<li><p>把表 t1 中每一行取出来，跟 join_buffer 中的数据做对比 </p>
+</li>
+<li><p>返回满足 join 条件的数据</p>
+</li>
+</ol>
+<p>整个过程对表 t1 和 t2 都做了一次全表扫描，因此扫描的总行数为10000(表 t1 的数据总量) + 100(表 t2 的数据总量) &#x3D; <strong>10100</strong>。并且 join_buffer 里的数据是无序的，因此对表 t1 中的每一行，都要做 100 次判断，所以内存中的判断次数是100 * 10000&#x3D; <strong>100 万次</strong>。 </p>
+<p><strong>被驱动表的关联字段没索引为什么要选择使用 BNL 算法而不使用 Nested-Loop Join 呢？</strong> </p>
+<p>如果上面第二条sql使用 Nested-Loop Join，那么扫描行数为 100 * 10000 &#x3D; 100万次，这个是<strong>磁盘扫描</strong>。很显然，用BNL磁盘扫描次数少很多，相比于磁盘扫描，BNL的内存计算会快得多。 </p>
+<p>因此MySQL对于被驱动表的关联字段没索引的关联查询，一般都会使用 BNL 算法。如果有索引一般选择 NLJ 算法，有索引的情况下 NLJ 算法比 BNL算法性能更高 </p>
+<h3 id="对于关联sql的优化"><a href="#对于关联sql的优化" class="headerlink" title="对于关联sql的优化"></a><strong>对于关联sql的优化</strong></h3><ul>
+<li><p><strong>关联字段加索引</strong>，让mysql做join操作时尽量选择NLJ算法 </p>
+</li>
+<li><p><strong>小标驱动大表</strong>，写多表连接sql时如果<strong>明确知道</strong>哪张表是小表可以用straight_join写法固定连接驱动方式，省去</p>
+</li>
+</ul>
+<p>mysql优化器自己判断的时间 </p>
+<p><strong>straight_join解释：straight_join</strong>功能同join类似，但能让左边的表来驱动右边的表，能改表优化器对于联表查询的执行顺序。 </p>
+<p>比如：<code>select * from t2 straight_join t1 on t2.a = t1.a;</code> 代表制定mysql选着 t2 表作为驱动表。 </p>
+<p><strong>straight_join</strong>只适用于inner join，并不适用于left join，right join。（因为left join，right join已经代表指定了表的执行顺序） </p>
+<p>尽可能让优化器去判断，因为大部分情况下mysql优化器是比人要聪明的。使用<strong>straight_join</strong>一定要慎重，因为部分情况下人为指定的执行顺序并不一定会比优化引擎要靠谱。</p>
+<h2 id="count-查询优化"><a href="#count-查询优化" class="headerlink" title="count(*)查询优化"></a><strong>count(*)查询优化</strong></h2><p>临时关闭mysql查询缓存，为了查看sql多次执行的真实时间 </p>
+<p><strong>mysql&gt; set global query_cache_size&#x3D;0;</strong> </p>
+<p><strong>mysql&gt; set global query_cache_type&#x3D;0;</strong> </p>
+<p>常见四种</p>
+<p><strong>mysql&gt; EXPLAIN select count(1) from employees;</strong> </p>
+<p><strong>mysql&gt; EXPLAIN select count(id) from employees;</strong></p>
+<p><strong>mysql&gt; EXPLAIN select count(name) from employees;</strong> </p>
+<p><strong>mysql&gt; EXPLAIN select count(*) from employees;</strong></p>
+<p>四个sql的执行计划一样，说明这四个sql执行效率应该差不多，区别在于根据某个字段count不会统计字段为null值的数据行</p>
+<p>其实count最好是使用辅助索引，而不是主键索引。实际上mysql内部也是这样优化的。</p>
+<p>为什么mysql最终选择辅助索引而不是主键聚集索引？因为二级索引相对主键索引<strong>存储数据更少</strong>，检索性能应该更高 </p>
+<p><strong>常见优化方法</strong> </p>
+<p><strong>1、查询mysql自己维护的总行数</strong> </p>
+<p>对于<strong>myisam存储引擎</strong>的表做不带where条件的count查询性能是很高的，因为myisam存储引擎的表的总行数会被mysql存储在磁盘上，查询不需要计算 </p>
+<p>对于<strong>innodb存储引擎</strong>的表mysql不会存储表的总记录行数，查询count需要实时计算 </p>
+<p><strong>2、show table status</strong> </p>
+<p>如果只需要知道表总行数的估计值可以用如下sql查询，性能很高 </p>
+<p><strong>3、将总数维护到Redis里</strong> </p>
+<p>插入或删除表数据行的时候同时维护redis里的表总行数key的计数值(用incr或decr命令)，但是这种方式可能不准，很难保证表操作和redis操作的事务一致性 </p>
+<p><strong>4、增加计数表</strong> </p>
+<p>插入或删除表数据行的时候同时维护计数表，让他们在同一个事务里操作</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">性能调优-Mysql</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2021-03-29 19:01:26</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2021/03/29/2021/性能调优-Mysql/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/2021/">#2021</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2021/04/05/2021/MySql%E9%94%81%E4%B8%8E%E4%BA%8B%E5%8A%A1/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">MySql锁与事务</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2021/03/28/2021/SpringMvc/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">SpringMvc</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95"><span class="nav-number">1.</span> <span class="nav-text">索引</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql%E7%B4%A2%E5%BC%95%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">2.</span> <span class="nav-text">Mysql索引数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%BB%93%E6%9E%84"><span class="nav-number">2.1.</span> <span class="nav-text">索引结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">2.1.1.</span> <span class="nav-text">二叉树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91"><span class="nav-number">2.1.2.</span> <span class="nav-text">红黑树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hash"><span class="nav-number">2.1.3.</span> <span class="nav-text">Hash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-Tree"><span class="nav-number">2.1.4.</span> <span class="nav-text">B-Tree</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E"><span class="nav-number">2.2.</span> <span class="nav-text">存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MyISAM"><span class="nav-number">2.2.1.</span> <span class="nav-text">MyISAM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#innoDB"><span class="nav-number">2.2.2.</span> <span class="nav-text">innoDB</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql%E6%89%A7%E8%A1%8C%E8%AE%A1%E5%88%92%E4%B8%8E%E7%B4%A2%E5%BC%95%E8%AF%A6%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">Mysql执行计划与索引详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Explain%E5%B7%A5%E5%85%B7%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.1.</span> <span class="nav-text">Explain工具介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#explain%E4%B8%AD%E7%9A%84%E5%88%97"><span class="nav-number">3.1.1.</span> <span class="nav-text">explain中的列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E4%BC%98%E5%85%B3%E9%94%AE%E5%88%97-Extra%E5%88%97"><span class="nav-number">3.2.</span> <span class="nav-text">调优关键列-Extra列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%8B%E5%AD%90%E6%BC%94%E7%A4%BA"><span class="nav-number">3.3.</span> <span class="nav-text">例子演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E5%80%BC%E5%8C%B9%E9%85%8D"><span class="nav-number">3.3.1.</span> <span class="nav-text">全值匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%80%E5%B7%A6%E5%89%8D%E7%BC%80%E6%B3%95%E5%88%99"><span class="nav-number">3.3.2.</span> <span class="nav-text">最左前缀法则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E5%AF%B9%E7%B4%A2%E5%BC%95%E8%BF%9B%E8%A1%8C%E4%BF%AE%E9%A5%B0"><span class="nav-number">3.3.3.</span> <span class="nav-text">不对索引进行修饰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8%E7%B4%A2%E5%BC%95%E4%B8%AD%E8%8C%83%E5%9B%B4%E6%9D%A1%E4%BB%B6%E5%8F%B3%E8%BE%B9%E7%9A%84%E5%88%97"><span class="nav-number">3.3.4.</span> <span class="nav-text">存储引擎不能使用索引中范围条件右边的列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%91%E7%94%A8select"><span class="nav-number">3.3.5.</span> <span class="nav-text">少用select *</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E7%AD%89%E4%BA%8E%E4%B8%8D%E8%B5%B0%E7%B4%A2%E5%BC%95"><span class="nav-number">3.3.6.</span> <span class="nav-text">不等于不走索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E9%85%8D%E7%AC%A6%E5%B0%8F%E5%BF%83"><span class="nav-number">3.3.7.</span> <span class="nav-text">通配符小心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.3.8.</span> <span class="nav-text">数据类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%91%E7%94%A8or%E6%88%96in"><span class="nav-number">3.3.9.</span> <span class="nav-text">少用or或in</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8C%83%E5%9B%B4%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96"><span class="nav-number">3.3.10.</span> <span class="nav-text">范围查询优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93"><span class="nav-number">3.4.</span> <span class="nav-text">索引使用总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96-order%E3%80%81group"><span class="nav-number">4.</span> <span class="nav-text">索引优化-order、group</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81sql%E6%B7%B1%E5%85%A5%E4%BC%98%E5%8C%96"><span class="nav-number">4.1.</span> <span class="nav-text">常见sql深入优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-number">4.2.</span> <span class="nav-text">优化总结：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-filesort%E6%96%87%E4%BB%B6%E6%8E%92%E5%BA%8F%E5%8E%9F%E7%90%86%E8%AF%A6%E8%A7%A3"><span class="nav-number">4.3.</span> <span class="nav-text">Using filesort文件排序原理详解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#filesort%E6%96%87%E4%BB%B6%E6%8E%92%E5%BA%8F%E6%96%B9%E5%BC%8F"><span class="nav-number">4.3.1.</span> <span class="nav-text">filesort文件排序方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81sql%E6%B7%B1%E5%85%A5%E4%BC%98%E5%8C%962"><span class="nav-number">5.</span> <span class="nav-text">常见sql深入优化2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%A7%A3%E5%88%86%E9%A1%B5"><span class="nav-number">5.1.</span> <span class="nav-text">理解分页</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E8%87%AA%E5%A2%9E%E4%B8%94%E8%BF%9E%E7%BB%AD%E7%9A%84%E4%B8%BB%E9%94%AE%E6%8E%92%E5%BA%8F%E7%9A%84%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="nav-number">5.1.1.</span> <span class="nav-text">根据自增且连续的主键排序的分页查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E9%9D%9E%E4%B8%BB%E9%94%AE%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F%E7%9A%84%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="nav-number">5.1.2.</span> <span class="nav-text">根据非主键字段排序的分页查询</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Join%E5%85%B3%E8%81%94%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96"><span class="nav-number">5.2.</span> <span class="nav-text">Join关联查询优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF%E8%BF%9E%E6%8E%A5Nested-Loop-Join-NLJ-%E7%AE%97%E6%B3%95"><span class="nav-number">5.2.1.</span> <span class="nav-text">嵌套循环连接Nested-Loop Join(NLJ) 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%9D%97%E7%9A%84%E5%B5%8C%E5%A5%97%E5%BE%AA%E7%8E%AF%E8%BF%9E%E6%8E%A5-Block-Nested-Loop-Join-BNL-%E7%AE%97%E6%B3%95"><span class="nav-number">5.2.2.</span> <span class="nav-text">基于块的嵌套循环连接 Block Nested-Loop Join(BNL)算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E5%85%B3%E8%81%94sql%E7%9A%84%E4%BC%98%E5%8C%96"><span class="nav-number">5.2.3.</span> <span class="nav-text">对于关联sql的优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#count-%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96"><span class="nav-number">5.3.</span> <span class="nav-text">count(*)查询优化</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

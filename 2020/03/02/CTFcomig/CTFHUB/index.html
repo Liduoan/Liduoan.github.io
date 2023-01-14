@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            CTFHUB |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":null,"font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">CTFHUB</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2020-03-02 10:22:51</span>
+        <span class="mobile">2020-03-02 10:22</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2020-04-13 00:58:19</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.5k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>13 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200302200002649.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="CTFHub"
+                ></p>
+<h1 id="CtfHub"><a href="#CtfHub" class="headerlink" title="CtfHub"></a>CtfHub</h1><p>良心网站 真是没得很！</p>
+<span id="more"></span>
+
+<h2 id="题目类型"><a href="#题目类型" class="headerlink" title="题目类型"></a>题目类型</h2><p>在CTF中主要包含以下5个大类的题目，有些比赛会根据自己的侧重点单独添加某个分类，例如<code>移动设备(Mobile)</code>, <code>电子取证(Forensics)</code>等，近年来也会出来混合类型的题目，例如在Web中存在一个二进制程序，需要选手先利用Web的漏洞获取到二进制程序，之后通过逆向或是Pwn等方式获得最终flag</p>
+<hr>
+<h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><p>Web类题目大部分情况下和网、Web、HTTP等相关技能有关。主要考察选手对于Web攻防的一些知识技巧。诸如<code>SQL注入</code>、<code>XSS</code>、<code>代码执行</code>、<code>代码审计</code>等等都是很常见的考点。<br>一般情况下Web题目只会给出一个能够访问的URL。部分题目会给出附件</p>
+<h3 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h3><p>Misc意为杂项，即不包含在以上分类的题目都会放到这个分类。题目会给出一个附件。选手下载该附件进行分析，最终得出flag<br>常见的题型有图片隐写、视频隐写、文档隐写、流量分析、协议分析、游戏、IoT相关等等。五花八门，种类繁多。</p>
+<h2 id="WEB训练场"><a href="#WEB训练场" class="headerlink" title="WEB训练场"></a>WEB训练场</h2><h3 id="WEB前置技能–http协议"><a href="#WEB前置技能–http协议" class="headerlink" title="WEB前置技能–http协议"></a>WEB前置技能–http协议</h3><h4 id="请求方式"><a href="#请求方式" class="headerlink" title="请求方式"></a>请求方式</h4><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200301185919127.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="img"
+                ></p>
+<p>我还尝试了八种请求方式</p>
+<p>。。。。</p>
+<p>八种请求方式：</p>
+<blockquote>
+<p>HTTP&#x2F;1.1协议中共定义了八种方法（有时也叫“动作”）来表明Request-URI指定的资源的不同操作方式：</p>
+<p>OPTIONS<br>返回服务器针对特定资源所支持的HTTP请求方法。也可以利用向Web服务器发送’*’的请求来测试服务器的功能性。<br>HEAD<br>向服务器索要与GET请求相一致的响应，只不过响应体将不会被返回。这一方法可以在不必传输整个响应内容的情况下，就可以获取包含在响应消息头中的元信息。<br>GET<br>向特定的资源发出请求。注意：GET方法不应当被用于产生“副作用”的操作中。<br>POST<br>向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST请求可能会导致新的资源的建立和&#x2F;或已有资源的修改。<br>PUT<br>向指定资源位置上传其最新内容。<br>DELETE<br>请求服务器删除Request-URI所标识的资源。<br>TRACE<br>回显服务器收到的请求，主要用于测试或诊断。<br>CONNECT<br>HTTP&#x2F;1.1协议中预留给能够将连接改为管道方式的代理服务器</p>
+</blockquote>
+<p>题解是 把头改成<code>CTFHUB</code>就可以！</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200301191150767.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="在这里插入图片描述"
+                ></p>
+<h4 id="302跳转"><a href="#302跳转" class="headerlink" title="302跳转"></a>302跳转</h4><p>首先，让我们来了解一下，什么是302重定向。</p>
+<p>百度百科定义如下：<strong>302重定向又称之为暂时性转移(Temporarily Moved )，英文名称：302 redirect。 也被认为是暂时重定向（temporary redirect），一条对网站浏览器的指令来显示浏览器被要求显示的不同的URL，当一个网页经历过短期的URL的变化时使用。一个暂时重定向是一种服务器端的重定向，能够被搜索引擎蜘蛛正确地处理。</strong></p>
+<p>302跳转的解决方法有两个 </p>
+<p>1、使用<code>curl</code>命令 之间 <code>curl  目标url</code></p>
+<p>2、抓包审查</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/2020030121245421.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="img"
+                ></p>
+<h4 id="基础认证–Basic-Authentication"><a href="#基础认证–Basic-Authentication" class="headerlink" title="基础认证–Basic Authentication"></a>基础认证–<strong>Basic Authentication</strong></h4><p>这道题目是真的长知识</p>
+<blockquote>
+<p><strong>HTTP 基本认证</strong><br>大体流程就类似于牛翠花和王二狗接头的过程。<br>1、翠花：走到一个人面前说，二狗带我去吃麻辣烫吧。</p>
+<p>2、二狗：请说出你的暗号。</p>
+<p>3、翠花：天王盖地虎。</p>
+<p>4、二狗：张亮麻辣烫走起。。。</p>
+<p>映射到编程领域为：</p>
+<p>***客户端(例如Web浏览器)***：服务器，请把&#x2F;family&#x2F;son.jpg 图片传给我。</p>
+<p><code>GET /family/son.jpg  HTTP/1.1</code></p>
+<p><em><strong>服务器</strong></em>：客户端你好，这个资源在安全区family里，是受限资源，需要基本认证，请带上你的用户名和密码再来</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;HTTP/1.1 401 Authorization Required</span><br><span class="line">&gt;www-Authenticate: Basic realm= &quot;family&quot;</span><br></pre></td></tr></table></figure>
+
+
+<p>服务器会返回401，告知客户端这个资源需要使用基本认证的方式访问，我们可以看到在 www-Authenticate这个Header里面 有两个值，Basic：说明需要基本认证，realm：说明客户端需要输入这个安全区的用户名和密码，而不是其他区的。因为服务器可以为不同的安全区设置不同的用户名和密码。如果服务器只有一个安全区，那么所有的基本认证用户名和密码都是一样的。</p>
+<p><em><strong>客户端</strong></em>： 服务器，我已经按照你的要求，携带了相应的用户名和密码信息了，你看一下</p>
+<p>如果客户端是浏览器，那么此时就会弹出一个弹窗，让用户输入用户名和密码。</p>
+<p>**Basic 内容为： <code>用户名:密码 </code>后的base64 内容.假设我的用户名为<code>Shusheng007</code>,密码为<code>ss007</code> 那么我的Basic的内容为 <code>Shusheng007：ss007 </code>对应的base64 编码内容<code>U2h1c2hlbmcwMDcldUZGMUFzczAwNw==</code>**，如下所示</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;GET /family/son.jpg  HTTP/1.1</span><br><span class="line">&gt;Authorization: Basic U2h1c2hlbmcwMDcldUZGMUFzczAwNw==</span><br></pre></td></tr></table></figure>
+
+
+<p><em><strong>服务器</strong></em>：客户端你好，我已经校验了你的用户名和密码，是正确的，这是你要的资源。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;HTTP/1.1 200 OK</span><br><span class="line">&gt;Content-type: image/jpg</span><br></pre></td></tr></table></figure>
+
+<p>至此这个HTTP事务就结束了，非常简单的一个认证机制</p>
+</blockquote>
+<p>而这道题目 他给了密码的文件</p>
+<p>很明显是爆破</p>
+<p>爆破点是</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/flag.html</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>challenge-4fd44b39b91d3871.sandbox.ctfhub.com:10080</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Referer</span><span class="punctuation">: </span>http://challenge-4fd44b39b91d3871.sandbox.ctfhub.com:10080/</span><br><span class="line"><span class="attribute">Authorization</span><span class="punctuation">: </span>Basic YWRtaW46§admin§      §admin§这个就是爆破点</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br></pre></td></tr></table></figure>
+
+<p>那么就爆破呗</p>
+<p>然而我发现一个问题的存在</p>
+<p><code>YWRtaW46YWtzZGphc2pka2E%3d</code>经常出现<code>%3d</code>这样的问题</p>
+<p>这个是字符编码的一个问题</p>
+<p>需要你把攻击的<code>payloads</code>下面的那个<code> URL-encode these characters</code>取消勾选</p>
+<p>之后就得到答案了！ 奥里给。。</p>
+<h3 id="信息泄露"><a href="#信息泄露" class="headerlink" title="信息泄露"></a>信息泄露</h3><h4 id="备份文件下载"><a href="#备份文件下载" class="headerlink" title="备份文件下载"></a>备份文件下载</h4><p><strong>web源码泄漏</strong></p>
+<h3 id="0x01信息泄露"><a href="#0x01信息泄露" class="headerlink" title="0x01信息泄露"></a>0x01信息泄露</h3><p>有的时候运维或者说是部署人员工，当然也有可能是开发人员在打包项目的时候将。git也打包了而引起了，git的信息泄露，关于常用的其他信息泄露，各位看官可自行Google or 百度。这里贴一下git信息泄露利用的python脚本。下载完了之后利用python执行，python GitHack.py <a class="link"   target="_blank" rel="noopener" href="http://xxxxxxx/.git" >http://XXXXXXX/.git<i class="fas fa-external-link-alt"></i></a></p>
+<p>这样将会在dis目录下生成以ip地址以及端口号命名的文件夹，大家进去看一下里面是否存在.git文件夹</p>
+<p>0x03GIT命令使用<br>切换到该目录下面</p>
+<p>使用git log 查看当前版本，使用git reset –hard 9d9fab3bd7e53c454dee1c9a7abc01e499882815还原到以前的版本。然后就可以查看到flag.</p>
+<p>附录：常用git命令摘录自：<a class="link"   target="_blank" rel="noopener" href="http://www.cnblogs.com/lwzz/archive/2013/02/23/2921426.html" >http://www.cnblogs.com/lwzz/archive/2013/02/23/2921426.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>最基本的命令：</p>
+<p>git clone 拷贝并跟踪远程的master分支。跟踪的好处是以后可以直接通过pull和push命令来提交或者获取远程最新的代码，而不需要指定远程分支名字。</p>
+<p>git submodule init</p>
+<p>git submodule update</p>
+<p>参考示意图</p>
+<p>HEAD 指向当前的commit 对象(可以想象为当前分支的别名)，同时也用来表明我们在哪个branch上工作。所以当我们使用HEAD来操作指针的时候，其实就是不改变当前的commit的指向。</p>
+<p>对照这张图来理解两段提交，工作区(working tree)，暂存区（index）和 branch之间的关系</p>
+<p>显示信息类命令<br>git ls-files -u 显示冲突的文件，-s是显示标记为冲突已解决的文件</p>
+<p>git diff 对比工作区和stage文件的差异<br>git diff –cached 对比stage和branch之间的差异</p>
+<p>git branch 列出当前repository下的所有branch<br>git branch –a 列出local 和remote下的所有branch</p>
+<p>git ls-files –stage 检查保存在stage的文件</p>
+<p>git log 显示到HEAD所指向的commit为止的所有commit记录 。使用reset HEAD~n 命令使HEAD指针向前移动，会导致HEAD之后的commit记录不会被显示。</p>
+<p>git log -g则会查询reflog去查看最近做了哪些动作，这样可以配合git branch 恢复之前因为移动HEAD指针所丢弃的commit对象。如果reflog丢失则可以通过git fsck –full来查看没被引用的commit对象。<br>git log -p -2 对比最新两次的commit对象<br>log -1 HEAD</p>
+<p>git log –pretty&#x3D;oneline</p>
+<p>git log –stat 1a410e 查看sha1为1a410e的commit对象的记录</p>
+<p>git blame -L 12,22 sth.cs 如果你发现自己代码中 的一个方法存在缺陷,你可以用git blame来标注文件,查看那个方法的每一行分别是由谁 在哪一天修改的。下面这个例子使用了-L选项来限制输出范围在第12至22行</p>
+<p>创建类命令<br>git brach branchName 创建名为branchName的branch<br>git checkout branchName 切换到branchName的branch<br>git checkout -b 创建并切换，也就是上面两个命令的合并</p>
+<p>git brach branchName ef71 从commit ef71创建名为branchName的branch</p>
+<p>撤销类命令<br>如果是单个文件<br>1.use “git reset HEAD <file>…” to unstage<br>如果已经用add 命令把文件加入stage了，就先需要从stage中撤销</p>
+<p>然后再从工作区撤销<br>2.use “git checkout – <file>…” to discard changes in working directory</p>
+<p>git checkout a.txt  撤销a.txt的变动（工作区上的文件）<br>如果是多个文件<br>git chenkout .</p>
+<p>如果已经commit 了，则需要<br>git commit –amend 来修改，这个只能修改最近上一次的,也就是用一个新的提交来覆盖上一次的提交。因此如果push以后再做这个动作就会有危险</p>
+<p>$ git reset –hard HEAD 放弃工作区和index的改动,HEAD指针仍然指向当前的commit.（参照第一幅图）</p>
+<p>这条命令同时还可以用来撤销还没commit的merge,其实原理就是放弃index和工作区的改动，因为没commit的改动只存在于index和工作区中。</p>
+<p>$ git reset –hard HEAD^ 用来撤销已经commit的内容(等价于 git reset –hard HEAD~1) 。原理就是放弃工作区和index的改动，同时HEAD指针指向前一个commit对象。</p>
+<p>git revert 也是撤销命令，区别在于reset是指向原地或者向前移动指针，git revert是创建一个commit来覆盖当前的commit,指针向后移动</p>
+<p>提交类命令<br>git add 跟踪新文件或者已有文件的改动，或者用来解决冲突</p>
+<p>git commit 把文件从stage提交到branch</p>
+<p>git commit -a 把修改的文件先提交到stage,然后再从stash提交到branch</p>
+<p>删除类命令<br>git rm –cached readme.txt 只从stage中删除，保留物理文件</p>
+<p>git rm readme.txt 不但从stage中删除，同时删除物理文件</p>
+<p>git mv a.txt b.txt 把a.txt改名为b.txt</p>
+<p>Merge类命令</p>
+<p>在冲突状态下，需要解决冲突的文件会从index打回到工作区。</p>
+<p>1.用工具或者手工解决冲突<br>2.git add 命令来表明冲突已经解决。<br>3.再次commit 已解决冲突的文件。</p>
+<p>$ git reset –hard ORIG_HEAD 用来撤销已经commit 的merge.<br>$ git reset –hard HEAD 用来撤销还没commit 的merge,其实原理就是放弃index和工作区的改动。</p>
+<p>git reset –merge ORIG_HEAD，注意其中的–hard 换成了 –merge，这样就可以避免在回滚时清除working tree</p>
+<hr>
+<h3 id="hg源码泄漏："><a href="#hg源码泄漏：" class="headerlink" title=".hg源码泄漏："></a>.hg源码泄漏：</h3><p>漏洞成因：hg init的时候会生成.hg，<a class="link"   target="_blank" rel="noopener" href="http://www.xx.com/.hg/%EF%BC%8C" >http://www.xx.com/.hg/，<i class="fas fa-external-link-alt"></i></a></p>
+<p>工具：dvcs-ripper，（rip-hg.pl -v -u <a class="link"   target="_blank" rel="noopener" href="http://www.xx.com/.hg/%EF%BC%89" >http://www.xx.com/.hg/）<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="git源码泄漏："><a href="#git源码泄漏：" class="headerlink" title=".git源码泄漏："></a>.git源码泄漏：</h3><p>漏洞成因：在运行git init初始化代码库的时候，会在当前目录下产生一个.git的隐藏文件，用来记录代码的变更记录等，没有删除这个文件，导致泄漏，<a class="link"   target="_blank" rel="noopener" href="http://www.xxx.com/.git/config" >http://www.xxx.com/.git/config<i class="fas fa-external-link-alt"></i></a></p>
+<p>工具：GitHack，dvcs-ripper，（GitHack.py <a class="link"   target="_blank" rel="noopener" href="http://www.xxx.com/.git%EF%BC%8Crip-hg.pl" >http://www.xxx.com/.git，rip-hg.pl<i class="fas fa-external-link-alt"></i></a> -v -u <a class="link"   target="_blank" rel="noopener" href="http://www.xx.com/.git/%EF%BC%89" >http://www.xx.com/.git/）<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="DS-Store源码泄漏："><a href="#DS-Store源码泄漏：" class="headerlink" title=".DS_Store源码泄漏："></a>.DS_Store源码泄漏：</h3><p>漏洞成因：在发布代码时，没有删除文件夹中隐藏的.DS_store，被发现后，获取了敏感的文件名等信息，<a class="link"   target="_blank" rel="noopener" href="http://www.xxx.com/.ds_store" >http://www.xxx.com/.ds_store<i class="fas fa-external-link-alt"></i></a></p>
+<p>工具：dsstoreexp，（python ds_store_exp.py <a class="link"   target="_blank" rel="noopener" href="http://www.xxx.com/.DS_Store%EF%BC%89" >http://www.xxx.com/.DS_Store）<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="网站备份压缩文件："><a href="#网站备份压缩文件：" class="headerlink" title="网站备份压缩文件："></a>网站备份压缩文件：</h3><p>在网站的使用过程中，往往需要对网站中的文件进行修改，升级，此时就需要对网站整或其中某一页面进行备份，当备份文件或修改过程中的缓存文件因为各种原因被留在网站web目录下，而该目录又没有设置访问权限，就有可能导致备份文件被下载，导致信息泄漏，给服务器安全埋下隐患。.rar， .zip， .7z， .tar.gz， .bak， .swp， .txt， .html，</p>
+<p>工具：可以使用一些扫描软件，进行扫描，如awvs之类的</p>
+<p>像.swp文件，就是vim源文件泄漏，&#x2F;.index.php.swp或&#x2F;index.php~ 可以直接用vim -r inde.php来读取文件</p>
+<hr>
+<h5 id="常见的网站源码备份文件后缀"><a href="#常见的网站源码备份文件后缀" class="headerlink" title="常见的网站源码备份文件后缀"></a>常见的网站源码备份文件后缀</h5><hr>
+<ul>
+<li>tar</li>
+<li>tar.gz</li>
+<li>zip</li>
+<li>rar</li>
+</ul>
+<h5 id="常见的网站源码备份文件名"><a href="#常见的网站源码备份文件名" class="headerlink" title="常见的网站源码备份文件名"></a>常见的网站源码备份文件名</h5><hr>
+<ul>
+<li>web</li>
+<li>website</li>
+<li>backup</li>
+<li>back</li>
+<li>www</li>
+<li>wwwroot</li>
+<li>temp</li>
+</ul>
+<p>我做这道题目的时候，找到了flag_2768649.txt  不过我真没想要用URL去加载</p>
+<p>回想起来 这毕竟是网站源码 那么我们去网站上查看嘛</p>
+<h3 id="SVN导致文件泄漏："><a href="#SVN导致文件泄漏：" class="headerlink" title="SVN导致文件泄漏："></a>SVN导致文件泄漏：</h3><p>版本控制系统</p>
+<p>工具：dvcs-ripper，Seay-Svn，（rip-svn.pl -v -u <a class="link"   target="_blank" rel="noopener" href="http://www.xxx.com/.svn/%EF%BC%89" >http://www.xxx.com/.svn/）<i class="fas fa-external-link-alt"></i></a></p>
+<hr>
+<h3 id="我遇到的题目类型"><a href="#我遇到的题目类型" class="headerlink" title="我遇到的题目类型"></a>我遇到的题目类型</h3><ul>
+<li><p>bak文件</p>
+</li>
+<li><p>vim</p>
+</li>
+<li><p>. DS_Store</p>
+</li>
+<li><p>利用dvcs-rip来操作  .svn泄露 和 .hg泄露</p>
+<p>在泄露的时候可能文件中没有flag 但是给了文件名字</p>
+<p>可以尝试利用curl看看能不能得到。</p>
+</li>
+</ul>
+<p>我打算在四月初花费三天重做一遍CTFhub，然后再写这篇文章！</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">CTFHUB</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2020-03-02 10:22:51</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2020/03/02/CTFcomig/CTFHUB/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2020/03/16/CTFcomig/Every-CTFproblem/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Every CTFproblem</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2020/02/26/CTFcomig/%E5%90%88%E5%A4%A9%E5%9F%B9%E8%AE%AD/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">合天培训（xss xxe uns FilInc ）</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CtfHub"><span class="nav-number">1.</span> <span class="nav-text">CtfHub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">题目类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web"><span class="nav-number">1.1.1.</span> <span class="nav-text">Web</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Misc"><span class="nav-number">1.1.2.</span> <span class="nav-text">Misc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB%E8%AE%AD%E7%BB%83%E5%9C%BA"><span class="nav-number">1.2.</span> <span class="nav-text">WEB训练场</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WEB%E5%89%8D%E7%BD%AE%E6%8A%80%E8%83%BD%E2%80%93http%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.2.1.</span> <span class="nav-text">WEB前置技能–http协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">请求方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#302%E8%B7%B3%E8%BD%AC"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">302跳转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%A4%E8%AF%81%E2%80%93Basic-Authentication"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">基础认证–Basic Authentication</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="nav-number">1.2.2.</span> <span class="nav-text">信息泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">备份文件下载</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#0x01%E4%BF%A1%E6%81%AF%E6%B3%84%E9%9C%B2"><span class="nav-number">1.2.3.</span> <span class="nav-text">0x01信息泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hg%E6%BA%90%E7%A0%81%E6%B3%84%E6%BC%8F%EF%BC%9A"><span class="nav-number">1.2.4.</span> <span class="nav-text">.hg源码泄漏：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git%E6%BA%90%E7%A0%81%E6%B3%84%E6%BC%8F%EF%BC%9A"><span class="nav-number">1.2.5.</span> <span class="nav-text">.git源码泄漏：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DS-Store%E6%BA%90%E7%A0%81%E6%B3%84%E6%BC%8F%EF%BC%9A"><span class="nav-number">1.2.6.</span> <span class="nav-text">.DS_Store源码泄漏：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E7%AB%99%E5%A4%87%E4%BB%BD%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="nav-number">1.2.7.</span> <span class="nav-text">网站备份压缩文件：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BD%91%E7%AB%99%E6%BA%90%E7%A0%81%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E5%90%8E%E7%BC%80"><span class="nav-number">1.2.7.0.1.</span> <span class="nav-text">常见的网站源码备份文件后缀</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E7%BD%91%E7%AB%99%E6%BA%90%E7%A0%81%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E5%90%8D"><span class="nav-number">1.2.7.0.2.</span> <span class="nav-text">常见的网站源码备份文件名</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SVN%E5%AF%BC%E8%87%B4%E6%96%87%E4%BB%B6%E6%B3%84%E6%BC%8F%EF%BC%9A"><span class="nav-number">1.2.8.</span> <span class="nav-text">SVN导致文件泄漏：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E9%81%87%E5%88%B0%E7%9A%84%E9%A2%98%E7%9B%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.9.</span> <span class="nav-text">我遇到的题目类型</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

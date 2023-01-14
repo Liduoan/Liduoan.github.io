@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            SpringCloud |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":null,"font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">SpringCloud</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2021-08-10 13:26:01</span>
+        <span class="mobile">2021-08-10 13:26</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-01-14 23:04:30</span>
+    </span>
+    
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/2021/">2021</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>6.1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>27 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span>
+
+<h1 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h1><h2 id="基础认识"><a href="#基础认识" class="headerlink" title="基础认识"></a>基础认识</h2><p>目前主流的负载方案分为以下两种：</p>
+<ul>
+<li>集中式负载均衡，在<strong>消费者和服务提供方中间</strong>使用独立的代理方式进行负载，有硬件的（比如 F5），也有软件的（比如 Nginx）。</li>
+<li>客户端根据自己的请求情况做负载均衡，Ribbon 就属于客户端自己做负载均衡。</li>
+</ul>
+<p>Ribbon客户端组件提供一系列的完善的配置，如超时，重试等。通过Load Balancer获取到服务提供的所有机器实例，Ribbon会自动基于某种规则(轮询，随机)去调用这些服务。Ribbon也可以实现我们自己的负载均衡算法。</p>
+<h2 id="常见的负载均衡算法"><a href="#常见的负载均衡算法" class="headerlink" title="常见的负载均衡算法"></a>常见的负载均衡算法</h2><ul>
+<li>随机，通过随机选择服务进行执行，一般这种方式使用较少;</li>
+<li>轮训，负载均衡默认实现方式，请求来之后排队处理;</li>
+<li>加权轮训，通过对服务器性能的分型，给高配置，低负载的服务器分配更高的权重，均衡各个服务器的压力;</li>
+<li>地址Hash，通过客户端请求的地址的HASH值取模映射进行服务器调度。  ip hash</li>
+<li>最小链接数，即使请求均衡了，压力不一定会均衡，最小连接数法就是根据服务器的情况，比如请求积压数等参数，将请求分配到当前压力最小的服务器上。  最小活跃数</li>
+</ul>
+<h2 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h2><p>导入依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-ribbon<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>主要是依靠<code>@LoadBalanced</code>注解处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RestConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@LoadBalanced</span>  <span class="comment">//客戶端的負載均衡</span></span><br><span class="line">    <span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这一步,<code>@LoadBalanced</code>是在<code>RestTemplate</code>中配置了拦截器，将<code>LoadBalanceInterceptor</code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/pHxsDZiVT7N4ha3.png"
+                      alt="image.png"
+                ></p>
+<p>可以看到这里对<code>restTemplate</code>设置了拦截器处理</p>
+<p>回到使用，在<code>Controller</code>中是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/findOrderByUserId/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> R  <span class="title function_">findOrderByUserId</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Integer id)</span> &#123;</span><br><span class="line">    <span class="comment">//这里将会被Ribbon从注册中心拉去服务，然后进行分析</span></span><br><span class="line">    <span class="comment">//通过对应负载均衡算法进行更改URL，得到最后的调用地址，完成调用</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;http://mall-order/order/findOrderByUserId/&quot;</span>+id;</span><br><span class="line">    <span class="type">R</span> <span class="variable">result</span> <span class="operator">=</span> restTemplate.getForObject(url,R.class);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>Ribbon基本的调用如下图</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/cmrUznqRkiyOMFQ.png"
+                      alt="image.png"
+                ></p>
+<p>其实主要的逻辑就是拉取服务，确定调用的位置，调用。</p>
+<p>那么小的模拟Ribbon的demo如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="comment">//基本的RestTemplate</span></span><br><span class="line"><span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping(value = &quot;/findOrderByUserId/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> R  <span class="title function_">findOrderByUserId</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Integer id)</span> &#123;</span><br><span class="line">    <span class="comment">//模拟ribbon实现</span></span><br><span class="line">    <span class="comment">//主要看getUri</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> getUri(<span class="string">&quot;liduoan-order&quot;</span>)+<span class="string">&quot;/order/findOrderByUserId/&quot;</span>+id;</span><br><span class="line">    <span class="comment">// 添加@LoadBalanced</span></span><br><span class="line">    <span class="type">R</span> <span class="variable">result</span> <span class="operator">=</span> restTemplate.getForObject(url,R.class);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="comment">//这是Nacos提供的客户端</span></span><br><span class="line"><span class="keyword">private</span> DiscoveryClient discoveryClient;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">getUri</span><span class="params">(String serviceName)</span> &#123;</span><br><span class="line">    <span class="comment">//获取对应服务名下的所有服务</span></span><br><span class="line">    List&lt;ServiceInstance&gt; serviceInstances = discoveryClient.getInstances(serviceName);</span><br><span class="line">    <span class="comment">//简单判断</span></span><br><span class="line">    <span class="keyword">if</span> (serviceInstances == <span class="literal">null</span> || serviceInstances.isEmpty()) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> <span class="variable">serviceSize</span> <span class="operator">=</span> serviceInstances.size();</span><br><span class="line">    <span class="comment">//轮询,确定调用哪个服务</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">indexServer</span> <span class="operator">=</span> incrementAndGetModulo(serviceSize);</span><br><span class="line">    <span class="comment">//返回最终调用字符串</span></span><br><span class="line">    <span class="keyword">return</span> serviceInstances.get(indexServer).getUri().toString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//原子数，用来负载均衡</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">AtomicInteger</span> <span class="variable">nextIndex</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AtomicInteger</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> <span class="title function_">incrementAndGetModulo</span><span class="params">(<span class="type">int</span> modulo)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">        <span class="comment">//其实就是轮询</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">current</span> <span class="operator">=</span> nextIndex.get();</span><br><span class="line">        <span class="type">int</span> <span class="variable">next</span> <span class="operator">=</span> (current + <span class="number">1</span>) % modulo;</span><br><span class="line">        <span class="comment">//CAS操作，如果失败表示已经有人使用过这个【next】的URL了</span></span><br><span class="line">        <span class="keyword">if</span> (nextIndex.compareAndSet(current, next) </span><br><span class="line">            <span class="comment">//调用完nextIndex为新值</span></span><br><span class="line">            下面不太理解为什么要这么处理，感觉多次一举</span><br><span class="line">            &amp;&amp; current &lt; modulo)&#123;</span><br><span class="line">            <span class="keyword">return</span> current;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h1><h2 id="基础认识-1"><a href="#基础认识-1" class="headerlink" title="基础认识"></a>基础认识</h2><p>我们在Ribbon中看到常用的服务调用是使用对应的Http客户端进行调用的。</p>
+<p>常见的客户端有：</p>
+<ul>
+<li><strong>Httpclient</strong></li>
+</ul>
+<p>HttpClient 是 Apache Jakarta Common 下的子项目，用来提供高效的、最新的、功能丰富的支持 Http 协议的客户端编程工具包，并且它支持 HTTP 协议最新版本和建议。HttpClient 相比传统 JDK 自带的 URLConnection，提升了易用性和灵活性，使客户端发送 HTTP 请求变得容易，提高了开发的效率。</p>
+<ul>
+<li><strong>Okhttp</strong></li>
+</ul>
+<p>一个处理网络请求的开源项目，是安卓端最火的轻量级框架，由 Square 公司贡献，用于替代 HttpUrlConnection 和 Apache HttpClient。OkHttp 拥有简洁的 API、高效的性能，并支持多种协议（HTTP&#x2F;2 和 SPDY）。</p>
+<ul>
+<li><strong>HttpURLConnection</strong></li>
+</ul>
+<p>HttpURLConnection 是Java的标准类，它继承自 URLConnection，可用于向指定网站发送 GET 请求、POST 请求。HttpURLConnection 使用比较复杂，不像 HttpClient 那样容易使用。</p>
+<ul>
+<li><strong>RestTemplate &amp; WebClient</strong></li>
+</ul>
+<p>RestTemplate 是Spring提供的用于访问 Rest 服务的客户端，RestTemplate 提供了多种便捷访问远程 HTTP 服务的方法，能够大大提高客户端的编写效率。</p>
+<hr>
+<p>而Feign的调用方式比上面的更为优雅和平滑，类似Dubbo，我们希望像调用本地方法那样来调用远程服务。</p>
+<p>Feign支持多种注解，例如Feign自带的注解或者JAX-RS注解等。</p>
+<p>Spring Cloud openfeign对Feign进行了增强，使其支持Spring MVC注解，另外还整合了Ribbon和Eureka，从而使得Feign的使用更加方便。</p>
+<p>Feign可以做到使用 HTTP 请求远程服务时就像调用本地方法一样的体验，开发者完全感知不到这是远程方法，更感知不到这是个 HTTP 请求。、</p>
+<p>它像 Dubbo 一样，consumer 直接调用接口方法调用 provider，而不需要通过常规的 Http Client 构造请求再解析返回数据。它解决了让开发者调用远程接口就跟调用本地方法一样，无需关注与远程的交互细节，更无需关注分布式环境开发。</p>
+<h2 id="基本使用-1"><a href="#基本使用-1" class="headerlink" title="基本使用"></a>基本使用</h2><p>我们使用SpringCloud整合Feign</p>
+<p>首先是依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- openfeign 远程调用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后编写对应的调用接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//FeignConfig局部配置</span></span><br><span class="line"><span class="meta">@FeignClient(value = &quot;mall-order&quot;,path = &quot;/order&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">OrderFeignService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/findOrderByUserId/&#123;userId&#125;&quot;)</span></span><br><span class="line">    R <span class="title function_">findOrderByUserId</span><span class="params">(<span class="meta">@PathVariable(&quot;userId&quot;)</span> Integer userId)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/save&quot;,consumes = MediaType.APPLICATION_JSON_VALUE)</span></span><br><span class="line">    <span class="comment">//注意到这里是转成json处理了</span></span><br><span class="line">    R <span class="title function_">save</span><span class="params">(<span class="meta">@RequestBody</span> OrderVo order)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在启动类上加上注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableFeignClients</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MallUserFeignDemoApplication</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(MallUserFeignDemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>发起调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 注入feign</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    OrderFeignService orderFeignService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/findOrderByUserId/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> R  <span class="title function_">findOrderByUserId</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Integer id)</span> &#123;</span><br><span class="line">        <span class="comment">// feign调用</span></span><br><span class="line">        <span class="type">R</span> <span class="variable">result</span> <span class="operator">=</span> orderFeignService.findOrderByUserId(id);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h2><p>首先我们从整体上看：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/EHa8RtouZOdW23G.png"
+                      alt="image.png"
+                ></p>
+<p>其实这样看我们就可以大致了解逻辑了。</p>
+<p>但是我们再从来源走向去思考：</p>
+<p>首先我们一开始是使用对应的Http客户端直接访问，那么我们的目的是为了像调用本地方法那样去访问。</p>
+<p>如此，需要确定服务名，确定路径，保证调用的地址能够确定。</p>
+<p>之后我们调用本地方法，获取对应返回值。</p>
+<p>然而我这样解释，搞得我都有点不太理解了，所以我去看了下源码，直接从源码走向去整体理解。</p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><p>我觉得整体上还是Spring那套，回顾一下Spring那点东西，就依照我以前画的图：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/05/07/X4TUqmcu2EBWOs3.jpg"
+                      alt="Screenshot_75.jpg"
+                ></p>
+<h4 id="注入BendDefiniton"><a href="#注入BendDefiniton" class="headerlink" title="注入BendDefiniton"></a>注入BendDefiniton</h4><p>正常而言，我们的接口实现是：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient(value = &quot;mall-order&quot;,path = &quot;/order&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">OrderFeignService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/findOrderByUserId/&#123;userId&#125;&quot;)</span></span><br><span class="line">    R <span class="title function_">findOrderByUserId</span><span class="params">(<span class="meta">@PathVariable(&quot;userId&quot;)</span> Integer userId)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/save&quot;,consumes = MediaType.APPLICATION_JSON_VALUE)</span></span><br><span class="line">    R <span class="title function_">save</span><span class="params">(<span class="meta">@RequestBody</span> OrderVo order)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>看注解：<code>@FeignClient</code>，按照Spring的尿性，可能是从扫描包开始。</p>
+<p>那么我们可以在<code>FeignClientsRegistrar</code>这个类中发现：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">registerBeanDefinitions</span><span class="params">(AnnotationMetadata metadata,</span></span><br><span class="line"><span class="params">                                    BeanDefinitionRegistry registry)</span> &#123;</span><br><span class="line">    <span class="comment">//标准的查看配置</span></span><br><span class="line">    registerDefaultConfiguration(metadata, registry);</span><br><span class="line">    <span class="comment">//字面意义的注册客户端</span></span><br><span class="line">    registerFeignClients(metadata, registry);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们进入<code>registerDefaultConfiguration</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">registerDefaultConfiguration</span><span class="params">(AnnotationMetadata metadata,</span></span><br><span class="line"><span class="params">                                          BeanDefinitionRegistry registry)</span> &#123;</span><br><span class="line">    Map&lt;String, Object&gt; defaultAttrs = metadata</span><br><span class="line">        .getAnnotationAttributes(EnableFeignClients.class.getName(), <span class="literal">true</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (defaultAttrs != <span class="literal">null</span> &amp;&amp; defaultAttrs.containsKey(<span class="string">&quot;defaultConfiguration&quot;</span>)) &#123;</span><br><span class="line">        String name;</span><br><span class="line">        <span class="keyword">if</span> (metadata.hasEnclosingClass()) &#123;</span><br><span class="line">            name = <span class="string">&quot;default.&quot;</span> + metadata.getEnclosingClassName();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            name = <span class="string">&quot;default.&quot;</span> + metadata.getClassName();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//重点在这里</span></span><br><span class="line">        registerClientConfiguration(registry, name,</span><br><span class="line">                                    defaultAttrs.get(<span class="string">&quot;defaultConfiguration&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">registerClientConfiguration</span><span class="params">(BeanDefinitionRegistry registry, Object name,</span></span><br><span class="line"><span class="params">                                         Object configuration)</span> &#123;</span><br><span class="line">    <span class="type">BeanDefinitionBuilder</span> <span class="variable">builder</span> <span class="operator">=</span> BeanDefinitionBuilder</span><br><span class="line">        .genericBeanDefinition(FeignClientSpecification.class);</span><br><span class="line">    builder.addConstructorArgValue(name);</span><br><span class="line">    builder.addConstructorArgValue(configuration);</span><br><span class="line">    <span class="comment">//注册了大量的Bean定义</span></span><br><span class="line">    registry.registerBeanDefinition(</span><br><span class="line">        name + <span class="string">&quot;.&quot;</span> + FeignClientSpecification.class.getSimpleName(),</span><br><span class="line">        builder.getBeanDefinition());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过查看可以发现</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/VxiPz4aEvAc5p39.png"
+                      alt="image.png"
+                ></p>
+<p>其中有大量的后置处理器被放入BeanDefinitionMap和启动类中。</p>
+<p>到现在，是完成了主要的默认操作。我们接下来该走<code> registerFeignClients(metadata, registry);</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">registerFeignClients</span><span class="params">(AnnotationMetadata metadata,</span></span><br><span class="line"><span class="params">                                 BeanDefinitionRegistry registry)</span> &#123;</span><br><span class="line">    <span class="comment">//获取扫描器，以便后续扫描包</span></span><br><span class="line">    <span class="type">ClassPathScanningCandidateComponentProvider</span> <span class="variable">scanner</span> <span class="operator">=</span> getScanner();</span><br><span class="line">    scanner.setResourceLoader(<span class="built_in">this</span>.resourceLoader);</span><br><span class="line"></span><br><span class="line">    Set&lt;String&gt; basePackages;</span><br><span class="line">	<span class="comment">//metadata</span></span><br><span class="line">    ..........</span><br><span class="line">    <span class="comment">//最终获取到了包名</span></span><br><span class="line">    <span class="comment">//这个地方就太熟悉了 SpringMvc也是这样获得对应的Controller，然后注册到BeanDefinition中</span></span><br><span class="line">    <span class="keyword">for</span> (String basePackage : basePackages) &#123;</span><br><span class="line">        <span class="comment">//BeanDefinition的Set</span></span><br><span class="line">        Set&lt;BeanDefinition&gt; candidateComponents = scanner</span><br><span class="line">            .findCandidateComponents(basePackage);</span><br><span class="line">        <span class="comment">//注意到上面定向到了BeanDefinition</span></span><br><span class="line">        <span class="comment">//挺奇怪的是为什么没有其他Bean定义，只有OrderFeignService的Bean定义</span></span><br><span class="line">        <span class="comment">//通过遍历BeanDefinition来确定这些是否是</span></span><br><span class="line">        <span class="keyword">for</span> (BeanDefinition candidateComponent : candidateComponents) &#123;</span><br><span class="line">            <span class="keyword">if</span> (candidateComponent <span class="keyword">instanceof</span> AnnotatedBeanDefinition) &#123;</span><br><span class="line">                <span class="comment">// verify annotated class is an interface</span></span><br><span class="line">                <span class="type">AnnotatedBeanDefinition</span> <span class="variable">beanDefinition</span> <span class="operator">=</span> (AnnotatedBeanDefinition) candidateComponent;</span><br><span class="line">                <span class="type">AnnotationMetadata</span> <span class="variable">annotationMetadata</span> <span class="operator">=</span> beanDefinition.getMetadata();</span><br><span class="line">                Assert.isTrue(annotationMetadata.isInterface(),</span><br><span class="line">                              <span class="string">&quot;@FeignClient can only be specified on an interface&quot;</span>);</span><br><span class="line">				<span class="comment">//获取到带FeignClient注解</span></span><br><span class="line">                Map&lt;String, Object&gt; attributes = annotationMetadata</span><br><span class="line">                    .getAnnotationAttributes(</span><br><span class="line">                    FeignClient.class.getCanonicalName());</span><br><span class="line">				<span class="comment">//获取所有的BeanName</span></span><br><span class="line">                <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> getClientName(attributes);</span><br><span class="line">                registerClientConfiguration(registry, name,</span><br><span class="line">                                            attributes.get(<span class="string">&quot;configuration&quot;</span>));</span><br><span class="line"></span><br><span class="line">                registerFeignClient(registry, annotationMetadata, attributes);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是刚刚提到的情况，不过并不很重要。</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//注意到上面定向到了BeanDefinition</span><br><span class="line">//挺奇怪的是为什么没有其他Bean定义，只有OrderFeignService的Bean定义</span><br><span class="line">//通过遍历BeanDefinition来确定这些是否是</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/6udaM3kFZvlNWiy.png"
+                      alt="image.png"
+                ></p>
+<p>到了现在	我们终于把BeanDefinition注册了。</p>
+<p>我本来想去BeanDeinitionMap中把这个Bean定义找出来截图，但是好多啊，看的眼疼，就算了吧。。</p>
+<h4 id="生成代理类"><a href="#生成代理类" class="headerlink" title="生成代理类"></a>生成代理类</h4><p>注入bean之后，通过jdk的代理生成代理类</p>
+<p>代码在ReflectiveFeign类中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; T <span class="title function_">newInstance</span><span class="params">(Target&lt;T&gt; target)</span> &#123;</span><br><span class="line">    <span class="comment">//注意这里获取到了</span></span><br><span class="line">    Map&lt;String, MethodHandler&gt; nameToHandler = targetToHandlersByName.apply(target);</span><br><span class="line">    Map&lt;Method, MethodHandler&gt; methodToHandler = <span class="keyword">new</span> <span class="title class_">LinkedHashMap</span>&lt;Method, MethodHandler&gt;();</span><br><span class="line">    List&lt;DefaultMethodHandler&gt; defaultMethodHandlers = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;DefaultMethodHandler&gt;();</span><br><span class="line">	<span class="comment">//这一步就是把对应的方法放到methodToHandler</span></span><br><span class="line">    <span class="keyword">for</span> (Method method : target.type().getMethods()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (method.getDeclaringClass() == Object.class) &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (Util.isDefault(method)) &#123;</span><br><span class="line">            <span class="type">DefaultMethodHandler</span> <span class="variable">handler</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">DefaultMethodHandler</span>(method);</span><br><span class="line">            defaultMethodHandlers.add(handler);</span><br><span class="line">            methodToHandler.put(method, handler);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            methodToHandler.put(method, nameToHandler.get(Feign.configKey(target.type(), method)));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这里就是创建代理对象了</span></span><br><span class="line">    <span class="type">InvocationHandler</span> <span class="variable">handler</span> <span class="operator">=</span> factory.create(target, methodToHandler);</span><br><span class="line">    <span class="type">T</span> <span class="variable">proxy</span> <span class="operator">=</span> (T) Proxy.newProxyInstance(target.type().getClassLoader(),</span><br><span class="line">                                         <span class="keyword">new</span> <span class="title class_">Class</span>&lt;?&gt;[] &#123;target.type()&#125;, handler);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (DefaultMethodHandler defaultMethodHandler : defaultMethodHandlers) &#123;</span><br><span class="line">        defaultMethodHandler.bindTo(proxy);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//最后返回代理类</span></span><br><span class="line">    <span class="keyword">return</span> proxy;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>Map&lt;String, MethodHandler&gt; nameToHandler</code>中的具体东西</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/lzK5TietbcRoNLF.png"
+                      alt="image.png"
+                ></p>
+<p>看到了对应的Http客户端，对应的请求拦截器，对应的日志。</p>
+<p>同时注意到，这里是使用了LoadBalancerDeignClient的客户端，说明它具有负载均衡的能力</p>
+<p>也说明它可以把对应服务名最后转换成IP+端口的形式、</p>
+<p>同时我们的两个方法名也获得了</p>
+<p>让我们在看下最后生成的代理类：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/kB5gnVE6adLIlwc.png"
+                      alt="image.png"
+                ></p>
+<p>注意到了两个Method方法。</p>
+<h4 id="发生请求"><a href="#发生请求" class="headerlink" title="发生请求"></a>发生请求</h4><p>当我们请求过来时，主要逻辑在<code>SynchronousMethodHandler</code>中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Object <span class="title function_">invoke</span><span class="params">(Object[] argv)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">    <span class="comment">//好家伙，最后的客户端终于出现了</span></span><br><span class="line">    <span class="comment">//注意哦 这里是构建了请求格式</span></span><br><span class="line">    <span class="type">RequestTemplate</span> <span class="variable">template</span> <span class="operator">=</span> buildTemplateFromArgs.create(argv);</span><br><span class="line">    <span class="type">Options</span> <span class="variable">options</span> <span class="operator">=</span> findOptions(argv);</span><br><span class="line">    <span class="type">Retryer</span> <span class="variable">retryer</span> <span class="operator">=</span> <span class="built_in">this</span>.retryer.clone();</span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//最后在这里调用</span></span><br><span class="line">        <span class="keyword">return</span> executeAndDecode(template, options);</span><br><span class="line">	  .............</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>RequestTemplate</code>是做好的请求格式</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/D3JrIG2xVyRMpZh.png"
+                      alt="image.png"
+                ></p>
+<p>我们看最后的<code>executeAndDecode</code>方法！！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Object <span class="title function_">executeAndDecode</span><span class="params">(RequestTemplate template, Options options)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">    <span class="comment">//构建请求</span></span><br><span class="line">    <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> targetRequest(template);</span><br><span class="line">	<span class="comment">//日志级别处理</span></span><br><span class="line">    <span class="keyword">if</span> (logLevel != Logger.Level.NONE) &#123;</span><br><span class="line">        logger.logRequest(metadata.configKey(), logLevel, request);</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">//响应</span></span><br><span class="line">    Response response;</span><br><span class="line">    <span class="type">long</span> <span class="variable">start</span> <span class="operator">=</span> System.nanoTime();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//发生请求，获取响应</span></span><br><span class="line">        response = client.execute(request, options);</span><br><span class="line">        <span class="comment">// ensure the request is set. <span class="doctag">TODO:</span> remove in Feign 12</span></span><br><span class="line">       <span class="comment">//下面是一系列的格式处理</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>到现在我们已经明白了，他是如何调用的，如何请求过去的，剩下的就是处理返回的内容，</p>
+<p>其实也简单，就是对数据修饰，包装，最后变为对象类型罢了。</p>
+<h2 id="部分扩展使用"><a href="#部分扩展使用" class="headerlink" title="部分扩展使用"></a>部分扩展使用</h2><h3 id="日志处理"><a href="#日志处理" class="headerlink" title="日志处理"></a>日志处理</h3><p>有时候我们遇到 Bug，比如接口调用失败、参数没收到等问题，或者想看看调用性能，就需要配置 Feign 的日志了，以此让 Feign 把请求信息输出来。</p>
+<p>日志等级有 4 种，分别是：</p>
+<ol>
+<li><strong>NONE</strong>【性能最佳，适用于生产】：不记录任何日志（默认值）。</li>
+<li><strong>BASIC</strong>【适用于生产环境追踪问题】：仅记录请求方法、URL、响应状态代码以及执行时间。</li>
+<li><strong>HEADERS</strong>：记录BASIC级别的基础上，记录请求和响应的header。</li>
+<li><strong>FULL</strong>【比较适用于开发及测试环境定位问题】：记录请求和响应的header、body和元数据</li>
+</ol>
+<p>比较常用的是在yml文件中配置</p>
+<p>配置SpringBoot的日志级别：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">logging:</span></span><br><span class="line">  <span class="attr">level:</span></span><br><span class="line">    <span class="attr">com.jimmy.mall.feigndemo.feign:</span> <span class="string">debug</span></span><br></pre></td></tr></table></figure>
+
+<p>配置Feign的日志</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">      <span class="attr">mall-order:</span>  <span class="comment"># 对应微服务名字</span></span><br><span class="line">        <span class="attr">loggerLevel:</span> <span class="string">FULL</span> <span class="comment"># 日志级别</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Http客户端配置"><a href="#Http客户端配置" class="headerlink" title="Http客户端配置"></a>Http客户端配置</h3><p>我们知道Feign默认使用JDK原生的<code>URLConnection </code>发送 HTTP 请求。</p>
+<p>我们可以集成别的组件来替换掉 <code>URLConnection</code>，比如 <code>Apache HttpClient</code>，<code>OkHttp</code>。</p>
+<h4 id="配置OkHttp"><a href="#配置OkHttp" class="headerlink" title="配置OkHttp"></a>配置OkHttp</h4><p>一样，配置依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.github.openfeign<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-okhttp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>修改配置文件</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="comment"># 使用okhttp  </span></span><br><span class="line">  <span class="attr">okhttp:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>原理：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration(proxyBeanMethods = false)</span></span><br><span class="line"><span class="comment">// 导入HttpClient包后该条件可以满足</span></span><br><span class="line"><span class="meta">@ConditionalOnClass(ApacheHttpClient.class)</span></span><br><span class="line"><span class="meta">@ConditionalOnMissingClass(&quot;com.netflix.loadbalancer.ILoadBalancer&quot;)</span></span><br><span class="line"><span class="meta">@ConditionalOnMissingBean(CloseableHttpClient.class)</span></span><br><span class="line"><span class="comment">// 默认已经开启</span></span><br><span class="line"><span class="meta">@ConditionalOnProperty(value = &quot;feign.httpclient.enabled&quot;, matchIfMissing = true)</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">HttpClientFeignConfiguration</span> &#123;</span><br><span class="line">     ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h1><h2 id="基础认识-2"><a href="#基础认识-2" class="headerlink" title="基础认识"></a>基础认识</h2><p>Hystrix是Netflix开源的一个延迟和容错库，用于隔离访问远程服务、第三方库，防止出现级联失败。</p>
+<p>通常一个分布式系统是由许多相互依赖的服务所组成的，这些被依赖的服务极易出现故障或响应延迟的问题。</p>
+<p>如果其中某个服务失败则会影响其他服务并进一步降低整体性能，并导致应用程序其他功能无法正常访问，在最坏的情况下，整个应用程序将崩溃。</p>
+<p>Hystrix框架通过提供<strong>熔断</strong>和<strong>降级</strong>来控制服务之间的交互依赖，通过隔离故障服务并停止故障的级联效应以提高系统的总体弹性</p>
+<p>Hystrix的<strong>熔断状态</strong>机:</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/fxaSp1KRFgql4AY.png"
+                      alt="image.png"
+                ></p>
+<p>其中有3个状态：</p>
+<ul>
+<li><p>Closed：关闭状态（熔断器关闭），所有请求正常访问。</p>
+</li>
+<li><p>Open：打开状态（熔断器打开），所有请求都会被<strong>降级</strong>。</p>
+<p>Hystrix会对请求情况统计，当一定时间内失败请求百分比到达阈值，则会触发熔断，熔断器打开。默认失败比例的阈值是50%，请求次数不低于20次。</p>
+</li>
+<li><p>Half Open：半开状态。Open状态不是永久的，熔断器打开后一段时间（默认5秒）会进入半开状态，释放部分请求通过，如果请求正常，那么熔断器将会关闭；否则熔断器继续保持打开状态。</p>
+</li>
+</ul>
+<p><strong>服务降级</strong>处理就是在一次请求异常或者熔断器已经打开的情况下调用一个失败回滚处理方法：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/5BnlduvwoaURH8h.png"
+                      alt="image.png"
+                ></p>
+<p>当服务繁忙时，如果服务出现异常，不是粗暴的直接报错，而是返回一个友好的提示，虽然拒绝了用户的访问，但是会返回一个结果。</p>
+<h2 id="基本使用-2"><a href="#基本使用-2" class="headerlink" title="基本使用"></a>基本使用</h2><h3 id="单独使用"><a href="#单独使用" class="headerlink" title="单独使用"></a>单独使用</h3><p>导入依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-hystrix<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>启动类配置</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableCircuitBreaker</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HystrixApplication</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">		SpringApplication.run(HystrixApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>设置方法，为远程服务调用，这里使用RestTemplate来完成，使用<code>@HystrixCommand</code>注解修饰</p>
+<p>然后确定<code>FalllBack</code>函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 注入restTemplate</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> RestTemplate restTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 发送远程请求方法</span></span><br><span class="line">    <span class="comment">// @HystrixCommand注解声明失败回滚方法和相关配置</span></span><br><span class="line">    <span class="meta">@HystrixCommand(fallbackMethod = &quot;fallBack&quot;, commandProperties = &#123;</span></span><br><span class="line"><span class="meta">          @HystrixProperty(name = &quot;execution.isolation.thread.timeoutInMilliseconds&quot;, value = &quot;1500&quot;),</span></span><br><span class="line"><span class="meta">          @HystrixProperty(name = &quot;circuitBreaker.requestVolumeThreshold&quot;,value = &quot;10&quot;),</span></span><br><span class="line"><span class="meta">          @HystrixProperty(name = &quot;circuitBreaker.sleepWindowInMilliseconds&quot;,value = &quot;15000&quot;),  </span></span><br><span class="line"><span class="meta">          @HystrixProperty(name = &quot;circuitBreaker.errorThresholdPercentage&quot;,value = &quot;70&quot;)</span></span><br><span class="line"><span class="meta">    &#125;)</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">sendRequest</span><span class="params">(Integer id)</span>&#123;</span><br><span class="line">        <span class="comment">// 定义服务名称</span></span><br><span class="line">        String serviceName=<span class="string">&quot;liduoan-order&quot;</span>;</span><br><span class="line">        <span class="comment">// 开始时间</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">begin</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">        <span class="comment">// 查询</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">url</span> <span class="operator">=</span> <span class="string">&quot;http://127.0.0.1:9001/liduoan_order/findOrderByUserId/&quot;</span>+id;</span><br><span class="line">        <span class="type">R</span> <span class="variable">cmspage</span> <span class="operator">=</span> restTemplate.getForObject(url, R.class);</span><br><span class="line">        <span class="comment">// 结束时间</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">end</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">        <span class="comment">// 记录访问时长</span></span><br><span class="line">        log.info(<span class="string">&quot;访问时长：&#123;&#125;&quot;</span>,end-begin);</span><br><span class="line">        <span class="keyword">return</span> cmspage;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 失败回滚方法</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">fallBack</span><span class="params">(Integer id)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> R.error(<span class="string">&quot;降级成功！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>配置TestController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    TestService testService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/test&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;R&gt; <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line">        ArrayList&lt;R&gt; pages = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">            <span class="type">R</span> <span class="variable">orderByUserId</span> <span class="operator">=</span> testService.sendRequest(<span class="number">1</span>);<span class="comment">//orderFeignService.findOrderByUserId(1);</span></span><br><span class="line">            <span class="comment">// System.out.println(R);</span></span><br><span class="line">            pages.add(orderByUserId);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pages;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终结果为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">2021-07-16 10:41:21.401  INFO 10028 --- [x-TestService-1] com.example.hystrix.service.TestService  : 访问时长：2010</span><br><span class="line">2021-07-16 10:41:22.410  INFO 10028 --- [x-TestService-2] com.example.hystrix.service.TestService  : 访问时长：1517</span><br><span class="line">2021-07-16 10:41:24.133  INFO 10028 --- [x-TestService-3] com.example.hystrix.service.TestService  : 访问时长：1731</span><br><span class="line">2021-07-16 10:41:25.637  INFO 10028 --- [x-TestService-4] com.example.hystrix.service.TestService  : 访问时长：1716</span><br><span class="line">2021-07-16 10:41:26.544  INFO 10028 --- [x-TestService-5] com.example.hystrix.service.TestService  : 访问时长：1109</span><br><span class="line">2021-07-16 10:41:28.071  INFO 10028 --- [x-TestService-6] com.example.hystrix.service.TestService  : 访问时长：1521</span><br><span class="line">2021-07-16 10:41:28.922  INFO 10028 --- [x-TestService-7] com.example.hystrix.service.TestService  : 访问时长：857</span><br><span class="line">2021-07-16 10:41:30.671  INFO 10028 --- [x-TestService-8] com.example.hystrix.service.TestService  : 访问时长：1747</span><br><span class="line">2021-07-16 10:41:31.638  INFO 10028 --- [x-TestService-9] com.example.hystrix.service.TestService  : 访问时长：1200</span><br><span class="line">2021-07-16 10:41:32.741  INFO 10028 --- [-TestService-10] com.example.hystrix.service.TestService  : 访问时长：1102</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/owTK2PWRmFnz1Md.png"
+                      alt="image.png"
+                ></p>
+<p>注意到，他一开始是2010ms，说明线程休眠了，那么就访问失败，熔断状态打开，进行降级</p>
+<h3 id="配合SpringCloud"><a href="#配合SpringCloud" class="headerlink" title="配合SpringCloud"></a>配合SpringCloud</h3><p>首先我们一般都会使用Feign来做服务调用，而Feign中已经有了Hystrix的依赖</p>
+<p>那么我们只需要在配置文件中配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">  <span class="attr">hystrix:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">hystrix:</span></span><br><span class="line">  <span class="attr">command:</span></span><br><span class="line">    <span class="attr">default:</span>                   <span class="comment"># dafault表示全局生效</span></span><br><span class="line">      <span class="attr">circuitBreaker:</span></span><br><span class="line">        <span class="attr">requestVolumeThreshold:</span> <span class="number">10</span>         <span class="comment"># 熔断统计请求次数阈值</span></span><br><span class="line">        <span class="attr">sleepWindowInMilliseconds:</span> <span class="number">15000</span>   <span class="comment"># 熔断器休眠时间（单位：毫秒）</span></span><br><span class="line">        <span class="attr">errorThresholdPercentage:</span> <span class="number">70</span>       <span class="comment"># 熔断错误请求百分比阈值</span></span><br><span class="line">        <span class="attr">execution:</span></span><br><span class="line">          <span class="attr">isolation:</span></span><br><span class="line">            <span class="attr">thread:</span></span><br><span class="line">              <span class="attr">timeoutInMilliseconds:</span> <span class="number">1000</span>    <span class="comment"># 设置hystrix的超时时间(单位：毫秒)</span></span><br></pre></td></tr></table></figure>
+
+<p>我们仅仅在Feign中配置FallBack</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient(value = &quot;liduoan-order&quot;, path = &quot;/liduoan_order&quot;</span></span><br><span class="line"><span class="meta">,fallback = OrderFallBack.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">OrderFeignService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/findOrderByUserId/&#123;userId&#125;&quot;)</span></span><br><span class="line">    R <span class="title function_">findOrderByUserId</span><span class="params">(<span class="meta">@PathVariable(&quot;userId&quot;)</span> Integer userId)</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意到FallBack函数，我们是对现有的Feign—<code>OrderFeignService</code>做了一个实现类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderFallBack</span> <span class="keyword">implements</span> <span class="title class_">OrderFeignService</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">findOrderByUserId</span><span class="params">(Integer userId)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> R.error(userId + <span class="string">&quot;请求异常，请重试！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h2><p>主要工作流程：</p>
+<p>1、当调用出现错误时，开启一个时间窗【默认10s</p>
+<p>2、当这个时间窗内，统计调用次数是否达到最小请求数？</p>
+<p>​	  如果没有达到，则重置统计信息，回到第一步</p>
+<p>​	  如果达到了，则统计失败的请求数 占所有请求比 ，判断是否达到阈值？</p>
+<p>​				达到阈值，降级处理</p>
+<p>​				没有达到阈值，重置统计信息，回到第一步</p>
+<p>3、如果降级处理了，也就是断路器处于开启状态，则会开启一个活动窗口【默认5s】，每隔5s，Hystrix会让一个请求通过，查看是否调用成功</p>
+<p>​		如果成功，重置断路器，回到第一步</p>
+<p>​		如果失败，回到第三步，保持断路器开启状态</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/8pRKwJzVi4mZLfa.png"
+                      alt="image.png"
+                ></p>
+<h1 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h1><h2 id="基本认识"><a href="#基本认识" class="headerlink" title="基本认识"></a>基本认识</h2><p>官方文档： <a class="link"   target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/what-is-nacos.html" >https://nacos.io/zh-cn/docs/what-is-nacos.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。</p>
+<p>Nacos 的关键特性包括:</p>
+<ul>
+<li>服务发现和服务健康监测</li>
+<li>动态配置服务</li>
+<li>动态 DNS 服务</li>
+<li>服务及其元数据管理</li>
+</ul>
+<h2 id="基本使用-3"><a href="#基本使用-3" class="headerlink" title="基本使用"></a>基本使用</h2><p>这个注册中心不是和eurke一样，不需要在springboot中处理生产服务端。</p>
+<p>而是我们有一个服务端，仅仅只需要注册到上面</p>
+<p>pom文件中处理</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- nacos服务注册与发现 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在那个配置文件中：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8045</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">mall-user-consumer-demo</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#配置nacos注册中心地址</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">nacos:</span></span><br><span class="line">      <span class="attr">discovery:</span></span><br><span class="line">        <span class="attr">server-addr:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="string">:8848</span></span><br><span class="line">        <span class="comment">#namespace: 39e1e969-15f9-46d2-832d-fa052da55377</span></span><br><span class="line">        <span class="comment">#group: mall-user</span></span><br><span class="line">        <span class="attr">cluster-name:</span> <span class="string">BJ</span></span><br></pre></td></tr></table></figure>
+
+<p>如此就可以注册到Nacos中了，很简单。</p>
+<h1 id="最终Demo"><a href="#最终Demo" class="headerlink" title="最终Demo"></a>最终Demo</h1><h2 id="前置操作"><a href="#前置操作" class="headerlink" title="前置操作"></a>前置操作</h2><p>父工程pom：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springCloudDemo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line">    ..........</span><br><span class="line">	<span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- nacos服务注册与发现 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!-- openfeign 远程调用 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!-- feign调用依赖 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.netflix.feign<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>8.18.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.netflix.feign<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-jackson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>8.18.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后是两个微服务：·<code>liduoan_order</code>，<code>liduoan_user</code>的pom文件</p>
+<p>两者的pom文件内容大致相同，就只展示一个</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springCloudDemo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line">    ....</span><br><span class="line">	<span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- nacos服务注册与发现 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-alibaba-nacos-discovery<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- openfeign 远程调用 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!-- feign调用依赖 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.netflix.feign<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>8.18.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.netflix.feign<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>feign-jackson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>8.18.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		.............</span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意到我们只有两个依赖，分别是注册中心和<code>feign</code>的依赖，那么<code>Ribbon</code>和<code>Hystrix</code>的依赖在哪里呢？</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/ogwCnTH7KeXFBrA.png"
+                      alt="image.png"
+                ></p>
+<p>可以很清楚的看到，Feign已经集成了Ribbon和Hystrix的依赖。</p>
+<h2 id="注册中心"><a href="#注册中心" class="headerlink" title="注册中心"></a>注册中心</h2><p>这里使用Nacos作为注册中心</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/BcTxMVdQYusfXID.png"
+                      alt="image.png"
+                ></p>
+<h2 id="服务提供方"><a href="#服务提供方" class="headerlink" title="服务提供方"></a>服务提供方</h2><p>事实上，每个微服务都可以被认为是生产者和消费者。</p>
+<p>我们单从一条线去完成整体的调用</p>
+<p>提供方仅仅完成简单的查询操作：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/liduoan_order&quot;)</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> OrderService orderService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/findOrderByUserId/&#123;userId&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">findOrderByUserId</span><span class="params">(<span class="meta">@PathVariable(&quot;userId&quot;)</span> Integer userId)</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 线程随机0-2000毫秒休眠</span></span><br><span class="line">            Thread.sleep(<span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">2000</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        log.info(<span class="string">&quot;根据userId:&quot;</span>+userId+<span class="string">&quot;查询订单信息&quot;</span>);</span><br><span class="line">        List&lt;OrderEntity&gt; orderEntities = orderService.listByUserId(userId);</span><br><span class="line">        <span class="keyword">return</span> R.ok().put(<span class="string">&quot;orders&quot;</span>, orderEntities);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意到我有一个线程休眠处理，这里是为了测试Hystrix的降级功能。</p>
+<h2 id="服务调用方"><a href="#服务调用方" class="headerlink" title="服务调用方"></a>服务调用方</h2><p>先看整体包组成：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/25/HSOa1TmRgGBMwqC.png"
+                      alt="image.png"
+                ></p>
+<p>主要有Feign，Hystrix的FallBack，对应的Controller。</p>
+<p>先看Feign</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FeignClient(value = &quot;liduoan-order&quot;, path = &quot;/liduoan_order&quot;</span></span><br><span class="line"><span class="meta">,fallback = OrderFallBack.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">OrderFeignService</span> &#123;</span><br><span class="line">	<span class="comment">//服务调用</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/findOrderByUserId/&#123;userId&#125;&quot;)</span></span><br><span class="line">    R <span class="title function_">findOrderByUserId</span><span class="params">(<span class="meta">@PathVariable(&quot;userId&quot;)</span> Integer userId)</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么看Controller，Controller有单纯的测试是否调用成功的UserController和Hystrix测试降级能力的TestController：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/user&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    OrderFeignService orderFeignService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/findOrderByUserId/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">findOrderByUserId</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> Integer id)</span> &#123;</span><br><span class="line">        <span class="comment">//feign调用</span></span><br><span class="line">        <span class="type">R</span> <span class="variable">result</span> <span class="operator">=</span> orderFeignService.findOrderByUserId(id);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestController</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    OrderFeignService orderFeignService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/test&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> ArrayList&lt;R&gt; <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line">        ArrayList&lt;R&gt; pages = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">            <span class="type">R</span> <span class="variable">orderByUserId</span> <span class="operator">=</span> orderFeignService.findOrderByUserId(<span class="number">1</span>);</span><br><span class="line">            <span class="comment">// System.out.println(R);</span></span><br><span class="line">            pages.add(orderByUserId);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pages;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后看一下对应的<code>OrderFallBack</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OrderFallBack</span> <span class="keyword">implements</span> <span class="title class_">OrderFeignService</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> R <span class="title function_">findOrderByUserId</span><span class="params">(Integer userId)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> R.error(userId + <span class="string">&quot;请求异常，请重试！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>参考文档：</p>
+<p>Ribbon:</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://note.youdao.com/ynoteshare1/index.html?id=983c803c0f366af153e5c336aa4ac834&type=note" >https://note.youdao.com/ynoteshare1/index.html?id=983c803c0f366af153e5c336aa4ac834&amp;type=note<i class="fas fa-external-link-alt"></i></a></p>
+<p>Feign:</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://liduoan.github.io/2021/05/07/Spring-%E7%A9%B6%E6%9E%81%E8%A7%A3%E6%9E%90/#more" >https://liduoan.github.io/2021/05/07/Spring-%E7%A9%B6%E6%9E%81%E8%A7%A3%E6%9E%90/#more<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://note.youdao.com/ynoteshare1/index.html?id=e4d3a42acab8240647293dde5ed88b7b&type=note" >https://note.youdao.com/ynoteshare1/index.html?id=e4d3a42acab8240647293dde5ed88b7b&amp;type=note<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/forezp/article/details/73480304" >https://blog.csdn.net/forezp/article/details/73480304<i class="fas fa-external-link-alt"></i></a></p>
+<p>Hystrix:</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000005988895" >https://segmentfault.com/a/1190000005988895<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1V4411F7my?p=2" >https://www.bilibili.com/video/BV1V4411F7my?p=2<i class="fas fa-external-link-alt"></i></a></p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">SpringCloud</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2021-08-10 13:26:01</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2021/08/10/2021/SpringCloud/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/2021/">#2021</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2021/08/20/2021/Mysql%E4%BA%8B%E5%8A%A1%E5%8F%8AMVCC/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">Mysql事务及MVCC</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2021/07/25/2021/ELK/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">ELK</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ribbon"><span class="nav-number">1.</span> <span class="nav-text">Ribbon</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%A4%E8%AF%86"><span class="nav-number">1.1.</span> <span class="nav-text">基础认识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">常见的负载均衡算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Feign"><span class="nav-number">2.</span> <span class="nav-text">Feign</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%A4%E8%AF%86-1"><span class="nav-number">2.1.</span> <span class="nav-text">基础认识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8-1"><span class="nav-number">2.2.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86-1"><span class="nav-number">2.3.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-number">2.3.1.</span> <span class="nav-text">源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%A8%E5%85%A5BendDefiniton"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">注入BendDefiniton</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E4%BB%A3%E7%90%86%E7%B1%BB"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">生成代理类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E7%94%9F%E8%AF%B7%E6%B1%82"><span class="nav-number">2.3.1.3.</span> <span class="nav-text">发生请求</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E6%89%A9%E5%B1%95%E4%BD%BF%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">部分扩展使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86"><span class="nav-number">2.4.1.</span> <span class="nav-text">日志处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Http%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%85%8D%E7%BD%AE"><span class="nav-number">2.4.2.</span> <span class="nav-text">Http客户端配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEOkHttp"><span class="nav-number">2.4.2.1.</span> <span class="nav-text">配置OkHttp</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hystrix"><span class="nav-number">3.</span> <span class="nav-text">Hystrix</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AE%A4%E8%AF%86-2"><span class="nav-number">3.1.</span> <span class="nav-text">基础认识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8-2"><span class="nav-number">3.2.</span> <span class="nav-text">基本使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%8B%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">3.2.1.</span> <span class="nav-text">单独使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E5%90%88SpringCloud"><span class="nav-number">3.2.2.</span> <span class="nav-text">配合SpringCloud</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86-2"><span class="nav-number">3.3.</span> <span class="nav-text">原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nacos"><span class="nav-number">4.</span> <span class="nav-text">Nacos</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%AE%A4%E8%AF%86"><span class="nav-number">4.1.</span> <span class="nav-text">基本认识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8-3"><span class="nav-number">4.2.</span> <span class="nav-text">基本使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E7%BB%88Demo"><span class="nav-number">5.</span> <span class="nav-text">最终Demo</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">5.1.</span> <span class="nav-text">前置操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="nav-number">5.2.</span> <span class="nav-text">注册中心</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E6%8F%90%E4%BE%9B%E6%96%B9"><span class="nav-number">5.3.</span> <span class="nav-text">服务提供方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E6%96%B9"><span class="nav-number">5.4.</span> <span class="nav-text">服务调用方</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            leetcode_02_part |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":null,"font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">leetcode_02_part</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2020-05-01 23:57:50</span>
+        <span class="mobile">2020-05-01 23:57</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2020-05-07 22:24:19</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/leetcode%E2%80%94%E2%80%94%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/">leetcode——每日一题</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.8k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>15 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>难顶，又到五月了。这几天要忙着数学建模。</p>
+<p>但是leeetcode还是要接着写呀！</p>
+<span id="more"></span>
+
+<h3 id="2020-05-01"><a href="#2020-05-01" class="headerlink" title="2020.05.01"></a>2020.05.01</h3><h4 id="21-合并两个有序链表"><a href="#21-合并两个有序链表" class="headerlink" title="21. 合并两个有序链表"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-two-sorted-lists/" >21. 合并两个有序链表<i class="fas fa-external-link-alt"></i></a></h4><p>将两个升序链表合并为一个新的升序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 </p>
+<p>示例：</p>
+<p>输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4<br>输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4</p>
+<hr>
+<p>解析：</p>
+<p>这道题是真的简单。初级算法做过类似的题目。</p>
+<p>所以我很感谢当初自己坚持做完了初级算法。确实让我见过了大多数的题目。</p>
+<p>很明显，两个链表合并。那么我们可以用双指针呀。</p>
+<p>直接双指针搞定！核心的代码很简单 ，看下面代码就懂了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//注意到这里我们要判断是否为空</span></span><br><span class="line">        <span class="keyword">if</span>(l1==<span class="literal">NULL</span>||l2==<span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> l1==<span class="literal">NULL</span>?l2:l1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//保证头节点，到时候返回头节点</span></span><br><span class="line">        <span class="comment">//利用p节点让后续迭代</span></span><br><span class="line">        ListNode *head , *p ;</span><br><span class="line">        <span class="comment">//获得头节点</span></span><br><span class="line">        <span class="keyword">if</span>(l1-&gt;val &lt; l2-&gt;val)&#123;</span><br><span class="line">            head = l1;</span><br><span class="line">            l1 = l1-&gt;next;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            head = l2;</span><br><span class="line">            l2 = l2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        p = head;</span><br><span class="line">        <span class="comment">//直到其中一个为空指针</span></span><br><span class="line">        <span class="keyword">while</span>(l1!=<span class="literal">NULL</span> &amp;&amp; l2!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(l1-&gt;val &lt; l2-&gt;val)&#123;</span><br><span class="line">                p-&gt;next = l1;</span><br><span class="line">                l1 = l1-&gt;next;</span><br><span class="line">                p = p-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                p-&gt;next = l2;</span><br><span class="line">                l2 = l2-&gt;next;</span><br><span class="line">                p = p-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//到时候如果有不是空的就直接处理</span></span><br><span class="line">        <span class="keyword">if</span>(l1!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">            p-&gt;next=l1;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            p-&gt;next=l2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2020-05-02"><a href="#2020-05-02" class="headerlink" title="2020.05.02"></a>2020.05.02</h3><h4 id="3-无重复字符的最长子串"><a href="#3-无重复字符的最长子串" class="headerlink" title="3. 无重复字符的最长子串"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/" >3. 无重复字符的最长子串<i class="fas fa-external-link-alt"></i></a></h4><p>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。</p>
+<p>示例 1:</p>
+<p>输入: “abcabcbb”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “abc”，所以其长度为 3。<br>示例 2:</p>
+<p>输入: “bbbbb”<br>输出: 1<br>解释: 因为无重复字符的最长子串是 “b”，所以其长度为 1。<br>示例 3:</p>
+<p>输入: “pwwkew”<br>输出: 3<br>解释: 因为无重复字符的最长子串是 “wke”，所以其长度为 3。<br>     请注意，你的答案必须是 子串 的长度，”pwke” 是一个子序列，不是子串。</p>
+<hr>
+<p>这道题目 也是一道动态规划题目，更加重要的是一道滑动窗口题目。</p>
+<p>看到它是子串，不是子序列！！</p>
+<p>很有趣的滑动窗口题目！</p>
+<p>怎么想呢？——我们需要看到的是子串</p>
+<p>那么我们用类似滑动窗口的视角来滑动。这样我们需要有几个步骤</p>
+<p>判断字符重复</p>
+<p>先移动右边界限，如果出现重复字符 那么再移动左边。</p>
+<p>每一次准备移动左边都说明 这次子串结束 计算其长度！</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        set&lt;<span class="type">char</span>&gt; st;</span><br><span class="line">        <span class="comment">//这里我们使用集合来判断是否出现相同字符</span></span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">//确定开头为-1  这里是未来后面rk+1 做准备</span></span><br><span class="line">        <span class="comment">//为了 0 &lt; 1  -1 + 1 =0 &lt; 1</span></span><br><span class="line">        <span class="type">int</span> rk = <span class="number">-1</span>;</span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//左边开始增加</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i!=<span class="number">0</span>)&#123;</span><br><span class="line">                st.<span class="built_in">erase</span>(s[i<span class="number">-1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//判断 下一个是不是重复了  存在是1  非 则是0  意思就是为重复 直接脱离循环</span></span><br><span class="line">            <span class="keyword">while</span>(rk+<span class="number">1</span>&lt;n&amp;&amp; ! st.<span class="built_in">count</span>(s[rk+<span class="number">1</span>]))&#123;</span><br><span class="line">                st.<span class="built_in">insert</span>(s[rk+<span class="number">1</span>]);</span><br><span class="line">                rk++;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ans = <span class="built_in">max</span>(ans,rk-i+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2020-05-03"><a href="#2020-05-03" class="headerlink" title="2020.05.03"></a>2020.05.03</h3><h4 id="53-最大子序和"><a href="#53-最大子序和" class="headerlink" title="53. 最大子序和"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-subarray/" >53. 最大子序和<i class="fas fa-external-link-alt"></i></a></h4><p>给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p>示例:</p>
+<p>输入: [-2,1,-3,4,-1,2,1,-5,4],<br>输出: 6<br>解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。</p>
+<p>今天题目，一眼就看的出标准的动态规划</p>
+<p>那么动态规划题目一般怎么写呢？【得查查</p>
+<p>动态规划类问题常规的解决方法是：</p>
+<ul>
+<li>问题拆解，找到问题的定义</li>
+<li>状态定义</li>
+<li>递归方程求解</li>
+<li>实现</li>
+</ul>
+<p>我们看这道题目，分析情况，自底向上</p>
+<p>。。【我不知道怎么说啊。。。</p>
+<p>直接看代码吧</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">maxSubArray</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums.<span class="built_in">size</span>()==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; dp;</span><br><span class="line">        dp.<span class="built_in">push_back</span>(nums[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;nums.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            dp.<span class="built_in">push_back</span>(<span class="built_in">max</span>(dp[i<span class="number">-1</span>]+nums[i],nums[i]));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(dp.<span class="built_in">begin</span>(), dp.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">return</span> dp[nums.<span class="built_in">size</span>()<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2020-05-05"><a href="#2020-05-05" class="headerlink" title="2020.05.05"></a>2020.05.05</h3><h4 id="98-验证二叉搜索树"><a href="#98-验证二叉搜索树" class="headerlink" title="98. 验证二叉搜索树"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/validate-binary-search-tree/" >98. 验证二叉搜索树<i class="fas fa-external-link-alt"></i></a></h4><p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
+<p>假设一个二叉搜索树具有如下特征：</p>
+<p>节点的左子树只包含小于当前节点的数。<br>节点的右子树只包含大于当前节点的数。<br>所有左子树和右子树自身必须也是二叉搜索树。<br>示例 1:</p>
+<p>输入:<br>    2<br>   &#x2F; <br>  1   3<br>输出: true<br>示例 2:</p>
+<p>输入:<br>    5<br>   &#x2F; <br>  1   4<br>     &#x2F; <br>    3   6<br>输出: false<br>解释: 输入为: [5,1,4,null,null,3,6]。<br>     根节点的值为 5 ，但是其右子节点值为 4 。</p>
+<hr>
+<p>记住二叉搜索树有什么特点</p>
+<p>节点的左子树只包含小于当前节点的数。<br>节点的右子树只包含大于当前节点的数。【注意没有等于</p>
+<p>两种方法： </p>
+<h4 id="递归法"><a href="#递归法" class="headerlink" title="递归法"></a>递归法</h4><p>思路：</p>
+<p>我们要知道 对于一个二叉搜索树，任何一个节点，它的左子树小于其，它的右子树大于其。</p>
+<p>也就是说，我们可以这么认为，root节点是左子树的上界，是其右子树的下界。</p>
+<p>那么我们只要遍历整颗树，判断他是否满足这个性质就可以了。</p>
+<p>理一下递归方程：</p>
+<p>这个递归函数的作用： 判断这个值是否目前节点是否在其区间内，是的话返回true</p>
+<p>递归出口：如果root为空，返回true</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isValidBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//这里需要我们拿取最小最大值，不要用int</span></span><br><span class="line">        <span class="comment">//int的范围会小了一点</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">isBST</span>(root,LLONG_MIN,LLONG_MAX);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这里函数  我们也要用long long</span></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isBST</span><span class="params">(TreeNode* root,<span class="type">long</span> <span class="type">long</span> min,<span class="type">long</span> <span class="type">long</span> max)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>)<span class="comment">//到了根节点</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val&lt;=min || root-&gt;val &gt;=max)<span class="comment">//这个值不在范围内</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">isBST</span>(root-&gt;left,min,root-&gt;val)&amp;&amp;<span class="built_in">isBST</span>(root-&gt;right,root-&gt;val,max);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h4><p>我们知道，对于二叉搜索树，其中序遍历得到的值是递增的</p>
+<p>那么，我们只需要获取中序遍历值，然后判断递增不就好了√</p>
+<p>那么最笨的方法就是先获取中序遍历数组，再判断是否有序。</p>
+<p>但是还有更好的——变遍历边判断！</p>
+<p>看代码！</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> pre = LLONG_MIN;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isValidBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//该递归方程的作用：可以判断本树是否为二叉搜索树</span></span><br><span class="line">        <span class="comment">//如果我是空的 返回真</span></span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">NULL</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">//根据中序遍历</span></span><br><span class="line">        <span class="comment">//我们从左子树开始判断是否为二叉搜索树</span></span><br><span class="line">        <span class="keyword">if</span>(!<span class="built_in">isValidBST</span>(root-&gt;left))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">//左 根 右  现在判断根的情况</span></span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val  &lt;= pre)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="comment">//给pre——前面一个值 进行更新</span></span><br><span class="line">        pre = root-&gt;val;</span><br><span class="line">        <span class="comment">//现在是右子树</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">isValidBST</span>(root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>很难，说实话，我觉得我不够透彻。周末再写一遍这道题目吧</p>
+<h3 id="2020-05-06"><a href="#2020-05-06" class="headerlink" title="2020.05.06"></a>2020.05.06</h3><h4 id="983-最低票价"><a href="#983-最低票价" class="headerlink" title="983. 最低票价"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-cost-for-tickets/" >983. 最低票价<i class="fas fa-external-link-alt"></i></a></h4><p>在一个火车旅行很受欢迎的国度，你提前一年计划了一些火车旅行。在接下来的一年里，你要旅行的日子将以一个名为 days 的数组给出。每一项是一个从 1 到 365 的整数。</p>
+<p>火车票有三种不同的销售方式：</p>
+<p>一张为期一天的通行证售价为 costs[0] 美元；<br>一张为期七天的通行证售价为 costs[1] 美元；<br>一张为期三十天的通行证售价为 costs[2] 美元。<br>通行证允许数天无限制的旅行。 例如，如果我们在第 2 天获得一张为期 7 天的通行证，那么我们可以连着旅行 7 天：第 2 天、第 3 天、第 4 天、第 5 天、第 6 天、第 7 天和第 8 天。</p>
+<p>返回你想要完成在给定的列表 days 中列出的每一天的旅行所需要的最低消费。</p>
+<p>示例 1：</p>
+<p>输入：days &#x3D; [1,4,6,7,8,20], costs &#x3D; [2,7,15]<br>输出：11<br>解释：<br>例如，这里有一种购买通行证的方法，可以让你完成你的旅行计划：<br>在第 1 天，你花了 costs[0] &#x3D; $2 买了一张为期 1 天的通行证，它将在第 1 天生效。<br>在第 3 天，你花了 costs[1] &#x3D; $7 买了一张为期 7 天的通行证，它将在第 3, 4, …, 9 天生效。<br>在第 20 天，你花了 costs[0] &#x3D; $2 买了一张为期 1 天的通行证，它将在第 20 天生效。<br>你总共花了 $11，并完成了你计划的每一天旅行。<br>示例 2：</p>
+<p>输入：days &#x3D; [1,2,3,4,5,6,7,8,9,10,30,31], costs &#x3D; [2,7,15]<br>输出：17<br>解释：<br>例如，这里有一种购买通行证的方法，可以让你完成你的旅行计划：<br>在第 1 天，你花了 costs[2] &#x3D; $15 买了一张为期 30 天的通行证，它将在第 1, 2, …, 30 天生效。<br>在第 31 天，你花了 costs[0] &#x3D; $2 买了一张为期 1 天的通行证，它将在第 31 天生效。<br>你总共花了 $17，并完成了你计划的每一天旅行。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; days.length &lt;&#x3D; 365<br>1 &lt;&#x3D; days[i] &lt;&#x3D; 365<br>days 按顺序严格递增<br>costs.length &#x3D;&#x3D; 3<br>1 &lt;&#x3D; costs[i] &lt;&#x3D; 1000</p>
+<hr>
+<p>这道题目，直接说我不会做，看人家题目解析，看了好久才明白。</p>
+<p>但是又不能说很懂。</p>
+<p>我们在自己旅行上花的价钱最少，</p>
+<p>三种情况</p>
+<p>在本日买了一天的票，至此花费的总价格</p>
+<p>在七天前买了七天的票，到现在花费的总价钱</p>
+<p>在三十天之前买了三十天的票，到现在花费的总价格</p>
+<p>然后决定最小值当作我此刻的最好的买票方式</p>
+<p>然后代码就出来了</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">mincostTickets</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; days, vector&lt;<span class="type">int</span>&gt;&amp; costs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(days.<span class="built_in">size</span>()==<span class="number">0</span> || costs.<span class="built_in">size</span>() == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(days[days.size()<span class="number">-1</span>]+<span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="comment">//给不旅游的时间赋予 0  给旅游的时间赋予max</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;days.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            dp[days[i]] = INT_MAX;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//书写dp数组</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">1</span>;i&lt;dp.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(dp[i]==<span class="number">0</span>)&#123;</span><br><span class="line">                dp[i]=dp[i<span class="number">-1</span>];</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">/*</span></span><br><span class="line"><span class="comment">            一开始我很疑惑，如果我那天就已经买了七天的票</span></span><br><span class="line"><span class="comment">            那么在我计算dp[i]的时候，又写dp[i-7]+cost[2]不是多买了一次吗</span></span><br><span class="line"><span class="comment">            但是仔细看这个dp方程  在前面的dp数组中，只可能自己买了1天，或者前辈买了7天</span></span><br><span class="line"><span class="comment">            【对于小于7 小于30 的情况另外算</span></span><br><span class="line"><span class="comment">            【小于7 小于 30 的时候，因为最小化的缘故，可以【我也不知道。。</span></span><br><span class="line"><span class="comment">            */</span></span><br><span class="line">            <span class="type">int</span> n1 = dp[i<span class="number">-1</span>] + costs[<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> n2 = i&gt;<span class="number">7</span>?dp[i<span class="number">-7</span>]+costs[<span class="number">1</span>]:costs[<span class="number">1</span>];</span><br><span class="line">            <span class="type">int</span> n3 = i&gt;<span class="number">30</span>?dp[i<span class="number">-30</span>]+costs[<span class="number">2</span>]:costs[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">            dp[i] = <span class="built_in">min</span>(<span class="built_in">min</span>(n1,n2),n3);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[dp.<span class="built_in">size</span>()<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2020-05-07"><a href="#2020-05-07" class="headerlink" title="2020.05.07"></a>2020.05.07</h3><h4 id="572-另一个树的子树"><a href="#572-另一个树的子树" class="headerlink" title="572. 另一个树的子树"></a><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/subtree-of-another-tree/" >572. 另一个树的子树<i class="fas fa-external-link-alt"></i></a></h4><p>给定两个非空二叉树 s 和 t，检验 s 中是否包含和 t 具有相同结构和节点值的子树。s 的一个子树包括 s 的一个节点和这个节点的所有子孙。s 也可以看做它自身的一棵子树。</p>
+<p>示例 1:<br>给定的树 s:</p>
+<pre><code> 3
+/ \
+</code></pre>
+<p>   4   5<br>  &#x2F; <br> 1   2<br>给定的树 t：</p>
+<p>   4<br>  &#x2F; <br> 1   2<br>返回 true，因为 t 与 s 的一个子树拥有相同的结构和节点值。</p>
+<p>示例 2:<br>给定的树 s：</p>
+<pre><code> 3
+/ \
+</code></pre>
+<p>   4   5<br>  &#x2F; <br> 1   2<br>    &#x2F;<br>   0<br>给定的树 t：</p>
+<p>   4<br>  &#x2F; <br> 1   2<br>返回 false。</p>
+<hr>
+<p>分析：</p>
+<p>简单题，但是可以不简单的来写。题解有三种方法</p>
+<p>暴力破解		利用前序遍历	利用树哈希</p>
+<p>首先暴力破解说说【其他不说了，kmp手写我傻了</p>
+<p>我们利用对主树的每一个节点遍历是否和目标树是相同的</p>
+<p>【讲真我听起来就觉得它的时间复杂度很高。所以我就直接否定了暴力破解</p>
+<p>【结果爆破还真行。。</p>
+<p>理一下我们对于爆破的思路</p>
+<p>1、遍历主树</p>
+<p>2、对每个主树的节点当作数根节点和目标树比较——也就是比较树相等</p>
+<p>那么再分别看看这两个步骤</p>
+<p>遍历主树——</p>
+<p>首先看本节点是否相等 如果相等那么进入树相等判断</p>
+<p>之后判断本节点的左节点和右节点</p>
+<p>检查树相等——</p>
+<p>该节点是否相等</p>
+<p>该节点的左节点是否相等</p>
+<p>该节点的右节点是否相等</p>
+<p>​	递归出口 都为空返回true</p>
+<p>那么代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    暴力破解做法：</span></span><br><span class="line"><span class="comment">    循环试探每一个节点作为根节点是否和目标树相同 </span></span><br><span class="line"><span class="comment">    那么我们循环每一个s树的节点试探</span></span><br><span class="line"><span class="comment">    每一个节点都和目标子树进行判断</span></span><br><span class="line"><span class="comment">    两个函数  一个递归本树  一个判断相同</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">check</span><span class="params">(TreeNode*s1,TreeNode *t1)</span></span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">        如何判断相同呢？</span></span><br><span class="line"><span class="comment">        递归：</span></span><br><span class="line"><span class="comment">            1、本节点是不是相同 </span></span><br><span class="line"><span class="comment">            2、左子树是不是相同</span></span><br><span class="line"><span class="comment">            3、右子树是不是相同</span></span><br><span class="line"><span class="comment">        递归出口： 如果为两节点值为空，贼退出</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        <span class="comment">//这个是递归出口</span></span><br><span class="line">        <span class="keyword">if</span>(s1==<span class="literal">nullptr</span> &amp;&amp; t1==<span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">//如果出现有一个为空 就不可能指向数值</span></span><br><span class="line">        <span class="keyword">if</span>(s1==<span class="literal">nullptr</span> || t1 == <span class="literal">nullptr</span> || (s1-&gt;val != t1-&gt;val))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">check</span>(s1-&gt;right,t1-&gt;right) &amp;&amp; <span class="built_in">check</span>(s1-&gt;left,t1-&gt;left);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">dfs</span><span class="params">(TreeNode* ss,TreeNode* tt)</span></span>&#123;</span><br><span class="line">        <span class="comment">//因为我们后面会递归主树的各个节点</span></span><br><span class="line">        <span class="comment">//那么某个节点的左右节点是空节点 就不存在左右节点了</span></span><br><span class="line">        <span class="comment">//所以当进来的ss节点是空节点的时候，直接返回false</span></span><br><span class="line">        <span class="keyword">if</span>(ss==<span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">check</span>(ss,tt) || <span class="built_in">dfs</span>(ss-&gt;left,tt) || <span class="built_in">dfs</span>(ss-&gt;right,tt);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isSubtree</span><span class="params">(TreeNode* s, TreeNode* t)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dfs</span>(s,t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>一个小tips、如果存在指向左右节点的操作</p>
+<p>一定要判断是否本节点为空。如果为空，就不可以进行指向左右节点的操作</p>
+<p>这会出现越界的问题。</p>
+<p>分析一下时间复杂度：</p>
+<p>s树每一个节点都需要访问一次——</p>
+<p>树相等操作时，最大的是 t树的每一个节点都访问一次——</p>
+<p>那么 时间复杂度大概是O(|s|*|t|)</p>
+<p>空间复杂度</p>
+<p><strong>递归算法空间复杂度：递归深度n*每次递归所要的辅助空间，如果每次递归所需要的辅助空间为常数，则递归空间复杂度o（n）。</strong></p>
+<p>那么 看遍历主树的空间复杂度为 s树的深度</p>
+<p>树相同递归中的空间复杂度为t树的深度</p>
+<p>两个递归的最大的空间消耗 就是这个程序的空间复杂度 即O(max{ s, t})</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">leetcode_02_part</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2020-05-01 23:57:50</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2020/05/01/Leetcode_每日一题/leetcode-02-part/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2020/05/08/Leetcode_%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode-03/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">leetcode_03</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2020/04/26/Leetcode_%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/leetcode-01-week/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">leetcode_01_part</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2020-05-01"><span class="nav-number">1.1.</span> <span class="nav-text">2020.05.01</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#21-%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="nav-number">1.1.1.</span> <span class="nav-text">21. 合并两个有序链表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020-05-02"><span class="nav-number">1.2.</span> <span class="nav-text">2020.05.02</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2"><span class="nav-number">1.2.1.</span> <span class="nav-text">3. 无重复字符的最长子串</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020-05-03"><span class="nav-number">1.3.</span> <span class="nav-text">2020.05.03</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#53-%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C"><span class="nav-number">1.3.1.</span> <span class="nav-text">53. 最大子序和</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020-05-05"><span class="nav-number">1.4.</span> <span class="nav-text">2020.05.05</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#98-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="nav-number">1.4.1.</span> <span class="nav-text">98. 验证二叉搜索树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E6%B3%95"><span class="nav-number">1.4.2.</span> <span class="nav-text">递归法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-number">1.4.3.</span> <span class="nav-text">中序遍历</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020-05-06"><span class="nav-number">1.5.</span> <span class="nav-text">2020.05.06</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#983-%E6%9C%80%E4%BD%8E%E7%A5%A8%E4%BB%B7"><span class="nav-number">1.5.1.</span> <span class="nav-text">983. 最低票价</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2020-05-07"><span class="nav-number">1.6.</span> <span class="nav-text">2020.05.07</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#572-%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%A0%91%E7%9A%84%E5%AD%90%E6%A0%91"><span class="nav-number">1.6.1.</span> <span class="nav-text">572. 另一个树的子树</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

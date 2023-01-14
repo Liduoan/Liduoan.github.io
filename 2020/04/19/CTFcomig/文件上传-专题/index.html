@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            文件上传-专题 |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":null,"font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">文件上传-专题</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2020-04-19 14:53:41</span>
+        <span class="mobile">2020-04-19 14:53</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2020-04-19 20:48:28</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>8 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h2 id="upload-libs"><a href="#upload-libs" class="headerlink" title="upload libs"></a>upload libs</h2><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20190708194057850.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkwMTAzOA==,size_16,color_FFFFFF,t_70"
+                      alt="img"
+                ></p>
+<span id="more"></span>
+
+
+
+
+
+
+
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20190708194236879.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkwMTAzOA==,size_16,color_FFFFFF,t_70"
+                      alt="在这里插入图片描述"
+                ></p>
+<h3 id="pass1"><a href="#pass1" class="headerlink" title="pass1"></a>pass1</h3><p>仅仅前端检验</p>
+<h3 id="pass2"><a href="#pass2" class="headerlink" title="pass2"></a>pass2</h3><p>MIME绕过</p>
+<h3 id="pass3"><a href="#pass3" class="headerlink" title="pass3"></a>pass3</h3><p>这一关我们可以利用</p>
+<p>Php1,phtml ,php3,php4,php5,pht</p>
+<p>也可以利用<code>.htaccess</code>进行处理</p>
+<h3 id="pass4"><a href="#pass4" class="headerlink" title="pass4"></a>pass4</h3><p>利用<code>.htaccess</code>进行处理</p>
+<p>因为它取的是在<code>.</code>之后的数据</p>
+<p>那么我们可以构造<code>.php.xxx</code></p>
+<p>也可以写成<code>.php. . </code></p>
+<h3 id="pass5"><a href="#pass5" class="headerlink" title="pass5"></a>pass5</h3><p>一样可以利用</p>
+<p>因为它取的是在<code>.</code>之后的数据</p>
+<p>那么我们可以构造<code>.php.xxx</code></p>
+<p>也可以写成<code>.php. . </code></p>
+<h3 id="pass6"><a href="#pass6" class="headerlink" title="pass6"></a>pass6</h3><p>它是匹配不是正则</p>
+<p>所以我们可以利用.php空格空格空格</p>
+<p>这样的方式来进行操作</p>
+<h3 id="pass7"><a href="#pass7" class="headerlink" title="pass7"></a>pass7</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file_ext</span> = <span class="title function_ invoke__">strrchr</span>(<span class="variable">$file_name</span>, <span class="string">&#x27;.&#x27;</span>);</span><br><span class="line"><span class="variable">$file_ext</span> = <span class="title function_ invoke__">strtolower</span>(<span class="variable">$file_ext</span>); <span class="comment">//转换为小写</span></span><br><span class="line"><span class="variable">$file_ext</span> = <span class="title function_ invoke__">str_ireplace</span>(<span class="string">&#x27;::$DATA&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$file_ext</span>);<span class="comment">//去除字符串::$DATA</span></span><br><span class="line"><span class="variable">$file_ext</span> = <span class="title function_ invoke__">trim</span>(<span class="variable">$file_ext</span>); <span class="comment">//首尾去空</span></span><br></pre></td></tr></table></figure>
+
+<p>黑名单很多情况下都没什么用处</p>
+<p>加<code>.</code>就可以去掉 特别是利用&#96;.php.空格空格.</p>
+<p>方法二：利用Windows解析漏洞（后缀修改为1.php:1.jpg）</p>
+<h4 id="文件解析部分"><a href="#文件解析部分" class="headerlink" title="文件解析部分"></a>文件解析部分</h4><h5 id="一、IIS-5-x-x2F-6-0解析漏洞-03"><a href="#一、IIS-5-x-x2F-6-0解析漏洞-03" class="headerlink" title="一、IIS 5.x&#x2F;6.0解析漏洞(03)"></a>一、IIS 5.x&#x2F;6.0解析漏洞(03)</h5><p>IIS 6.0解析利用方法有两种</p>
+<p>1.目录解析</p>
+<p>&#x2F;xx.asp&#x2F;xx.jpg</p>
+<p>在网站下简历文件夹为.asp、.asa的文件夹，其目录内的任何文件扩展名的文件都会被IIS当做asp文件来执行</p>
+<p>例如目录 hahaha.asp，那么&#x2F;hahaha.asp&#x2F;1.jpg 一个jpg格式的文件就会被当做asp脚本文件来解析执行，假设黑客可以控制问上传文件的文件夹路径，就可以绕过上传格式拿到shell</p>
+<p>一般目录解析漏洞跟编辑器搭配利用，比如ckfinder，fck编辑器，都是可以创建目录的。</p>
+<p>2.文件解析（；）</p>
+<p>hahaha.asp;.jpg</p>
+<p>在IIS6.0下，分号后面的不被解析，也就是说hahaha.asp;.jpg会被服务器看成是hahaha.asp</p>
+<p>3.畸形后缀名解析<br>IIS6.0 默认的可执行文件除了asp还包含这三种(特定的情况下被解析）：</p>
+<p>&#x2F;hahaha.asa<br>&#x2F;hahaha.cer<br>&#x2F;hahaha.cdx</p>
+<h5 id="二、IIS-7-0-x2F-IIS-7-5-x2F-Nginx-lt-8-03畸形解析漏洞"><a href="#二、IIS-7-0-x2F-IIS-7-5-x2F-Nginx-lt-8-03畸形解析漏洞" class="headerlink" title="二、IIS 7.0&#x2F;IIS 7.5&#x2F; Nginx &lt;8.03畸形解析漏洞"></a>二、IIS 7.0&#x2F;IIS 7.5&#x2F; Nginx &lt;8.03畸形解析漏洞</h5><p>Nginx解析漏洞这个伟大的漏洞是我国安全组织80sec发现的…</p>
+<p>在默认Fast-CGI开启状况下,黑阔上传一个名字为hahaha.jpg，内容为： ‘);?&gt;的文件，然后访问hahaha.jpg&#x2F;.php,在这个目录下就会生成一句话木马 shell.php。(这个漏洞貌似不是容器的漏洞，而是php的漏洞，因为不止IIS7,0&#x2F;7.5才有，甚至10.0也有出现)</p>
+<h5 id="三、Nginx-lt-8-03-空字节代码执行漏洞"><a href="#三、Nginx-lt-8-03-空字节代码执行漏洞" class="headerlink" title="三、Nginx &lt;8.03 空字节代码执行漏洞"></a>三、Nginx &lt;8.03 空字节代码执行漏洞</h5><p>影响版:0.5.,0.6., 0.7 &lt;&#x3D; 0.7.65, 0.8 &lt;&#x3D; 0.8.37</p>
+<p>Nginx在图片中嵌入PHP代码然后通过访问</p>
+<p>xxx.jpg.php</p>
+<p>来执行其中的代码</p>
+<h5 id="四、Apache解析漏洞"><a href="#四、Apache解析漏洞" class="headerlink" title="四、Apache解析漏洞"></a>四、Apache解析漏洞</h5><p>Apache 是从右到左开始判断解析,如果为不可识别解析,就再往左判断.</p>
+<p>比如 hahaha.php.owf.rar “.owf”和”.rar” 这两种后缀是apache不可识别解析,apache就会把hahaha.php.owf.rar解析成php.</p>
+<p>如何判断是不是合法的后缀就是这个漏洞的利用关键,测试时可以尝试上传一个hahaha.php.rara.jpg.png…（把你知道的常见后缀都写上…）去测试是否是合法后缀</p>
+<h5 id="五、其他"><a href="#五、其他" class="headerlink" title="五、其他"></a>五、其他</h5><p><strong>在windows环境下，xx.jpg[空格] 或xx.jpg. 这两类文件都是不允许存在的，若这样命名，windows会默认除去空格或点,黑客可以通过抓包，在文件名后加一个空格或者点绕过黑名单.若上传成功，空格和点都会被windows自动消除,这样也可以getshell。</strong></p>
+<p>我们刚刚就是一直用这个方式</p>
+<p>如果在Apache中.htaccess可被执行.且可被上传.那可以尝试在.htaccess中写入:</p>
+<p>SetHandler application&#x2F;x-httpd-php</p>
+<p>然后再上传shell.jpg的木马, 这样shell.jpg就可解析为php文件</p>
+<h3 id="pass8"><a href="#pass8" class="headerlink" title="pass8"></a>pass8</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file_name</span> = <span class="title function_ invoke__">deldot</span>(<span class="variable">$file_name</span>);<span class="comment">//删除文件名末尾的点</span></span><br><span class="line"><span class="variable">$file_ext</span> = <span class="title function_ invoke__">strrchr</span>(<span class="variable">$file_name</span>, <span class="string">&#x27;.&#x27;</span>);</span><br><span class="line"><span class="variable">$file_ext</span> = <span class="title function_ invoke__">strtolower</span>(<span class="variable">$file_ext</span>); <span class="comment">//转换为小写</span></span><br><span class="line"><span class="variable">$file_ext</span> = <span class="title function_ invoke__">trim</span>(<span class="variable">$file_ext</span>); <span class="comment">//首尾去</span></span><br></pre></td></tr></table></figure>
+
+<p>这个也是这样 就是去掉了文件末尾第一个点</p>
+<p>那么我们可以变为<code>.php.  .   .</code></p>
+<p>那么我们就可以使用</p>
+<p><code>.php::$DATA</code>进行绕过</p>
+<h4 id="部分知识"><a href="#部分知识" class="headerlink" title="部分知识"></a>部分知识</h4><h5 id="特殊文件名绕过"><a href="#特殊文件名绕过" class="headerlink" title="特殊文件名绕过"></a>特殊文件名绕过</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">比如发送的 http包里把文件名改成 test.asp. 或 test.asp_(下划线为空格)，这种命名方式</span><br><span class="line">在windows系统里是不被允许的，所以需要在 burp之类里进行修改，然后绕过验证后，会</span><br><span class="line">被windows系统自动去掉后面的点和空格，但要注意Unix/Linux系统没有这个特性。</span><br></pre></td></tr></table></figure>
+
+<h5 id="Windows流特性绕过"><a href="#Windows流特性绕过" class="headerlink" title="Windows流特性绕过"></a>Windows流特性绕过</h5><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php在window的时候如果文件名+&quot;::DATA&quot;会把::DATA之后的数据当成文件流处理,不会检测后缀名.且保持&quot;::DATA之后的数据当成文件流处理,不会检测后缀名.且保持&quot;::DATA之后的数据当成文件流处理,不会检测后缀名.&quot;::DATA&quot;之前的文件名保持 他的目的就是不检查后缀名。ps:只能是Windows系统，并且只能时php文件</span><br></pre></td></tr></table></figure>
+
+<h3 id="pass9"><a href="#pass9" class="headerlink" title="pass9"></a>pass9</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$file_name</span> = <span class="title function_ invoke__">deldot</span>(<span class="variable">$file_name</span>);<span class="comment">//删除文件名末尾的点</span></span><br><span class="line"><span class="variable">$file_ext</span> = <span class="title function_ invoke__">strrchr</span>(<span class="variable">$file_name</span>, <span class="string">&#x27;.&#x27;</span>);</span><br><span class="line"><span class="variable">$file_ext</span> = <span class="title function_ invoke__">strtolower</span>(<span class="variable">$file_ext</span>); <span class="comment">//转换为小写</span></span><br><span class="line"><span class="variable">$file_ext</span> = <span class="title function_ invoke__">str_ireplace</span>(<span class="string">&#x27;::$DATA&#x27;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$file_ext</span>);<span class="comment">//去除字符串::$DATA</span></span><br><span class="line"><span class="variable">$file_ext</span> = <span class="title function_ invoke__">trim</span>(<span class="variable">$file_ext</span>); <span class="comment">//首尾去空</span></span><br></pre></td></tr></table></figure>
+
+<p>还是点空点操作</p>
+<h3 id="pass10"><a href="#pass10" class="headerlink" title="pass10"></a>pass10</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$deny_ext</span> = <span class="keyword">array</span>(<span class="string">&quot;php&quot;</span>,<span class="string">&quot;php5&quot;</span>,<span class="string">&quot;php4&quot;</span>,<span class="string">&quot;php3&quot;</span>,<span class="string">&quot;php2&quot;</span>,<span class="string">&quot;html&quot;</span>,<span class="string">&quot;htm&quot;</span>,<span class="string">&quot;phtml&quot;</span>,<span class="string">&quot;jsp&quot;</span>,<span class="string">&quot;jspa&quot;</span>,<span class="string">&quot;jspx&quot;</span>,<span class="string">&quot;jsw&quot;</span>,<span class="string">&quot;jsv&quot;</span>,<span class="string">&quot;jspf&quot;</span>,<span class="string">&quot;jtml&quot;</span>,<span class="string">&quot;asp&quot;</span>,<span class="string">&quot;aspx&quot;</span>,<span class="string">&quot;asa&quot;</span>,<span class="string">&quot;asax&quot;</span>,<span class="string">&quot;ascx&quot;</span>,<span class="string">&quot;ashx&quot;</span>,<span class="string">&quot;asmx&quot;</span>,<span class="string">&quot;cer&quot;</span>,<span class="string">&quot;swf&quot;</span>,<span class="string">&quot;htaccess&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable">$file_name</span> = <span class="title function_ invoke__">trim</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>]);</span><br><span class="line"><span class="variable">$file_name</span> = <span class="title function_ invoke__">str_ireplace</span>(<span class="variable">$deny_ext</span>,<span class="string">&quot;&quot;</span>, <span class="variable">$file_name</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>], <span class="variable">$UPLOAD_ADDR</span> . <span class="string">&#x27;/&#x27;</span> . <span class="variable">$file_name</span>)) &#123;</span><br><span class="line">    <span class="variable">$img_path</span> = <span class="variable">$UPLOAD_ADDR</span> . <span class="string">&#x27;/&#x27;</span> .<span class="variable">$file_name</span>;</span><br><span class="line">    <span class="variable">$is_upload</span> = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里看到是把php变为空</p>
+<p>并没有正则或者判断存在</p>
+<p>所以正常的双写绕过</p>
+<p><code>.phphpp</code>直接绕过over</p>
+<h3 id="pass11"><a href="#pass11" class="headerlink" title="pass11"></a>pass11</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ext_arr</span> = <span class="keyword">array</span>(<span class="string">&#x27;jpg&#x27;</span>,<span class="string">&#x27;png&#x27;</span>,<span class="string">&#x27;gif&#x27;</span>);</span><br><span class="line"><span class="variable">$file_ext</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>],<span class="title function_ invoke__">strrpos</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>],<span class="string">&quot;.&quot;</span>)+<span class="number">1</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="title function_ invoke__">in_array</span>(<span class="variable">$file_ext</span>,<span class="variable">$ext_arr</span>))&#123;</span><br><span class="line">    <span class="variable">$temp_file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line">    <span class="variable">$img_path</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;save_path&#x27;</span>].<span class="string">&quot;/&quot;</span>.<span class="title function_ invoke__">rand</span>(<span class="number">10</span>, <span class="number">99</span>).<span class="title function_ invoke__">date</span>(<span class="string">&quot;YmdHis&quot;</span>).<span class="string">&quot;.&quot;</span>.<span class="variable">$file_ext</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$temp_file</span>,<span class="variable">$img_path</span>))&#123;</span><br><span class="line">        <span class="variable">$is_upload</span> = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>终于到白名单了</p>
+<p>这道题目的利用点在于<code>$_GET</code>传参这里，我们的目录是可动态构造的</p>
+<p>那么我们这里使用<code>$_GET[&#39;save_path&#39;]=/../upload/liduoan.php%00</code></p>
+<p>可是这里有限制</p>
+<p>需要两个条件</p>
+<p>php版本小于5.3.4</p>
+<p>php的magic_quotes_gpc为OFF状态</p>
+<p>如果要完成这一个题目就必须要实现上面的两个条件</p>
+<p>但是现在都PHP7了，这东西也就很少见了，满足上面的条件的时候php就是把它当成结束符，后面的数据直接忽略，这也导致了很多的问题，文件包含也可以利用这一点。</p>
+<h3 id="pass12"><a href="#pass12" class="headerlink" title="pass12"></a>pass12</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ext_arr</span> = <span class="keyword">array</span>(<span class="string">&#x27;jpg&#x27;</span>,<span class="string">&#x27;png&#x27;</span>,<span class="string">&#x27;gif&#x27;</span>);</span><br><span class="line">   <span class="variable">$file_ext</span> = <span class="title function_ invoke__">substr</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>],<span class="title function_ invoke__">strrpos</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;name&#x27;</span>],<span class="string">&quot;.&quot;</span>)+<span class="number">1</span>);</span><br><span class="line">   <span class="keyword">if</span>(<span class="title function_ invoke__">in_array</span>(<span class="variable">$file_ext</span>,<span class="variable">$ext_arr</span>))&#123;</span><br><span class="line">       <span class="variable">$temp_file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;upload_file&#x27;</span>][<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line">       <span class="variable">$img_path</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;save_path&#x27;</span>].<span class="string">&quot;/&quot;</span>.<span class="title function_ invoke__">rand</span>(<span class="number">10</span>, <span class="number">99</span>).<span class="title function_ invoke__">date</span>(<span class="string">&quot;YmdHis&quot;</span>).<span class="string">&quot;.&quot;</span>.<span class="variable">$file_ext</span>;</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span>(<span class="title function_ invoke__">move_uploaded_file</span>(<span class="variable">$temp_file</span>,<span class="variable">$img_path</span>))&#123;</span><br><span class="line">           <span class="variable">$is_upload</span> = <span class="literal">true</span>;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这道题目就是改成了<code>$_POST</code>传参数</p>
+<p>和前面那道题目一样</p>
+<p>上传图片马后为如下</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20190708083738417.png"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>然后在上面的upload 的后面加上 XXX.php+（这里的XXX可以为任何名字，他只是一个代号。并且 php后面的 + 好也是一个标记，他的二进制代码为 2b）</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20190708083838409.png"
+                      alt="在这里插入图片描述"
+                ></p>
+<p>由上可知，将二进制中的 + 改为 00 截断，即将 + 的二进制码 2b 改为 00 .</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20190708084257270.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzkwMTAzOA==,size_16,color_FFFFFF,t_70"
+                      alt="在这里插入图片描述"
+                ></p>
+<h3 id="pass13"><a href="#pass13" class="headerlink" title="pass13"></a>pass13</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getReailFileType</span>(<span class="params"><span class="variable">$filename</span></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="title function_ invoke__">fopen</span>(<span class="variable">$filename</span>, <span class="string">&quot;rb&quot;</span>);</span><br><span class="line">    <span class="variable">$bin</span> = <span class="title function_ invoke__">fread</span>(<span class="variable">$file</span>, <span class="number">2</span>); <span class="comment">//只读2字节</span></span><br><span class="line">    <span class="title function_ invoke__">fclose</span>(<span class="variable">$file</span>);</span><br><span class="line">    <span class="variable">$strInfo</span> = @<span class="title function_ invoke__">unpack</span>(<span class="string">&quot;C2chars&quot;</span>, <span class="variable">$bin</span>);    </span><br><span class="line">    <span class="variable">$typeCode</span> = <span class="title function_ invoke__">intval</span>(<span class="variable">$strInfo</span>[<span class="string">&#x27;chars1&#x27;</span>].<span class="variable">$strInfo</span>[<span class="string">&#x27;chars2&#x27;</span>]);    </span><br><span class="line">    <span class="variable">$fileType</span> = <span class="string">&#x27;&#x27;</span>;    </span><br><span class="line">    <span class="keyword">switch</span>(<span class="variable">$typeCode</span>)&#123;      </span><br><span class="line">        <span class="keyword">case</span> <span class="number">255216</span>:            </span><br><span class="line">            <span class="variable">$fileType</span> = <span class="string">&#x27;jpg&#x27;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">13780</span>:            </span><br><span class="line">            <span class="variable">$fileType</span> = <span class="string">&#x27;png&#x27;</span>;</span><br><span class="line">            <span class="keyword">break</span>;        </span><br><span class="line">        <span class="keyword">case</span> <span class="number">7173</span>:            </span><br><span class="line">            <span class="variable">$fileType</span> = <span class="string">&#x27;gif&#x27;</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:            </span><br><span class="line">            <span class="variable">$fileType</span> = <span class="string">&#x27;unknown&#x27;</span>;</span><br><span class="line">        &#125;    </span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$fileType</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这道题目，它查看了图片的内容，我们利用幻术头绕过</p>
+<p>但是写到这我就不会了</p>
+<p>结果居然是我们自己写个文件包含。。。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="keyword">include</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;page&#x27;</span>]);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样我们就可以直接</p>
+<p><code>/include.php/?page=xxxxxx.jpg</code></p>
+<p>说明了图片马要么利用解析漏洞，要么利用文件包含</p>
+<h3 id="pass14"><a href="#pass14" class="headerlink" title="pass14"></a>pass14</h3><p>同样幻术头马上传配合文件包含</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">文件上传-专题</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2020-04-19 14:53:41</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2020/04/19/CTFcomig/文件上传-专题/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2020/04/24/%E5%9B%9B%E6%9C%88/NPUCTF-WP/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">NPUCTF-WP</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2020/04/16/%E5%9B%9B%E6%9C%88/%E5%9B%9B%E6%9C%88%E5%AE%89%E5%85%A8%E6%86%8B%E5%B1%88-3/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">四月安全憋屈-3</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#upload-libs"><span class="nav-number">1.</span> <span class="nav-text">upload libs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pass1"><span class="nav-number">1.1.</span> <span class="nav-text">pass1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass2"><span class="nav-number">1.2.</span> <span class="nav-text">pass2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass3"><span class="nav-number">1.3.</span> <span class="nav-text">pass3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass4"><span class="nav-number">1.4.</span> <span class="nav-text">pass4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass5"><span class="nav-number">1.5.</span> <span class="nav-text">pass5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass6"><span class="nav-number">1.6.</span> <span class="nav-text">pass6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass7"><span class="nav-number">1.7.</span> <span class="nav-text">pass7</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90%E9%83%A8%E5%88%86"><span class="nav-number">1.7.1.</span> <span class="nav-text">文件解析部分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%80%E3%80%81IIS-5-x-x2F-6-0%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E-03"><span class="nav-number">1.7.1.1.</span> <span class="nav-text">一、IIS 5.x&#x2F;6.0解析漏洞(03)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%8C%E3%80%81IIS-7-0-x2F-IIS-7-5-x2F-Nginx-lt-8-03%E7%95%B8%E5%BD%A2%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.7.1.2.</span> <span class="nav-text">二、IIS 7.0&#x2F;IIS 7.5&#x2F; Nginx &lt;8.03畸形解析漏洞</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%89%E3%80%81Nginx-lt-8-03-%E7%A9%BA%E5%AD%97%E8%8A%82%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.7.1.3.</span> <span class="nav-text">三、Nginx &lt;8.03 空字节代码执行漏洞</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Apache%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.7.1.4.</span> <span class="nav-text">四、Apache解析漏洞</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%85%B6%E4%BB%96"><span class="nav-number">1.7.1.5.</span> <span class="nav-text">五、其他</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass8"><span class="nav-number">1.8.</span> <span class="nav-text">pass8</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E7%9F%A5%E8%AF%86"><span class="nav-number">1.8.1.</span> <span class="nav-text">部分知识</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E6%96%87%E4%BB%B6%E5%90%8D%E7%BB%95%E8%BF%87"><span class="nav-number">1.8.1.1.</span> <span class="nav-text">特殊文件名绕过</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Windows%E6%B5%81%E7%89%B9%E6%80%A7%E7%BB%95%E8%BF%87"><span class="nav-number">1.8.1.2.</span> <span class="nav-text">Windows流特性绕过</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass9"><span class="nav-number">1.9.</span> <span class="nav-text">pass9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass10"><span class="nav-number">1.10.</span> <span class="nav-text">pass10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass11"><span class="nav-number">1.11.</span> <span class="nav-text">pass11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass12"><span class="nav-number">1.12.</span> <span class="nav-text">pass12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass13"><span class="nav-number">1.13.</span> <span class="nav-text">pass13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pass14"><span class="nav-number">1.14.</span> <span class="nav-text">pass14</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

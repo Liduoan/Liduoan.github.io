@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            Every CTFproblem |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":null,"font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Every CTFproblem</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2020-03-16 23:13:21</span>
+        <span class="mobile">2020-03-16 23:13</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2020-04-13 00:08:00</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.2k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>8 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h2 id="2020-03-16"><a href="#2020-03-16" class="headerlink" title="2020.03.16"></a>2020.03.16</h2><p>今日份是我差不多开始了新的开始 ，前面几天都是一些合天的学习，算法的训练</p>
+<p>以下是今日题目 仅一题表示开始</p>
+<h3 id="攻防世界-upload1"><a href="#攻防世界-upload1" class="headerlink" title="攻防世界-upload1"></a>攻防世界-upload1</h3><p>首先这道题的上传仅仅过滤了前端 而且是不符合规则把submit按钮给display了</p>
+<p>手动把display去掉就行了。</p>
+<p>之后文件上传的过程中 我发现我出现了问题，我的菜刀连不上去 蚁剑也是。试了试文件上传之后可以访问成功。那么可以构建命令执行</p>
+<span id="more"></span>
+
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200316231955917.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="命令执行"
+                ></p>
+<p>我是先试着<code> ls   cd ../;ls   cd ../;cat flag.php</code></p>
+<p>这样一步步来就好了 </p>
+<p>这道题目的感受是：在文件上传成功之后，先尝试可否访问，我觉得可以在php文件中加一些标记 这样可能会更好</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200316232326666.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="http"
+                ></p>
+<p>这样之后尝试访问，可以发现</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200316232304394.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="23333"
+                ></p>
+<p>很明显 菜刀连不上可能是我出了问题。但是出现问题又怎么样呢？总不能放弃吧。换条路 ，RCE尝试一波。</p>
+<p>今天就先这样吧 明天周二好苦，还有计组 笔记也还没写。哭泣了</p>
+<h2 id="2020-03-18"><a href="#2020-03-18" class="headerlink" title="2020.03.18"></a>2020.03.18</h2><p>今日的题目很有意思</p>
+<h3 id="命令注入综合"><a href="#命令注入综合" class="headerlink" title="命令注入综合"></a>命令注入综合</h3><p>下面是知识点：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls 目录名   可以直接输出此目录下的文件</span><br><span class="line">过滤了 ; |  &amp;		可以用%<span class="number">0</span>a、%<span class="number">0</span>d、%<span class="number">0</span>D%<span class="number">0</span>A 绕过 不过有趣的是要在URL上改 不然可能会出现编码%<span class="number">25</span>a %<span class="number">25</span>d之类的</span><br><span class="line">过滤了|cat|flag|ctfhub  这些关键字该怎么过滤呢？ fla<span class="string">&#x27;&#x27;</span>g   fl$*ag fl\)ag  之类的</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>题目过一遍吧</p>
+<p>首先查看过滤了什么  一开始我没注意到过滤了空格</p>
+<p>我建议payload测试顺序应该为：</p>
+<p><code>127.0.0.1</code></p>
+<p><code>127.0.0.1(空格) </code></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200318205407269.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="127.0.0.1"
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200318205353930.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="127.0.0.1 "
+                ></p>
+<p>知道空格被过滤了</p>
+<p>好的 运算符怎么过滤呢？  常见的%0a %0d  我一开始在输入框中测试发现都不成功，但是绕过就这几种啊。。 那么可能是被编码了导致的 直接在URL上处理！</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200318205550785.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                     
+                ></p>
+<p>那么怎么过滤关键字呢？ 上面提到<code>``</code>来过滤呗</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200318205659380.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="end"
+                ></p>
+<p>成功解决！  关键在于绕过测试手法的了解！</p>
+<h2 id="2020-03-19"><a href="#2020-03-19" class="headerlink" title="2020.03.19"></a>2020.03.19</h2><p>今天的题目 反序列化</p>
+<h3 id="Web-php-unserialize"><a href="#Web-php-unserialize" class="headerlink" title="Web_php_unserialize"></a>Web_php_unserialize</h3><p>首先 这道题目的知识点我在合天都看过，我也知道怎么绕过。</p>
+<p>但是就是也不出来！？为什么呢？ 是因为</p>
+<p>这个类的成员变量是<code>private</code>类型 ，一般序列化后会变成</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Private属性 ： 数据类型:属性名长度:&amp;quot;\00类名\00属性名&amp;quot;;数据类型:属性值长度:&amp;quot;属性值&amp;quot;;</span><br><span class="line"></span><br><span class="line">Protected属性 ： 数据类型:属性名长度:&amp;quot;\00*\00属性名&amp;quot;;数据类型:属性值长度:&amp;quot;属性值&amp;quot;;</span><br><span class="line"></span><br><span class="line">Public属性 ： 数据类型:属性名长度:&amp;quot;属性名&amp;quot;;数据类型:属性值长度:&amp;quot;属性值&amp;quot;;</span><br></pre></td></tr></table></figure>
+
+<p>而我用脚本写序列化后再去改动再去base64加密，破坏了\00这个字符！</p>
+<p>所以最好用脚本来加解密 增删改！ 而不是通过工具来修改！</p>
+<p>下面是解题思路：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200319171014597.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                      alt="index.php"
+                ></p>
+<p>很明显 两处过滤</p>
+<p>emm这两处过滤在合天那篇博客都写过怎么做</p>
+<p>下面写下这个payload吧</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">Demo</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$file</span> = <span class="string">&#x27;fl4g.php&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$obj</span> = <span class="keyword">new</span> <span class="title class_">Demo</span>();</span><br><span class="line"><span class="variable">$objj</span> = <span class="title function_ invoke__">serialize</span>(<span class="variable">$obj</span>);</span><br><span class="line"><span class="comment">//echo $objj;</span></span><br><span class="line"><span class="variable">$a</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;O:4&#x27;</span>,<span class="string">&#x27;O:+4&#x27;</span>,<span class="variable">$objj</span>);</span><br><span class="line"><span class="variable">$c</span> = <span class="title function_ invoke__">str_replace</span>(<span class="string">&#x27;1:&#123;s:&#x27;</span>,<span class="string">&#x27;2:&#123;s:&#x27;</span>,<span class="variable">$a</span>);</span><br><span class="line"><span class="comment">//echo $c;</span></span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">base64_encode</span>(<span class="variable">$c</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>就可以啦！ 这道题很经典吧可以说。我觉得最重要的是要去用脚本去输出。不然会破坏\00.</p>
+<p>大师傅的题解：<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/Mrsm1th/p/6835592.html" >https://www.cnblogs.com/Mrsm1th/p/6835592.html<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="web2"><a href="#web2" class="headerlink" title="web2"></a>web2</h3><p>一进来看题；</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200319173528133.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                     
+                ></p>
+<p>很明显嘛，逆向加密算法 </p>
+<p>说一下几个函数：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">strrev</span>(str);    把字符串倒置</span><br><span class="line"><span class="title function_ invoke__">substr</span>(<span class="variable">$str</span>,<span class="variable">$start</span>,<span class="variable">$lenght</span>);    从str中第start个字符开始截取长度为length的字符串</span><br><span class="line"><span class="title function_ invoke__">str_rot13</span>(<span class="variable">$str</span>);  </span><br><span class="line"><span class="title function_ invoke__">str_rot13</span>() 函数对字符串执行 ROT13 编码。</span><br><span class="line"><span class="comment">//ROT13 编码把每一个字母在字母表中向前移动 13 个字母。数字和非字母字符保持不变。</span></span><br><span class="line"><span class="comment">//提示：编码和解码都是由相同的函数完成的。如果您把已编码的字符串作为参数，那么将返回原始字符串。</span></span><br></pre></td></tr></table></figure>
+
+<p>那么我们理一遍加密思路</p>
+<p>1、倒置flag</p>
+<p>2、把每一个字符的ascaii码加1</p>
+<p>3、base64加密  倒置  ROT13编码</p>
+<p>那么我们解密也有了：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$flag</span> = <span class="string">&#x27;a1zLbgQsCESEIqRLwuQAyMwLyq2L5VwBxqGA3RQAyumZ0tmMvSGM2ZwB4tws&#x27;</span>;</span><br><span class="line"><span class="variable">$flag</span> = <span class="title function_ invoke__">str_rot13</span>(<span class="variable">$flag</span>);  <span class="comment">//解码rot13</span></span><br><span class="line"><span class="variable">$flag</span> = <span class="title function_ invoke__">strrev</span>(<span class="variable">$flag</span>);		<span class="comment">//倒置</span></span><br><span class="line"><span class="variable">$_o</span> = <span class="title function_ invoke__">base64_decode</span>(<span class="variable">$flag</span>);<span class="comment">//base64解密</span></span><br><span class="line"><span class="variable">$_</span>=<span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$_0</span>=<span class="number">0</span>;<span class="variable">$_0</span>&lt;<span class="title function_ invoke__">strlen</span>(<span class="variable">$_o</span>);<span class="variable">$_0</span>++)&#123;   <span class="comment">//把每个字符倒退</span></span><br><span class="line">       </span><br><span class="line">        <span class="variable">$_c</span>=<span class="title function_ invoke__">substr</span>(<span class="variable">$_o</span>,<span class="variable">$_0</span>,<span class="number">1</span>);</span><br><span class="line">        <span class="variable">$__</span>=<span class="title function_ invoke__">ord</span>(<span class="variable">$_c</span>)-<span class="number">1</span>;</span><br><span class="line">        <span class="variable">$_c</span>=<span class="title function_ invoke__">chr</span>(<span class="variable">$__</span>);</span><br><span class="line">        <span class="variable">$_</span>=<span class="variable">$_</span>.<span class="variable">$_c</span>;   </span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$flag</span> = <span class="title function_ invoke__">strrev</span>(<span class="variable">$_</span>);					<span class="comment">//倒置</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="mfw"><a href="#mfw" class="headerlink" title="mfw"></a>mfw</h3><p>这道题目我做了百分之40吧。。。</p>
+<p>首先 Git泄露我找出来了。但是之后代码审计的时候出现了错误！</p>
+<p>先走走看吧。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200319200847968.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                     
+                ></p>
+<p>明显的git先测试看看</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200319201048353.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                     
+                ></p>
+<p>然后查看源码呗，我几乎看了所有文件 最后发现 利用点是在<code>index.php</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;page&#x27;</span>])) &#123;</span><br><span class="line">        <span class="variable">$page</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;page&#x27;</span>];</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$page</span> = <span class="string">&quot;home&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//page 一定要有</span></span><br><span class="line"><span class="variable">$file</span> = <span class="string">&quot;templates/&quot;</span> . <span class="variable">$page</span> . <span class="string">&quot;.php&quot;</span>;</span><br><span class="line"><span class="comment">//增加字符串！</span></span><br><span class="line"><span class="comment">// I heard &#x27;..&#x27; is dangerous!</span></span><br><span class="line"><span class="title function_ invoke__">assert</span>(<span class="string">&quot;strpos(&#x27;<span class="subst">$file</span>&#x27;, &#x27;..&#x27;) === false&quot;</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;Detected hacking attempt!&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// <span class="doctag">TODO:</span> Make this look nice</span></span><br><span class="line"><span class="title function_ invoke__">assert</span>(<span class="string">&quot;file_exists(&#x27;<span class="subst">$file</span>&#x27;)&quot;</span>) <span class="keyword">or</span> <span class="keyword">die</span>(<span class="string">&quot;That file doesn&#x27;t exist!&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里就是重点了</p>
+<p>我直接输入&#x2F;?page&#x3D;flag</p>
+<p>结果啥也没有  但是返回的是200  这说明可能注释掉了 我看不到而已</p>
+<p>那么想想读取源码呗！ 就想到文件包含 结果 这个字符串被限制了。。。</p>
+<p>尤其是尾部！ 尾部被限制了 搞不了搞不了</p>
+<p>这是 注意到一个函数<code>assert($str)</code>这里存在命令执行漏洞！！</p>
+<p>好的我们学习下这个命令执行漏洞的基本：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_ invoke__">assert</span>(<span class="variable">$str</span>);</span><br><span class="line"><span class="comment">//这个是把$str这个字符串当作php代码执行   那么</span></span><br><span class="line"><span class="title function_ invoke__">assert</span>(<span class="string">&quot;file_exists(&#x27;<span class="subst">$file</span>&#x27;)&quot;</span>)</span><br><span class="line"><span class="comment">//这里是不是就可以命令注入了？！！</span></span><br><span class="line"><span class="title function_ invoke__">assert</span>(<span class="string">&quot;字符串嘛！&quot;</span>)</span><br><span class="line"><span class="title function_ invoke__">assert</span>(<span class="string">&quot;_file_exists(&#x27;abs&#x27;) or system(&quot;</span>ls<span class="string">&quot;);//&#x27;)__&quot;</span>)</span><br><span class="line"><span class="comment">//里面的_是表示这之间是字符串！   那么被当作代码的是什么呢？</span></span><br><span class="line"><span class="title function_ invoke__">file_exists</span>(<span class="string">&#x27;abs&#x27;</span>) <span class="keyword">or</span> <span class="title function_ invoke__">system</span>(<span class="string">&quot;ls&quot;</span>);<span class="comment">//__&#x27;)</span></span><br><span class="line"><span class="comment">//再看看！ 代码是不是被注入了！！！</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>很好！ 那么答案就出来了！！！</p>
+<p>payload: &#x2F;?page&#x3D;abs’) or system(“cat templates&#x2F;flag.php”);&#x2F;&#x2F;</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200319211301864.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                     
+                ></p>
+<p>此外，还可以有别的方法访问得到文件</p>
+<p>show_source(‘flag.php’);</p>
+<p>print_r(file_get_contents(‘flag.php’));</p>
+<p>cat flag.php;</p>
+<hr>
+<p>一点小tips</p>
+<p>linux   cat ：是把文件内容打印到标准输出</p>
+<p>php   system:是把系统命令的执行结果输出出来</p>
+<p>php  在打印字符串的时候  如果字符串是以&lt;?开头的  那么会被注释掉  同时遇到&gt;注释才结束</p>
+<p>收获颇深！</p>
+<h2 id="2020-03-20"><a href="#2020-03-20" class="headerlink" title="2020.03.20"></a>2020.03.20</h2><p>今日题目 写了两道题 但是有一道题目我实在不理解算了吧</p>
+<p>写写今天的垃圾题目：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/20200320185323206.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                     
+                ></p>
+<p>讲真，我看了题目 也猜想过</p>
+<p>结果我以为sql注入。。。  很像有没有？！</p>
+<p>回过头来 看题  首先所有数据都被删除了  那么sql注入是注入不出来的！</p>
+<p>【有一说一 的确 我当时order by 100000都还有显示。。</p>
+<p>那么看网上的wp 提示爆破。</p>
+<p>【这题也太无聊了</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img-blog.csdnimg.cn/202003201858583.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0RVT2FuMDIxNg==,size_16,color_FFFFFF,t_70"
+                     
+                ></p>
+<p>周末打比赛 以赛代练！ 加油叭。</p>
+<h2 id="2020-03-22"><a href="#2020-03-22" class="headerlink" title="2020.03.22"></a>2020.03.22</h2><h3 id="ACTF2020-新生赛-BackupFile"><a href="#ACTF2020-新生赛-BackupFile" class="headerlink" title="[ACTF2020 新生赛]BackupFile"></a>[ACTF2020 新生赛]BackupFile</h3><p>这道题目 就了解很多了</p>
+<p>首先源码泄露 用 dirsearch扫描 </p>
+<p>扫描指令： <code>./dirsearch.py -u &quot;www.xxxx.com&quot;</code> -e *</p>
+<p>注意到 在URL后面不要填上<code>/</code>这个</p>
+<p>不然会出现扫不出来！。。。 这个很气。</p>
+<p>之后我们扫到<code>/index.php.bak</code>这个   下载源码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include_once</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;key&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$key</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;key&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(!<span class="title function_ invoke__">is_numeric</span>(<span class="variable">$key</span>)) &#123;</span><br><span class="line">        <span class="keyword">exit</span>(<span class="string">&quot;Just num!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$key</span> = <span class="title function_ invoke__">intval</span>(<span class="variable">$key</span>);</span><br><span class="line">    <span class="variable">$str</span> = <span class="string">&quot;123ffwsfwefwf24r2f32ir23jrw923rskfjwtsw54w3&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$key</span> == <span class="variable">$str</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Try to find out source file!&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>很明显 PHP黑魔法</p>
+<p>我们再来解析解析！</p>
+<p>函数介绍：</p>
+<p>is_numeric — 检测变量是否为数字或数字字符串</p>
+<p>如果 <code>var</code> 是数字和数字字符串则返回 **<code>TRUE</code>**，否则返回 **<code>FALSE</code>**。</p>
+<p>intval — 获取变量的整数值</p>
+<p>通过使用指定的进制 <code>base</code> 转换（默认是十进制），返回变量 <code>var</code> 的 <a class="link"   target="_blank" rel="noopener" href="https://www.php.net/manual/zh/language.types.integer.php" >integer<i class="fas fa-external-link-alt"></i></a> 数值</p>
+<p>strcmp — 二进制安全字符串比较</p>
+<p>注意该比较区分大小写。如果 <code>str1</code> 小于 <code>str2</code> 返回 &lt; 0； 如果 <code>str1</code> 大于 <code>str2</code> 返回 &gt; 0；如果两者相等，返回 0。</p>
+<hr>
+<p>这道题目呢，<code>==</code>弱比较  字符串和数字比较的时候，字符串只取到数字。</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">Every CTFproblem</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2020-03-16 23:13:21</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2020/03/16/CTFcomig/Every-CTFproblem/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2020/04/01/%E5%9B%9B%E6%9C%88/%E5%9B%9B%E6%9C%88%E4%BB%BD%E5%AE%89%E5%85%A8/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">四月份web-1.0</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2020/03/02/CTFcomig/CTFHUB/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">CTFHUB</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-03-16"><span class="nav-number">1.</span> <span class="nav-text">2020.03.16</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C-upload1"><span class="nav-number">1.1.</span> <span class="nav-text">攻防世界-upload1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-03-18"><span class="nav-number">2.</span> <span class="nav-text">2020.03.18</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%B3%A8%E5%85%A5%E7%BB%BC%E5%90%88"><span class="nav-number">2.1.</span> <span class="nav-text">命令注入综合</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-03-19"><span class="nav-number">3.</span> <span class="nav-text">2020.03.19</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Web-php-unserialize"><span class="nav-number">3.1.</span> <span class="nav-text">Web_php_unserialize</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web2"><span class="nav-number">3.2.</span> <span class="nav-text">web2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mfw"><span class="nav-number">3.3.</span> <span class="nav-text">mfw</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-03-20"><span class="nav-number">4.</span> <span class="nav-text">2020.03.20</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2020-03-22"><span class="nav-number">5.</span> <span class="nav-text">2020.03.22</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-BackupFile"><span class="nav-number">5.1.</span> <span class="nav-text">[ACTF2020 新生赛]BackupFile</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

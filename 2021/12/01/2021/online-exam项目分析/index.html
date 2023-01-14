@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            online-exam项目分析 |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":null,"font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">online-exam项目分析</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2021-12-01 21:37:38</span>
+        <span class="mobile">2021-12-01 21:37</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-01-14 23:04:41</span>
+    </span>
+    
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/2021/">2021</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.3k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>10 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span>
+
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>本文是分析一个项目 </p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://gitee.com/lsgwr/spring-boot-online-exam" >https://gitee.com/lsgwr/spring-boot-online-exam<i class="fas fa-external-link-alt"></i></a></p>
+<p>大多是我很粗浅的理解</p>
+<h1 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h1><h2 id="json适配处理"><a href="#json适配处理" class="headerlink" title="json适配处理"></a>json适配处理</h2><p>在前端传过来的json数据，可能会出现不一致的情况，在这个项目中，使用到了<code>@JsonProperty</code>这个注解来帮助处理</p>
+<p>这个注解是属于fastjson</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserInfoVo</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JsonProperty(&quot;id&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String userId;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JsonProperty(&quot;avatar&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String userAvatar;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JsonProperty(&quot;name&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String userNickname;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JsonProperty(&quot;username&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String userUsername;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="方法内适配"><a href="#方法内适配" class="headerlink" title="方法内适配"></a>方法内适配</h2><p>大量的方法是放在了service中进行处理</p>
+<p>在注册的方法上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> User <span class="title function_">register</span><span class="params">(RegisterDTO registerDTO)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        user.setUserId(IdUtil.simpleUUID());</span><br><span class="line">        <span class="comment">// 好像还缺少个用户名,用&quot;exam_user_手机号&quot;来注册：需要校验唯一性数据字段已经设置unique了，失败会异常地</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">defaultUsername</span> <span class="operator">=</span> <span class="string">&quot;user&quot;</span>;</span><br><span class="line">        user.setUserUsername(defaultUsername + <span class="string">&quot;_&quot;</span> + registerDTO.getMobile());</span><br><span class="line">        <span class="comment">// 初始化昵称和用户名相同</span></span><br><span class="line">        user.setUserNickname(user.getUserUsername());</span><br><span class="line">        <span class="comment">// 这里还需要进行加密处理，后续解密用Base64.decode()</span></span><br><span class="line">        user.setUserPassword(Base64.encode(registerDTO.getPassword()));</span><br><span class="line">        <span class="comment">// 默认设置为学生身份，需要老师和学生身份地话需要管理员修改</span></span><br><span class="line">        user.setUserRoleId(RoleEnum.STUDENT.getId());</span><br><span class="line">        <span class="comment">// 设置头像图片地址, 先默认一个地址，后面用户可以自己再改</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">defaultAvatar</span> <span class="operator">=</span> <span class="string">&quot;http://d.lanrentuku.com/down/png/1904/business_avatar/8_avatar_2754583.png&quot;</span>;</span><br><span class="line">        user.setUserAvatar(defaultAvatar);</span><br><span class="line">        <span class="comment">// 设置描述信息，随便设置段默认的</span></span><br><span class="line">        user.setUserDescription(<span class="string">&quot;welcome to online exam system&quot;</span>);</span><br><span class="line">        <span class="comment">// 需要验证这个邮箱是不是已经存在：数据字段已经设置unique了，失败会异常地</span></span><br><span class="line">        user.setUserEmail(registerDTO.getEmail());</span><br><span class="line">        <span class="comment">// 需要验证手机号是否已经存在：数据字段已经设置unique了，失败会异常地</span></span><br><span class="line">        user.setUserPhone(registerDTO.getMobile());</span><br><span class="line">        userRepository.save(user);</span><br><span class="line">        System.out.println(user);</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">        e.printStackTrace(); <span class="comment">// 用户已经存在</span></span><br><span class="line">        <span class="comment">// 出异常，返回null，表示注册失败</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而在controller层上的处理就较为简单</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostMapping(&quot;/register&quot;)</span></span><br><span class="line"><span class="meta">@ApiOperation(&quot;注册&quot;)</span></span><br><span class="line">ResultVO&lt;User&gt; <span class="title function_">register</span><span class="params">(<span class="meta">@RequestBody</span> RegisterDTO registerDTO)</span> &#123;</span><br><span class="line">    ResultVO&lt;User&gt; resultVO;</span><br><span class="line">    <span class="comment">// 注册信息的完善，还有唯一性校验没(用户名、邮箱和手机号)已经在user表中通过unique来设置了</span></span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> userService.register(registerDTO);</span><br><span class="line">    <span class="keyword">if</span> (user != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="comment">// 注册成功</span></span><br><span class="line">        resultVO = <span class="keyword">new</span> <span class="title class_">ResultVO</span>&lt;&gt;(ResultEnum.REGISTER_SUCCESS.getCode(), ResultEnum.REGISTER_SUCCESS.getMessage(), user);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        resultVO = <span class="keyword">new</span> <span class="title class_">ResultVO</span>&lt;&gt;(ResultEnum.REGISTER_FAILED.getCode(), ResultEnum.REGISTER_FAILED.getMessage(), <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> resultVO;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>仔细想为什么要这样处理</p>
+<p>我认为是service的方法仅仅是为了完成某个处理，某个模块，比如返回注册的结果集。</p>
+<p>至于前端的处理 就应该在controller中进行</p>
+<h2 id="Entity-转-VO"><a href="#Entity-转-VO" class="headerlink" title="Entity 转 VO"></a>Entity 转 VO</h2><p>这个项目里很喜欢使用BeanUtils来进行处理</p>
+<p>而实际上我们并不建议使用BeanUtils来处理，推荐使用</p>
+<blockquote>
+<p> 一般情况下，同样一个数据模型，我们在不同的层次要使用不同的数据模型。<strong>如在数据存储层，我们使用DO来抽象一个业务实体；在业务逻辑层，我们使用DTO来表示数据传输对象；到了展示层，我们又把对象封装成VO来与前端进行交互。</strong></p>
+</blockquote>
+<p>我们先看项目中的代码是如何完成的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> List&lt;ExamCardVo&gt; <span class="title function_">getExamCardList</span><span class="params">()</span> &#123;</span><br><span class="line">    List&lt;Exam&gt; examList = examRepository.findAll();</span><br><span class="line">    List&lt;ExamCardVo&gt; examCardVoList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (Exam exam : examList) &#123;</span><br><span class="line">        <span class="type">ExamCardVo</span> <span class="variable">examCardVo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExamCardVo</span>();</span><br><span class="line">        <span class="comment">// 这么喜欢用BeanUtils</span></span><br><span class="line">        BeanUtils.copyProperties(exam, examCardVo);</span><br><span class="line">        examCardVoList.add(examCardVo);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> examCardVoList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里有一篇文章来诉说MapStruct的使用方法和主要原理</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/6859213877474033672" >https://juejin.cn/post/6859213877474033672<i class="fas fa-external-link-alt"></i></a></p>
+<p>具体就是maven–&gt;接口–&gt;转换方法</p>
+<h2 id="处理封装"><a href="#处理封装" class="headerlink" title="处理封装"></a>处理封装</h2><p>首先是一个Entity和一个VO</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***********************************************************</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> : 考试表，要有题目、总分数、时间限制、有效日期、创建者等字段</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>      : 梁山广(Laing Shan Guang)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>        : 2019/5/14 07:42</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@email</span>       : liangshanguang2@gmail.com</span></span><br><span class="line"><span class="comment"> ***********************************************************/</span></span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@DynamicUpdate</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Exam</span> &#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="keyword">private</span> String examId;</span><br><span class="line">    <span class="keyword">private</span> String examName;</span><br><span class="line">    <span class="keyword">private</span> String examAvatar;</span><br><span class="line">    <span class="keyword">private</span> String examDescription;</span><br><span class="line">    <span class="keyword">private</span> String examQuestionIds;</span><br><span class="line">    <span class="keyword">private</span> String examQuestionIdsRadio;</span><br><span class="line">    <span class="keyword">private</span> String examQuestionIdsCheck;</span><br><span class="line">    <span class="keyword">private</span> String examQuestionIdsJudge;</span><br><span class="line">    <span class="keyword">private</span> Integer examScore;</span><br><span class="line">    <span class="keyword">private</span> Integer examScoreRadio;</span><br><span class="line">    <span class="keyword">private</span> Integer examScoreCheck;</span><br><span class="line">    <span class="keyword">private</span> Integer examScoreJudge;</span><br><span class="line">    <span class="keyword">private</span> String examCreatorId;</span><br><span class="line">    <span class="keyword">private</span> Integer examTimeLimit;</span><br><span class="line">    <span class="meta">@JsonFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;, timezone = &quot;GMT+8&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Date examStartDate;</span><br><span class="line">    <span class="meta">@JsonFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;, timezone = &quot;GMT+8&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Date examEndDate;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 创建时间, 设计表时设置了自动插入当前时间，无需在Java代码中设置了</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">   </span><br><span class="line">    <span class="meta">@JsonFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;, timezone = &quot;GMT+8&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Date createTime;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 更新时间，设计表时设置了自动插入当前时间，无需在Java代码中设置了。</span></span><br><span class="line"><span class="comment">     * 同时<span class="doctag">@DynamicUpdate</span>注解可以时间当数据库数据变化时自动更新，无需人工维护</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@JsonFormat(pattern = &quot;yyyy-MM-dd HH:mm:ss&quot;, timezone = &quot;GMT+8&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> Date updateTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下一个VO</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***********************************************************</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> : 考试详情的实体类</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>      : 梁山广(Laing Shan Guang)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>        : 2019-06-24 08:14</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@email</span>       : liangshanguang2@gmail.com</span></span><br><span class="line"><span class="comment"> ***********************************************************/</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ExamDetailVo</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 考试的基本信息对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> Exam exam;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 单选题的id数组</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String[] radioIds;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 多选题的id数组</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String[] checkIds;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 判断题的id数组</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> String[] judgeIds;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>核心代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> ExamDetailVo <span class="title function_">getExamDetail</span><span class="params">(String id)</span> &#123;</span><br><span class="line">    <span class="type">Exam</span> <span class="variable">exam</span> <span class="operator">=</span> examRepository.findById(id).orElse(<span class="literal">null</span>);</span><br><span class="line">    <span class="type">ExamDetailVo</span> <span class="variable">examDetailVo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ExamDetailVo</span>();</span><br><span class="line">    <span class="comment">// 注入数据</span></span><br><span class="line">    examDetailVo.setExam(exam);</span><br><span class="line">    <span class="comment">// 我不喜欢这种assert</span></span><br><span class="line">    <span class="keyword">assert</span> exam != <span class="literal">null</span>;</span><br><span class="line">    <span class="comment">// 继续注入</span></span><br><span class="line">    examDetailVo.setRadioIds(exam.getExamQuestionIdsRadio().split(<span class="string">&quot;-&quot;</span>));</span><br><span class="line">    examDetailVo.setCheckIds(exam.getExamQuestionIdsCheck().split(<span class="string">&quot;-&quot;</span>));</span><br><span class="line">    examDetailVo.setJudgeIds(exam.getExamQuestionIdsJudge().split(<span class="string">&quot;-&quot;</span>));</span><br><span class="line">    <span class="keyword">return</span> examDetailVo;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="联合查询"><a href="#联合查询" class="headerlink" title="联合查询"></a>联合查询</h2><p>该处的处理是依靠多次查询数据库完成的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> QuestionDetailVo <span class="title function_">getQuestionDetail</span><span class="params">(String id)</span> &#123;</span><br><span class="line">        <span class="comment">// 初次查询问题详情</span></span><br><span class="line">        <span class="type">Question</span> <span class="variable">question</span> <span class="operator">=</span> questionRepository.findById(id).orElse(<span class="literal">null</span>);</span><br><span class="line">        <span class="comment">// 往VO注入数据</span></span><br><span class="line">        <span class="type">QuestionDetailVo</span> <span class="variable">questionDetailVo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">QuestionDetailVo</span>();</span><br><span class="line">        questionDetailVo.setId(id);</span><br><span class="line">        questionDetailVo.setName(question.getQuestionName());</span><br><span class="line">        questionDetailVo.setDescription(question.getQuestionDescription());</span><br><span class="line">        <span class="comment">// 问题类型，单选题/多选题/判断题</span></span><br><span class="line">        questionDetailVo.setType(</span><br><span class="line">                Objects.requireNonNull(</span><br><span class="line">                        questionTypeRepository.findById(</span><br><span class="line">                                question.getQuestionTypeId()</span><br><span class="line">                        ).orElse(<span class="literal">null</span>)</span><br><span class="line">                ).getQuestionTypeDescription()</span><br><span class="line">        );</span><br><span class="line">        <span class="comment">// 获取当前问题的选项</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">optionIdsStr</span> <span class="operator">=</span> trimMiddleLine(question.getQuestionOptionIds());</span><br><span class="line">        String[] optionIds = optionIdsStr.split(<span class="string">&quot;-&quot;</span>);</span><br><span class="line">        <span class="comment">// 获取选项列表</span></span><br><span class="line">        List&lt;QuestionOption&gt; optionList = questionOptionRepository.findAllById(Arrays.asList(optionIds));</span><br><span class="line">        questionDetailVo.setOptions(optionList);</span><br><span class="line">        <span class="keyword">return</span> questionDetailVo;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种方式其实很简单，但是我觉得难处在于如何设计，总的来说我们的目的就是完成VO的数据注入。</p>
+<h1 id="跨域处理"><a href="#跨域处理" class="headerlink" title="跨域处理"></a>跨域处理</h1><p>直接贴代码就是了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CORSConf</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> WebMvcConfigurer <span class="title function_">corsConfigurer</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">WebMvcConfigurer</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addCorsMappings</span><span class="params">(CorsRegistry registry)</span> &#123;</span><br><span class="line">                log.info(<span class="string">&quot;初始化 CORSConfiguration 配置&quot;</span>);</span><br><span class="line">                registry.addMapping(<span class="string">&quot;/**&quot;</span>)</span><br><span class="line">                        .allowedHeaders(<span class="string">&quot;*&quot;</span>)</span><br><span class="line">                        .allowedMethods(<span class="string">&quot;*&quot;</span>)</span><br><span class="line">                        .allowedOrigins(<span class="string">&quot;*&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="swagger配置"><a href="#swagger配置" class="headerlink" title="swagger配置"></a>swagger配置</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableSwagger2</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Swagger2Config</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Docket <span class="title function_">api</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">ParameterBuilder</span> <span class="variable">ticketPar</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ParameterBuilder</span>();</span><br><span class="line">        List&lt;Parameter&gt; pars = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        ticketPar.name(<span class="string">&quot;Access-Token&quot;</span>).description(<span class="string">&quot;Rest接口权限认证token,无需鉴权可为空&quot;</span>)</span><br><span class="line">                .modelRef(<span class="keyword">new</span> <span class="title class_">ModelRef</span>(<span class="string">&quot;string&quot;</span>)).parameterType(<span class="string">&quot;header&quot;</span>)</span><br><span class="line">                <span class="comment">//header中的ticket参数非必填，传空也可以</span></span><br><span class="line">                .required(<span class="literal">false</span>).build();</span><br><span class="line">        <span class="comment">//根据每个方法名也知道当前方法在设置什么参数</span></span><br><span class="line">        pars.add(ticketPar.build());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Docket</span>(DocumentationType.SWAGGER_2)</span><br><span class="line">                .apiInfo(apiInfo())</span><br><span class="line">                .select()</span><br><span class="line">                <span class="comment">// 自行修改为自己的包路径</span></span><br><span class="line">                .apis(RequestHandlerSelectors.basePackage(<span class="string">&quot;lsgwr&quot;</span>))</span><br><span class="line">                .paths(PathSelectors.any())</span><br><span class="line">                .build()</span><br><span class="line">                .globalOperationParameters(pars);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ApiInfo <span class="title function_">apiInfo</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ApiInfoBuilder</span>()</span><br><span class="line">                .title(<span class="string">&quot;online exam by springboot&quot;</span>)</span><br><span class="line">                .description(<span class="string">&quot;在线考试系统 by 梁山广 at 2021&quot;</span>)</span><br><span class="line">                .termsOfServiceUrl(<span class="string">&quot;https://github.com/19920625lsg/spring-boot-online-exam&quot;</span>)</span><br><span class="line">                .version(<span class="string">&quot;2.0&quot;</span>)</span><br><span class="line">                .contact(<span class="keyword">new</span> <span class="title class_">Contact</span>(<span class="string">&quot;liangshanguang&quot;</span>, <span class="string">&quot;https://github.com/lsgwr/spring-boot-online-exam&quot;</span>, <span class="string">&quot;liangshanguang2@gmail.com&quot;</span>))</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="拦截器处理"><a href="#拦截器处理" class="headerlink" title="拦截器处理"></a>拦截器处理</h1><p>这里的拦截器是我们想要请求进入后端的时候，我们会校验token</p>
+<p>允许哪些请求可以无token进入</p>
+<p>这个项目的想法是在拦截器中查看请求<code>url</code>如果是登录注册的话，直接返回true</p>
+<p>而实际上大部分的项目是依靠<code>WebMvcConfigurer</code>中使用<code>excludePathPatterns</code>来跳出查看</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***********************************************************</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span> : 登录拦截器，主要用于校验Token</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>      : 梁山广(Laing Shan Guang)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span>        : 2019-05-22 07:35</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@email</span>       : liangshanguang2@gmail.com</span></span><br><span class="line"><span class="comment"> ***********************************************************/</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * https://stackoverflow.com/questions/43591582/application-properties-value-in-spring-boot-interceptor</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> liangshanguang</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoginInterceptor</span> <span class="keyword">implements</span> <span class="title class_">HandlerInterceptor</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 有上面的<span class="doctag">@Component</span>才能使得这个属性能从pplication.yml中取得拦截器的值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;interceptors.auth-ignore-uris&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String authIgnoreUris;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 进入controller之前进行拦截</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> request  请求体</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> response 响应体</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> handler  处理者</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 是否继续往下走</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception 拦截中出的异常</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;进入拦截器啦！&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">uri</span> <span class="operator">=</span> request.getRequestURI();</span><br><span class="line">        System.out.println(uri);</span><br><span class="line">        System.out.println(<span class="string">&quot;无需拦截的接口路径：&quot;</span> + authIgnoreUris);</span><br><span class="line">        String[] authIgnoreUriArr = authIgnoreUris.split(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">        <span class="comment">// 登录和注册接口不需要进行token拦截和校验</span></span><br><span class="line">        <span class="keyword">for</span> (String authIgnoreUri : authIgnoreUriArr) &#123;</span><br><span class="line">            <span class="keyword">if</span> (authIgnoreUri.equals(uri)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 注意要和前端适配Access-Token属性，前端会在登陆后的每个接口请求头加Access-Token属性</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> request.getHeader(<span class="string">&quot;Access-Token&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (token == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">// token不在header中时，也可能在参数中(RequestParam)</span></span><br><span class="line">            token = request.getParameter(<span class="string">&quot;token&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (token != <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 请求中是携带参数的</span></span><br><span class="line">            <span class="type">Claims</span> <span class="variable">claims</span> <span class="operator">=</span> JwtUtils.checkJWT(token);</span><br><span class="line">            <span class="keyword">if</span> (claims == <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="comment">// 返回null说明用户篡改了token，导致校验失败</span></span><br><span class="line">                sendJsonMessage(response, JsonData.buildError(<span class="string">&quot;token无效，请重新登录&quot;</span>));</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 用户的的主键id</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">id</span> <span class="operator">=</span> (String) claims.get(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">            <span class="comment">// 用户名</span></span><br><span class="line">            <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> (String) claims.get(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">            <span class="comment">// 把这两个参数放到请求中，从而可以在controller中获取到，不需要在controller中在用Jwt解密了,request.getAttribute(&quot;属性名&quot;)即可获取</span></span><br><span class="line">            request.setAttribute(<span class="string">&quot;user_id&quot;</span>, id);</span><br><span class="line">            request.setAttribute(<span class="string">&quot;username&quot;</span>, username);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        sendJsonMessage(response, JsonData.buildError(<span class="string">&quot;token为null,请先登录！&quot;</span>));</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 响应数据给前端</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> response 响应</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> obj      返回的消息体</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Exception 处理异常</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sendJsonMessage</span><span class="params">(HttpServletResponse response, Object obj)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">Gson</span> <span class="variable">g</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Gson</span>();</span><br><span class="line">        response.setContentType(<span class="string">&quot;application/json; charset=utf-8&quot;</span>);</span><br><span class="line">        <span class="type">PrintWriter</span> <span class="variable">writer</span> <span class="operator">=</span> response.getWriter();</span><br><span class="line">        writer.print(g.toJson(obj));</span><br><span class="line">        writer.close();</span><br><span class="line">        response.flushBuffer();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>补充下<code>WebMvcConfigurer</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">IntercepterConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> LoginInterceptor loginInterceptor;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addInterceptors</span><span class="params">(InterceptorRegistry registry)</span> &#123;</span><br><span class="line">        <span class="comment">// 拦截user下的api</span></span><br><span class="line">        registry.addInterceptor(loginInterceptor)</span><br><span class="line">            .addPathPatterns(<span class="string">&quot;/api/**&quot;</span>)</span><br><span class="line">            .excludePathPatterns(<span class="string">&quot;&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">online-exam项目分析</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2021-12-01 21:37:38</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2021/12/01/2021/online-exam项目分析/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/2021/">#2021</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2022/02/16/2022/kotlin/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">kotlin</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2021/11/12/2021/Kubernetes/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Kubernetes</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">特点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#json%E9%80%82%E9%85%8D%E5%A4%84%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">json适配处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E5%86%85%E9%80%82%E9%85%8D"><span class="nav-number">2.2.</span> <span class="nav-text">方法内适配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Entity-%E8%BD%AC-VO"><span class="nav-number">2.3.</span> <span class="nav-text">Entity 转 VO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%B0%81%E8%A3%85"><span class="nav-number">2.4.</span> <span class="nav-text">处理封装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2"><span class="nav-number">2.5.</span> <span class="nav-text">联合查询</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B7%A8%E5%9F%9F%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">跨域处理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#swagger%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">swagger配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%A6%E6%88%AA%E5%99%A8%E5%A4%84%E7%90%86"><span class="nav-number">5.</span> <span class="nav-text">拦截器处理</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

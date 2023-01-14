@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            Mysql事务及MVCC |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.xml"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":null,"font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Mysql事务及MVCC</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Lv4</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2021-08-20 13:27:13</span>
+        <span class="mobile">2021-08-20 13:27</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-01-14 23:05:03</span>
+    </span>
+    
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/2021/">2021</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>4.1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>14 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <span id="more"></span>
+
+<h1 id="Mysql的锁"><a href="#Mysql的锁" class="headerlink" title="Mysql的锁"></a>Mysql的锁</h1><p>本文主要讲述Mysql事务机制、锁机制、MVCC机制等知识</p>
+<h2 id="锁的定义"><a href="#锁的定义" class="headerlink" title="锁的定义"></a>锁的定义</h2><p>锁是计算机协调多个进程或线程并发访问某一资源的机制。在数据库中，除了传统的计算资源（如CPU、RAM、I&#x2F;O等）的争用以外，数据也是一种供需要用户共享的资源。</p>
+<p>如何保证数据并发访问的一致性、有效性是所有数据库必须解决的一个问题，锁冲突也是影响数据库并发访问性能的一个重要因素。</p>
+<h2 id="锁的分类"><a href="#锁的分类" class="headerlink" title="锁的分类"></a>锁的分类</h2><p>Mysql中的锁按照不同方面分类，可以有以下三种分类：</p>
+<ol>
+<li>从性能上分为<strong>乐观锁</strong>和<strong>悲观锁</strong></li>
+</ol>
+<p>悲观锁，正如其名，具有强烈的独占和排他特性。它指的是对数据被外界(包括本系统当前的其他事务，以及来自外部系统的事务处理)修改持保守态度。因此，在整个数据处理过程中，将数据处于锁定状态。</p>
+<p>悲观锁的实现，往往依靠数据库本身提供的锁机制实现。简单来说，就是只要我正在使用数据，别人都无法获取这条数据。</p>
+<p>乐观锁是相对悲观锁而言的，乐观锁假设数据一般情况下不会造成冲突，所有人都可以获取同一条数据，让用户决定如何去做。乐观锁可以通过<strong>版本号</strong>的方式实现，也就是在数据库表中添加一个版本号字段，用户拿到数据后和自己的版本号进行对比，如果不一致就跳过，一致则进行处理。相比于悲观锁而言，乐观锁的吞吐量更高。</p>
+<ol>
+<li>从对数据库操作的类型分，分为<strong>读锁</strong>和<strong>写锁</strong></li>
+</ol>
+<p>读锁和写锁都属于悲观锁，它们两的区别如下：</p>
+<ul>
+<li>读锁（共享锁）：针对同一份数据，多个读操作可以同时进行而不会互相影响，但是不能进行写操作。</li>
+<li>写锁（排它锁）：针对同一份数据，当前写操作没有完成前，其他写操作和读操作都会被阻断。</li>
+</ul>
+<ol>
+<li>从对数据操作的粒度分，分为<strong>表锁</strong>和<strong>行锁</strong></li>
+</ol>
+<ul>
+<li>表锁<br>每次操作锁住整张表。它的特点是：开销小，加锁快；不会出现死锁；锁定粒度大，发生锁冲突的概率最高，并发性能差。</li>
+<li>行锁<br>每次操作锁住一行数据。它的特点是：开销大，加锁慢；会出现死锁；锁定粒度小，发生锁冲突的概率最低，并发性能高。</li>
+</ul>
+<p>对于不同的引擎而言，<strong>MyISAM</strong>引擎的表只有表锁，不支持事务；</p>
+<p>而<strong>InnoDB</strong>的表既有表锁也有行锁，并且支持事务。</p>
+<h1 id="Mysql事务隔离级别"><a href="#Mysql事务隔离级别" class="headerlink" title="Mysql事务隔离级别"></a>Mysql事务隔离级别</h1><p>Mysql中设置了4种隔离级别来针对不同的问题，我们先来看看并发事务中可能存在的问题：</p>
+<h2 id="并发事务处理带来的问题"><a href="#并发事务处理带来的问题" class="headerlink" title="并发事务处理带来的问题"></a>并发事务处理带来的问题</h2><ul>
+<li>更新丢失（Lost Update）</li>
+</ul>
+<p>当两个或多个事务选择同一行，然后基于最初选定的值更新该行时，由于每个事务都不知道其他事务的存在，就会发生丢失更新问题，即最后的更新覆盖了由其他事务所做的更新。 这个问题可以通过乐观锁或者行锁解决。</p>
+<ul>
+<li>脏读（Dirty Reads）</li>
+</ul>
+<p>一个事务正在对一条记录做修改，在这个事务完成并提交前，这条记录的数据就处于不一致的状态；这时另一个事务也来读取同一条记录，如果不加控制，第二个事务读取了这些“脏”数据，并据此作进一步的处理，就会产生未提交的数据依赖关系。这种现象被形象的叫做“脏读”。</p>
+<p>一句话：事务A读取到了事务B已经修改但尚未提交的数据，还在这个数据基础上做了操作。此时，如果B事务回滚，A读取的数据无效，不符合事务一致性的要求。</p>
+<ul>
+<li>不可重读读（Non-Repeatable Reads）</li>
+</ul>
+<p>一个事务在读取某些数据后的某个时间，再次读取以前读过的数据，却发现其读出的数据已经发生了改变、或某些记录已经被删除了！这种现象就叫做“不可重复读”。</p>
+<p>一句话：事务A读取到了事务B已经提交的修改数据，不符合隔离性。</p>
+<ul>
+<li>幻读（Phantom Reads）</li>
+</ul>
+<p>一个事务按相同的查询条件重新读取以前检索过的数据，却发现其他事务插入了满足其查询条件的新数据，这种现象就称为“幻读”。</p>
+<p>一句话：事务A读取到了事务B提交的新增数据，不符合隔离性。</p>
+<h2 id="四种事务隔离级别"><a href="#四种事务隔离级别" class="headerlink" title="四种事务隔离级别"></a>四种事务隔离级别</h2><p>脏读、不可重复读和幻读其实都是数据库读一致性问题，必须由数据库提供一定的事务隔离机制来解决。 如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>读未提交(Read uncommitted)</td>
+<td>可能</td>
+<td>可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>读已提交(Read committed)</td>
+<td>不可能</td>
+<td>可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>可重复读(Repeatable read)</td>
+<td>不可能</td>
+<td>不可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>串行化(Serializable)</td>
+<td>不可能</td>
+<td>不可能</td>
+<td>不可能</td>
+</tr>
+</tbody></table>
+<p>数据库的事务隔离越严格，并发副作用越小，但付出的代价也就越大。</p>
+<p>同时，不同的应用对读一致性和事务隔离程度的要求也是不同的，比如许多应用对不可重复读和幻读并不敏感，而更关心数据并发访问的能力。</p>
+<p>Mysql.7版本通过<code>show variables like &#39;tx_isolation&#39;;</code>查看当前数据库的事务隔离级别</p>
+<p>而Mysql8则时通过<code>show variables like &#39;transaction_isolation&#39;;</code>查看。</p>
+<p>Mysql默认的事务隔离级别为可重复读。</p>
+<p>Mysql5.7版本可通过<code>set tx_isolation=&#39;REPEATABLE-READ&#39;</code>设置，Mysql8版本可通过<code>set transaction_isolation=&#39;REPEATABLE-READ&#39;</code>设置。</p>
+<hr>
+<p>可串行化隔离级别使用的是表锁。虽然串行化能解决幻读，但是这种隔离级别并发性极低，开发中很少会用到。</p>
+<p>那么在Mysql默认的可重复读级别下，有办法解决幻读吗？</p>
+<blockquote>
+<p>间隙锁在某些情况下可以解决幻读问题</p>
+<p>间隙锁就是给一个范围内的数据上锁。比如在一张表中，id从11到19的范围中没有数据，那么在事务一中执行<code>update user  set name = &#39;liduoan&#39; where id &gt; 10 and id &lt;=20</code>，则其他事务就没法在这个范围所包含的间隙里插入或修改任何数据。（间隙锁在可重复读级别下才会生效。）</p>
+<p>注意 这里的select还是基于MVCC处理的。</p>
+</blockquote>
+<h1 id="Mysql的MVCC机制详解"><a href="#Mysql的MVCC机制详解" class="headerlink" title="Mysql的MVCC机制详解"></a>Mysql的MVCC机制详解</h1><p>介绍完了事务隔离级别，下面我们来介绍以下Mysql中重要的MVCC机制，个人认为，这个还是需要多看去理解清楚的：</p>
+<h2 id="MVCC简介"><a href="#MVCC简介" class="headerlink" title="MVCC简介"></a>MVCC简介</h2><p>MVCC全称<code>Multi-Version Concurrency Control</code>，即多版本并发控制。</p>
+<p>MVCC是一种并发控制的方法，一般在数据库管理系统中，实现对数据库的并发访问，在编程语言中实现事务内存。</p>
+<p>我们知道，Mysql中的读和写是存在线程安全问题的，我们前面也介绍了脏读、幻读、不可重复读这些问题。</p>
+<p>如果只能通过普通地加锁来解决，那么这势必会影响效率，而MVCC就是一种针对<strong>读写冲突的无锁并发控制</strong>问题的解决方案。</p>
+<p><strong>简单来说就是在不加锁的情况下，读（快照读）和写可以同时进行，而且互不影响</strong>。</p>
+<blockquote>
+<p>理解快照读和当前读：</p>
+<ul>
+<li>当前读<br>像<code>select lock in share mode</code>，<code>select for update</code>， <code>update</code>，<code>insert</code>，<code>delete</code>这些操作都是一种当前读，为什么叫当前读？因为它<strong>读取的是记录的最新版本</strong>，读取时还要保证其他并发事务不能修改当前记录，会对读取的记录进行加锁。</li>
+<li>快照读<br>像不加锁的select操作就是快照读，即不加锁的非阻塞读。快照读的前提是隔离级别不是串行化级别，串行化级别下的快照读会退化成当前读。之所以出现快照读的情况，是基于提高并发性能的考虑，快照读的实现是就是基于多版本并发控制，即MVCC。可以认为MVCC是行锁的一个变种，但它在很多情况下，避免了加锁操作，降低了开销；既然是基于多版本，即<strong>快照读可能读到的并不一定是数据的最新版本，而有可能是之前的历史版本</strong>。</li>
+</ul>
+</blockquote>
+<p>Mysql中实现了MVCC这一理想概念，快照读就是其中一个具体非阻塞读功能。就像我们在<strong>可重复读</strong>事务隔离级别中所演示那样，无论其他事务如何修改数据，在本事务中读出的数据都是相同的。那到底是如何实现的？</p>
+<h2 id="MVCC实现原理"><a href="#MVCC实现原理" class="headerlink" title="MVCC实现原理"></a>MVCC实现原理</h2><p>在MVCC的实现原理之前，先了解几个重要的概念：</p>
+<h3 id="重要概念"><a href="#重要概念" class="headerlink" title="重要概念"></a>重要概念</h3><p>1、隐藏字段</p>
+<p>数据库表中每行记录除了我们自定义的字段外，还有数据库隐含的字段：</p>
+<ul>
+<li>DB_TRX_ID：最近修改(<code>修改/插入</code>)事务ID，用来记录最后一次修改该记录的事务ID。Mysql会给每个事务分配一个id，这个id是不断增长的，每次加1，所以<strong>事务越新id越大</strong>。</li>
+<li>DB_ROLL_PTR：回滚指针，指向这条记录的上一个版本。</li>
+<li>DB_ROW_ID：隐含的自增ID，即隐藏主键。如果数据表没有创建主键，InnoDB会自动以该列产生一个聚簇索引。</li>
+<li>flag字段：删除标记字段，记录被更新或删除并不代表真的删除，而是该标记字段变了。</li>
+</ul>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/16/NgBZPKR3FDrJ1yf.png"
+                      alt="image.png"
+                ></p>
+<p><strong>由于我们设置了自增的主键，因此DB_ROW_ID字段就不会出现。</strong></p>
+<p>最重要的就是<strong>DB_TRX_ID</strong>和<strong>DB_ROLL_PTR</strong>这两个字段。</p>
+<p>这两个字段是事务ID和回滚指针，那么我们就需要去了解对应的undo日志了。</p>
+<p>2、undo日志</p>
+<p>undo log主要分为以下两种：</p>
+<ul>
+<li>insert undo log<br>代表事务在<code>insert</code>新记录时产生的<code>undo log</code>，只在事务回滚时需要，并且在事务提交后可以被立即丢弃。</li>
+<li>update undo log<br>事务在进行<code>update</code>或<code>delete</code>时产生的<code>undo log</code>， 不仅在事务回滚时需要，在快照读时也需要，所以不能随便删除。只有在快速读或事务回滚不涉及该日志时，对应的日志才会被<code>purge</code>线程统一清除。</li>
+</ul>
+<blockquote>
+<p>什么是purge线程？</p>
+<p>从前面的分析可以看出，为了实现InnoDB的MVCC机制，更新或者删除操作都只是设置一下老记录的<strong>删除标记</strong>，并不真正将过时的记录删除。但是为了节省磁盘空间，InnoDB引擎有专门的purge线程来清理删除标记为true的记录，purge线程在安全的情况下，会清理删除标记为true的记录。</p>
+</blockquote>
+<p>对MVCC有帮助的实质是<code>update undo log</code>，可以将它理解为一条<strong>旧记录链</strong>。我们通过如下流程举例：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2020/10/27/Nb9M4DFPAWCnRUS.jpg"
+                      alt="lock16.jpg"
+                ></p>
+<p>从图中的过程就可以看出，不同事务或者相同事务的对同一记录的修改，会导致该记录的<code>undo log</code>成为一条记录链表，<code>undo log</code>的链首就是最新的旧记录，链尾就是最早的旧记录。除了最新数据，<code>undo log</code>中所有行的删除标签都为<code>true</code>。</p>
+<blockquote>
+<p>注意：只要一个事务开启，对数据进行了<strong>修改</strong>，数据记录链中都插入该事务id修改的记录，无论有没有提交。只是根据事务执行的结果会进行不同的操作，如果事务<code>commit</code>就会保留该记录，如果事务<code>rollback</code>就会删除该记录。</p>
+</blockquote>
+<p>3、Read View(读视图)</p>
+<p>Read View是非常重要的一个概念，一个事务进行<strong>快照读</strong>操作时，会生产一个<strong>读视图</strong>，即ReadView。在该事务执行的快照读的那一刻，会生成数据库系统当前的一个快照，记录并维护系统当前活跃事务的ID。</p>
+<p><code>Read View</code>主要是用来做<strong>可见性判断</strong>的，它作为用来判断当前事务能够看到记录链中哪个版本的数据的条件。接下来我们着重介绍这一可见性判断的流程是如何实现的。</p>
+<h3 id="主要流程"><a href="#主要流程" class="headerlink" title="主要流程"></a>主要流程</h3><p><code>Read View</code>遵循一个可见性算法：</p>
+<p>对某行(几行)数据进行<strong>快照读</strong>时 (产生了<strong>Read View</strong>) ，会从这一行(几行)在记录链中的最新数据中，取出隐藏字段<code>DB_TRX_ID</code>的ID值，与<code>Read View</code>中维护的值进行某些比较，如果不符合可见性，那就通过<code>DB_ROLL_PTR</code>回滚指针去取出记录链中下一条数据的<code>DB_TRX_ID</code>继续比较。</p>
+<p><strong>即从头到尾遍历记录链的<code>DB_TRX_ID</code>与当前Read View中的值进行比较，直到找到满足特定条件的<code>DB_TRX_ID</code>，那么对应的这条数据就是当前事务可见的最新旧记录</strong>。</p>
+<p>那<code>Read View</code>中究竟是什么？可以用下图简易理解</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/16/KtXIEmjRZoNdDTW.png"
+                      alt="image.png"
+                ></p>
+<p>更深刻的认识，我们需要理解源码中的几个值：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/16/ylf3caevqN7Gzgt.png"
+                      alt="image.png"
+                ></p>
+<ul>
+<li><p><strong>creator_trx_id</strong></p>
+<p>对应源码中的<code>m_creator_trx_id</code>，即<strong>当前事务自己的ID</strong>。</p>
+</li>
+<li><p><strong>live_txn_list</strong><br>系统当前活跃事务ID的数组，即<strong>所有当前未提交事务的ID</strong>。</p>
+</li>
+<li><p><strong>up_limit_id</strong><br>对应源码中的<code>m_up_limit_id</code>，即<code>live_txn_list</code>数组中的最小值。</p>
+</li>
+<li><p><strong>low_limit_id</strong><br>对应源码中的<code>m_low_limit_id</code>，即ReadView生成时刻系统尚未分配的下一个事务ID，也就是<strong>当前系统中最大事务ID值+1</strong>。</p>
+<p>注意是当前系统的最大事务的ID，不是列表的最大+1</p>
+</li>
+</ul>
+<p>下面的图可以帮助大家理解这几个值的关系：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2020/10/27/ro8ZID15AXb7Quh.jpg"
+                      alt="lock19.jpg"
+                ></p>
+<p>假设我们在当前事务中需要查询一行数据，那么就从这行对应记录链的最新数据中取出<code>DB_TRX_ID</code>的值，假设为<code>TRX_ID</code>。接着就要将<code>TRX_ID</code>与<code>Read View</code>中维护的值进行比较，判断这条数据是否可见，流程大致如下：</p>
+<ol>
+<li>首先比较<code>TRX_ID &lt; up_limit_id</code>，如果小于，则表明<strong>这条数据的操作事务在本事务开始前已经提交</strong>，对于本事务是可见的。否则进入下一步。</li>
+<li>再比较<code>TRX_ID == creator_trx_id</code>，如果等于，则表明<strong>这条数据是本事务自己操作的</strong>，对于自己当然可见。否则进入下一步。</li>
+<li>接下来判断 <code>TRX_ID &gt;= low_limit_id</code> ，如果大于，则表明<strong>这条数据的操作事务在当前读视图产生后才开始</strong>，对于本事务不可见。否则进入下一步。</li>
+<li>判断<code>TRX_ID</code> 是否在活跃事务数组<code>live_txn_list</code>中，如果不在，则说明这个事务在读视图生成前就已经提交了，那么其修改的数据本事务是可见的。如果在，则代表当前读视图生成时刻，这个事务还没提交，那么其修改的数据对于本事务也是不可见的，进入下一步。</li>
+<li>通过<code>DB_ROLL_PTR</code>回滚指针取出后面 一条数据，如果指针为空则说明没有满足条件的数据，返回空。否则回到第一步。</li>
+</ol>
+<p>流程图如下所示：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://i.loli.net/2021/08/16/Qd32hnPBpImsA6F.png"
+                      alt="image.png"
+                ></p>
+<h2 id="不可重复读出现的原因"><a href="#不可重复读出现的原因" class="headerlink" title="不可重复读出现的原因"></a>不可重复读出现的原因</h2><p>读已提交与可重复读这两个事务隔离级的不同在于<strong>InnoDB的快照读时Read View生成时机不同</strong>，这也是为什么读已提交事务隔离级别会存在<strong>不可重复读</strong>：</p>
+<ul>
+<li>在可重复读隔离级别下的某个事务对某条记录的第一次快照读会创建一个快照及Read View，并且此后在调用快照读的时候，还是使用的是同一个Read View，所以只要当前事务在其他事务提交更新之前使用过快照读，那么之后的快照读使用的都是同一个Read View，所以对之后的修改不可见。</li>
+<li>而在读已提交级隔离级别下的，事务中<strong>每次快照读都会新生成一个新的Read View</strong>，这就是我们在读已提交隔离级别下的事务中可以看到别的事务提交的更新的原因。、</li>
+</ul>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">Mysql事务及MVCC</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2021-08-20 13:27:13</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2021/08/20/2021/Mysql事务及MVCC/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/2021/">#2021</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2021/09/19/2021/IO%E6%A8%A1%E5%9E%8B/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">IO模型</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2021/08/10/2021/SpringCloud/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">SpringCloud</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql%E7%9A%84%E9%94%81"><span class="nav-number">1.</span> <span class="nav-text">Mysql的锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%81%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="nav-number">1.1.</span> <span class="nav-text">锁的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%81%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">锁的分类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">Mysql事务隔离级别</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.1.</span> <span class="nav-text">并发事务处理带来的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E7%A7%8D%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="nav-number">2.2.</span> <span class="nav-text">四种事务隔离级别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql%E7%9A%84MVCC%E6%9C%BA%E5%88%B6%E8%AF%A6%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">Mysql的MVCC机制详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MVCC%E7%AE%80%E4%BB%8B"><span class="nav-number">3.1.</span> <span class="nav-text">MVCC简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVCC%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">3.2.</span> <span class="nav-text">MVCC实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="nav-number">3.2.1.</span> <span class="nav-text">重要概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E6%B5%81%E7%A8%8B"><span class="nav-number">3.2.2.</span> <span class="nav-text">主要流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E9%87%8D%E5%A4%8D%E8%AF%BB%E5%87%BA%E7%8E%B0%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">3.3.</span> <span class="nav-text">不可重复读出现的原因</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
