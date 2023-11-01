@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            鸿蒙开发入门与实践 |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":"17px","font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">鸿蒙开发入门与实践</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Engineer</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-11-01 22:43:11</span>
+        <span class="mobile">2023-11-01 22:43</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-11-01 22:55:10</span>
+    </span>
+    
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>4.9k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>19 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <p> 本文所有内容基于HarmonyOS开发者3.1&#x2F;4.0版本配套的开发者文档，对应鸿蒙SDK API能力级别为API 9 Release</p>
+<blockquote>
+<p>近期抖音的鸿蒙开发指南：<a class="link"   target="_blank" rel="noopener" href="https://bytedance.feishu.cn/wiki/J8CDwR8jhi4ALUkZ5J0cP1p8nJb" >鸿蒙开发指南（持续更新）<i class="fas fa-external-link-alt"></i></a> 【抖音鸿蒙是在API10基础上开发】</p>
+</blockquote>
+<p>本文内容：</p>
+<p>1、介绍鸿蒙应用特点</p>
+<p>2、介绍鸿蒙应用开发基本概念</p>
+<p>3、能阅读并理解简单的鸿蒙应用代码、服务卡片代码</p>
+<p>4、介绍当前抖音服务卡片&amp;小艺建议</p>
+<h1 id="背景【遥遥领先！】"><a href="#背景【遥遥领先！】" class="headerlink" title="背景【遥遥领先！】"></a>背景【遥遥领先！】</h1><blockquote>
+<p>9月25日，华为在秋季全场景发布会上正式对外宣布启动HarmonyOS NEXT计划，即鸿蒙原生应用全面启动。 这也意味着鸿蒙操作系统（HarmonyOS）迭代四代后完全启动原生应用的时机已经成熟，条件已经具备，开启移动应用生态的新篇章。</p>
+</blockquote>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=MjA0MjQ4YzYyODdmNDk0YjYzY2FlZGM1MjhmZDljY2RfQ21QMmpKZlVTZTdyOHRyUmF5YWNyTDJJY1EyVjVhT21fVG9rZW46QXpzTmJ3N05FbzBySFh4Vm5NcWNJbXEwbkdoXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<p>在这个未来环境的基础上，我们可以先前置了解一下如何进行鸿蒙原生开发。</p>
+<h1 id="鸿蒙特点"><a href="#鸿蒙特点" class="headerlink" title="鸿蒙特点"></a>鸿蒙特点</h1><p>我们可以看到<a class="link"   target="_blank" rel="noopener" href="https://developer.huawei.com/consumer/cn/" >鸿蒙官方<i class="fas fa-external-link-alt"></i></a>上的图：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDQ0YjRiZTMyOWI3N2ViYzQ0NDZkNGQyMDBmMjU0ZmZfYzQzTTF0aFRDNFJpVkdMU0ZxazhVdWNwcFgzM3kwbnNfVG9rZW46T0owa2JUUTFYb0l2QXF4aUxoU2NpUFFUbkRiXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<ol>
+<li>ArkUI：极简的UI信息语法、丰富的UI组件、以及实时界面预览工具，只需使用一套ArkTS API，就能在多个HarmonyOS设备上提供生动而流畅的用户界面体验。</li>
+</ol>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2VjODExMTEzOTk3NTM2MjVjZDIwNDhjYWQ4ZjE2ZWRfVGp5VnozT254TTlTcWVjbUpaTkxoclJmSjc4NURyOHFfVG9rZW46TzQ2a2IySk1pb0NoTHF4dFRTRmNwWmZpblhlXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<ol>
+<li>元服务（原名原子化服务），是HarmonyOS提供的一种面向未来的服务提供方式。 <strong>有独立入口的（用户可通过点击方式直接触发）</strong> <strong>免安装的（无需显式安装，由系统程序框架后台安装后即可使用）</strong> <strong>可为用户提供一个或多个便捷服务的用户应用程序形态</strong></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>暂时无法在飞书文档外展示此内容</th>
+<th><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=NDc5ZDA4NDEzNDJmMzQ3ZWZjYWRjOGRhOTk3ODNmNDZfYXZjczJIRWJieTc0emc1Nk16TVFQUE80OVByS3lkRVpfVG9rZW46VkYySmJyMzIwb0plT2R4T294aWNlbWlpbnViXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p><strong>元服务</strong>最主要的呈现形态就是鸿蒙服务卡片</p>
+<p>其将元服务&#x2F;应用的重要信息以卡片的形式展示在桌面，通过轻量交互行为实现服务直达。</p>
+<p><strong>其主要特点为：</strong></p>
+<ul>
+<li><strong>免安装，更轻量化地将服务带给用户</strong></li>
+<li><strong>一键服务直达，将用户感兴趣的内容前置、外显</strong></li>
+<li><strong>跨端转移，多终端设备间无缝流转</strong></li>
+<li><strong>情景智能卡片推荐，随心定制、更懂用户「小艺建议」</strong></li>
+</ul>
+<ol>
+<li>跨端流转：当多个设备通过分布式操作系统能够相互感知、进而整合成一个超级终端时，设备与设备之间就可以取长补短、相互帮助，为用户提供更加自然流畅的分布式体验。</li>
+</ol>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmRmMzA3ODNiNDVjNjg0OGI3MjliMGI0ZmNhNjRiNjFfZWZOcmM0WnFibzlpRU11ZFEwa0NRUkd5UjVCdXRvaTJfVG9rZW46TUtnRmI3dDJEb0ZNVjB4UHc4cmNmdTlobndmXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<h1 id="基本开发概念"><a href="#基本开发概念" class="headerlink" title="基本开发概念"></a>基本开发概念</h1><h2 id="UI框架（开发语言）"><a href="#UI框架（开发语言）" class="headerlink" title="UI框架（开发语言）"></a>UI框架（开发语言）</h2><p><strong>HarmonyOS提供了一套UI开发框架，即<strong><strong>方舟</strong></strong>开发框架（ArkUI框架）</strong></p>
+<p>方舟开发框架针对不同目的和技术背景的开发者提供了两种开发范式</p>
+<ul>
+<li>基于ArkTS的声明式开发范式（简称“声明式开发范式”）</li>
+<li>兼容JS的类Web开发范式（简称“类Web开发范式”）</li>
+</ul>
+<blockquote>
+<p>官方文档3.0版本中是支持Java语言的，但是最新版本不支持了，ide创建新工程也没有了java语言的选项。</p>
+</blockquote>
+<p>开发范式名称语言生态UI更新方式适用场景适用人群声明式开发范式ArkTS语言数据驱动更新复杂度较大、团队合作度较高的程序移动系统应用开发人员、系统应用开发人员类Web开发范式JS语言数据驱动更新界面较为简单的程序应用和卡片Web前端开发人员</p>
+<h2 id="应用模型（开发框架）"><a href="#应用模型（开发框架）" class="headerlink" title="应用模型（开发框架）"></a>应用模型（开发框架）</h2><p>应用模型是HarmonyOS为开发者提供的应用程序所需能力的抽象提炼，它提供了应用程序必备的组件和运行机制。</p>
+<blockquote>
+<p>简单理解 应用模型就类似一个框架，开发者在这个框架里去书写代码。类比前端框架React、Vue。</p>
+</blockquote>
+<p>HarmonyOS先后提供了两种应用模型：</p>
+<ul>
+<li><strong>FA（Feature Ability）模型：</strong> HarmonyOS API 7开始支持的模型，已经不再主推。FA模型开发可见<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/fa-model-development-overview-0000001428061496-V3" >FA模型开发概述<i class="fas fa-external-link-alt"></i></a>。</li>
+<li><strong>Stage模型：</strong> HarmonyOS API 9开始新增的模型，<strong>是目前主推且会长期演进的模型</strong>。<ul>
+<li><p>Stage模型提供UIAbility和ExtensionAbility两种类型的组件，这两种组件都有具体的类承载，支持面向对象的开发方式。</p>
+</li>
+<li><p>UIAbility组件是一种包含UI界面的应用组件，主要用于和用户交互。</p>
+<ul>
+<li><p>例如，图库类应用可以在UIAbility组件中展示图片瀑布流，在用户选择某个图片后，在新的页面中展示图片的详细内容。同时用户可以通过返回键返回到瀑布流页面。</p>
+</li>
+<li><p>UIAbility的生命周期只包含创建&#x2F;销毁&#x2F;前台&#x2F;后台等状态，与显示相关的状态通过WindowStage的事件暴露给开发者。</p>
+</li>
+</ul>
+</li>
+<li><p>ExtensionAbility组件是一种面向特定场景的应用组件。</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-references-V3/js-apis-app-form-formextensionability-0000001493424316-V3" >FormExtensionAbility<i class="fas fa-external-link-alt"></i></a>：FORM类型的ExtensionAbility组件，用于提供服务卡片场景相关能力。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-references-V3/js-apis-workschedulerextensionability-0000001493904024-V3" >WorkSchedulerExtensionAbility<i class="fas fa-external-link-alt"></i></a>：WORK_SCHEDULER类型的ExtensionAbility组件，用于提供延迟任务注册、取消、查询的能力。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="模型区别"><a href="#模型区别" class="headerlink" title="模型区别"></a>模型区别</h3><table>
+<thead>
+<tr>
+<th><strong>项目</strong></th>
+<th><strong>FA****模型</strong></th>
+<th><strong>Stage模型</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>应用组件</td>
+<td>1. 组件分类 PageAbility组件：包含UI界面，提供展示UI的能力。详细介绍请参见<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/pageability-overview-0000001478340893-V3" >PageAbility组件概述<i class="fas fa-external-link-alt"></i></a>。ServiceAbility组件：提供后台服务的能力，无UI界面。详细介绍请参见<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/serviceability-overview-0000001427584628-V3" >ServiceAbility组件概述<i class="fas fa-external-link-alt"></i></a>。DataAbility组件：提供数据分享的能力，无UI界面。详细介绍请参见<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/dataability-overview-0000001428061508-V3" >DataAbility组件概述<i class="fas fa-external-link-alt"></i></a>。2. 开发方式通过导出匿名对象、固定入口文件的方式指定应用组件。开发者无法进行派生，不利于扩展能力。</td>
+<td>1. 组件分类UIAbility组件：包含UI界面，提供展示UI的能力，主要用于和用户交互。详细介绍请参见<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/uiability-overview-0000001477980929-V3" >UIAbility组件概述<i class="fas fa-external-link-alt"></i></a>。ExtensionAbility组件：提供特定场景（如卡片、输入法）的扩展能力，满足更多的使用场景。详细介绍请参见<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/4_3extensionability_u7ec4_u4ef6-0000001478340873-V3" >ExtensionAbility组件<i class="fas fa-external-link-alt"></i></a>。 2. 开发方式<strong>采用面向对象的方式</strong>，将应用组件以类接口的形式开放给开发者，可以进行派生，利于扩展能力。</td>
+</tr>
+<tr>
+<td>进程模型</td>
+<td>有两类进程：1. 主进程2. 渲染进程详细介绍请参见<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/process-model-fa-0000001478181185-V3" >进程模型<i class="fas fa-external-link-alt"></i></a>。</td>
+<td>有三类进程：1. 主进程2. ExtensionAbility进程3. 渲染进程详细介绍请参见<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/process-model-stage-0000001428061488-V3" >进程模型<i class="fas fa-external-link-alt"></i></a>。</td>
+</tr>
+<tr>
+<td>线程模型</td>
+<td>1. ArkTS引擎实例的创建一个进程可以运行多个应用组件实例，每个应用组件实例运行在一个单独的ArkTS引擎实例中。 2. 线程模型每个ArkTS引擎实例都在一个单独线程（非主线程）上创建，主线程没有ArkTS引擎实例。3. 进程内对象共享：不支持。</td>
+<td>1. ArkTS引擎实例的创建<strong>一个进程可以运行多个应用组件实例，所有应用组件实例共享一个ArkTS引擎实例。</strong>2. 线程模型<strong>ArkTS引擎实例在主线程上创建。</strong>3. 进程内对象共享：支持。</td>
+</tr>
+<tr>
+<td>配置文件</td>
+<td>使用config.json描述应用信息、HAP信息和应用组件信息。详细介绍请参见<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/application-configuration-file-overview-fa-0000001478340857-V3" >应用配置文件概述（FA模型）<i class="fas fa-external-link-alt"></i></a>。</td>
+<td>使用app.json5描述应用信息，module.json5描述HAP信息、应用组件信息。详细介绍请参见<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/application-configuration-file-overview-stage-0000001428061460-V3" >应用配置文件概述（Stage模型）<i class="fas fa-external-link-alt"></i></a>。</td>
+</tr>
+</tbody></table>
+<h2 id="包结构"><a href="#包结构" class="headerlink" title="包结构"></a>包结构</h2><p>基于<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/application-configuration-file-overview-stage-0000001428061460-V3" >Stage模型<i class="fas fa-external-link-alt"></i></a>开发的应用，经编译打包后，其应用程序包结构如下图<strong>应用程序包结构（Stage模型）</strong>所示。</p>
+<table>
+<thead>
+<tr>
+<th><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=ODllNGRmZTBhN2IzNjMzNDI3OTVlMmEwMTkzNDVhNjJfZjR6MzlOeTdPVmd6OTQ2S1gzek53OHltcjlkYlg5c05fVG9rZW46Qk5aQmJpMEJ2b2tjMHh4bUNmTWM3ajRObnNnXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></th>
+<th>HAP可分为Entry和Feature两种类型。Entry类型的HAP： 是应用的主模块，在<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/module-configuration-file-0000001427744540-V3" >module.json5配置文件<i class="fas fa-external-link-alt"></i></a>中的type标签配置为“entry”类型。 在同一个应用中，同一设备类型<strong>只支持一个Entry类型的HAP，通常用于实现应用的入口界面、入口图标、主特性功能等</strong>。Feature类型的HAP： 是应用的动态特性模块，在<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/module-configuration-file-0000001427744540-V3" >module.json5配置文件<i class="fas fa-external-link-alt"></i></a>中的type标签配置为“feature”类型。 一个应用程序包可以包含一个或多个Feature类型的HAP，也可以不包含。 <strong>Feature类型的HAP通常用于实现应用的特性功能</strong>，可以配置成按需下载安装，也可以配置成随Entry类型的HAP一起下载安装。 <img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=NDY1OTU3MDVjMjMyMzBlZjI1OWQzMzJmZjRjNmRhZWRfa1d6TUJMQmI5QzVpcXFOTlFzMUpwUTBDYXZ5Yk5JaFFfVG9rZW46SFFIOWJEVWlHb2pxTlF4OWRCTmNtbVdybndnXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=YTdhODZiNGU3N2Y3YWI2NjA0NmQ3MTg0MzMwMDYyYzJfblVES0F1bjdLSlNncFpadFQyb1NVVG9EdkVzeXNVV3dfVG9rZW46VWczMGJEOUVib1Z4UEV4RHlFdWNaN1dhbllmXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>  一个应用包含一个或者多个Module，可以在<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/develop/deveco-studio/" >DevEco Studio<i class="fas fa-external-link-alt"></i></a>工程中<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/ohos-adding-deleting-module-0000001218760594-V3" >创建一个或者多个Module<i class="fas fa-external-link-alt"></i></a>。</p>
+<p>Module分为“Ability”和“Library”两种类型。</p>
+<ul>
+<li>“Ability”类型的Module对应于编译后的HAP（Harmony Ability Package）</li>
+<li>“Library”类型的Module对应于<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/har-package-0000001573432125-V3" >HAR<i class="fas fa-external-link-alt"></i></a>（Harmony Archive），或者<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/in-app-hsp-0000001523312158-V3" >HSP<i class="fas fa-external-link-alt"></i></a>（Harmony Shared Package）。</li>
+</ul>
+<p>一个Module可以包含一个或多个<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/uiability-overview-0000001477980929-V3" >UIAbility<i class="fas fa-external-link-alt"></i></a>组件，如下图所示。</p>
+<p><strong>Module与UIAbility组件关系示意图：</strong></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTViNTg0MGJhMjY1ODI0ODg1N2VlZGRjMjEwYmRjZDNfMnBoV1lQeDJ4N003cktSWktRc2s4WDdsWFRXVXBVNXdfVG9rZW46UXYxb2JqdVVWb1M5U2t4VmRJRGNySUdVbkFjXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<h1 id="应用开发：待办清单"><a href="#应用开发：待办清单" class="headerlink" title="应用开发：待办清单"></a>应用开发：待办清单</h1><p>下面以后续鸿蒙主推的Stage模型+ArkTs技术栈去Hello World。</p>
+<p>完成一个简单的UI效果和服务卡片设计。</p>
+<p>暂时无法在飞书文档外展示此内容</p>
+<h2 id="前置基础"><a href="#前置基础" class="headerlink" title="前置基础"></a>前置基础</h2><h3 id="IDE配置"><a href="#IDE配置" class="headerlink" title="IDE配置"></a>IDE配置</h3><p>简单的配置就不说了，按照<a class="link"   target="_blank" rel="noopener" href="https://developer.huawei.com/consumer/cn/training/course/slightMooc/C101667303102887820?ha_linker=eyJ0cyI6MTY5NTgwNDc2MTUyMiwiaWQiOiI3Yzk1MzQzNTk0ZTJhMjUzNTZjOWYyNzQ0MmI5Mjk5OSJ9" >文档<i class="fas fa-external-link-alt"></i></a>处理</p>
+<p>创建工程后的目录为</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDIyMWQ5NmY4NTQ0OWUxNzRmM2E3YzY4ODQxMTk0ZDlfTDViYTRlMExxQ3hPWUhISGp3dEQzb3lUbTNUanFNVXZfVG9rZW46VnpMSWJycTBzb24yU294eFlEbmNUNEZIbjFmXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                >详细如下：<strong>AppScope &gt; app.json5</strong>：应用的全局配置信息。<strong>entry</strong>：HarmonyOS工程模块，编译构建生成一个HAP包。<strong>src</strong> <strong>&gt; main &gt; ets</strong>：用于存放ArkTS源码。<strong>src</strong> <strong>&gt; main &gt; ets &gt; entryability</strong>：应用&#x2F;服务的入口。<strong>src</strong> <strong>&gt; main &gt; ets &gt; entryformability：</strong>服务卡片的Ability。<strong>src</strong> <strong>&gt; main &gt; ets &gt; pages</strong>：应用&#x2F;服务包含的页面。<strong>src</strong> <strong>&gt; main &gt; resources</strong>：用于存放应用&#x2F;服务所用到的资源文件，如图形、多媒体、字符串、布局文件等。关于资源文件，详见<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/resource-categories-and-access-0000001544463977-V3" >资源分类与访问<i class="fas fa-external-link-alt"></i></a>。<strong>src &gt; main &gt; module.json5</strong>：Stage模型模块配置文件。主要包含HAP包的配置信息、应用&#x2F;服务在具体设备上的配置信息以及应用&#x2F;服务的全局配置信息。具体的配置文件说明，详见<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/module-configuration-file-0000001427744540-V3" >module.json5配置文件<i class="fas fa-external-link-alt"></i></a>。<strong>oh_modules</strong>：用于存放三方库依赖信息。关于原npm工程适配ohpm操作，请参考<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/project_overview-0000001053822398-V3#section167081936119" >历史工程迁移<i class="fas fa-external-link-alt"></i></a>。<strong>build-profile.json5</strong>：应用级配置信息，包括签名、产品配置等。</p>
+<h3 id="ArkTS简单入门"><a href="#ArkTS简单入门" class="headerlink" title="ArkTS简单入门"></a>ArkTS简单入门</h3><p>ArkTS是HarmonyOS优选的主力应用开发语言。</p>
+<p>它在TypeScript（简称TS）的基础上，<strong>匹配ArkUI框架，扩展了声明式UI、状态管理</strong>等相应的能力，让开发者以更简洁、更自然的方式开发跨端应用。要了解什么是ArkTS，我们首先要了解下ArkTS、TypeScript和JavaScript之间的关系：</p>
+<ul>
+<li>JavaScript是一种属于网络的高级脚本语言，已经被广泛用于Web应用开发，常用来为网页添加各式各样的动态功能，为用户提供更流畅美观的浏览效果。</li>
+<li>TypeScript 是 JavaScript 的一个超集，它扩展了 JavaScript 的语法，通过在JavaScript的基础上添加静态类型定义构建而成，是一个开源的编程语言。</li>
+<li>ArkTS兼容TypeScript语言，拓展了声明式UI、状态管理、并发任务等能力。</li>
+</ul>
+<p>由此可知，TypeScript是JavaScript的超集，ArkTS则是TypeScript的超集，他们的关系如下图所示：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDM1MGQzNGE4MDNlM2I3MTM1NGYyZTM5ZGY4OTkwNTJfeFQzcW9aNlQ3bExGSDRiZGtQcElJY1JsV2tVMWF3NldfVG9rZW46V3BnN2JCcG0zb1E4VXZ4elVFT2NqNFIwbmZlXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<p>TypeScript快速入门：<a class="link"   target="_blank" rel="noopener" href="https://developer.huawei.com/consumer/cn/training/course/slightMooc/C101667356568959645" >https://developer.huawei.com/consumer/cn/training/course/slightMooc/C101667356568959645<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="声明式UI"><a href="#声明式UI" class="headerlink" title="声明式UI"></a>声明式UI</h4><p>在ArkUI中，UI显示的内容均为组件，由框架直接提供的称为系统组件，由开发者定义的称为自定义组件。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=NDQ0ZGRjMjc0ZTgxZDRlYTQwYmZkNjZmMzk5YTI3OWJfVlhVRktIbUVaSGdmM1MzSEhWVWRkUkRqRk1PRkh1eWxfVG9rZW46U3ZCWGI2U0djb2txVEt4dFZ6dWNER21NblZoXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<ul>
+<li>@Component：@Component装饰器仅能装饰struct关键字声明的数据结构。<strong>struct被@Component装饰后具备组件化的能力，需要实现build方法描述UI</strong>，一个struct只能被一个@Component装饰。</li>
+<li>build()函数：build()函数用于定义自定义组件的声明式UI描述，自定义组件必须定义build()函数。</li>
+<li>@Entry：@Entry装饰的自定义组件将作为UI页面的入口。</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 入口UI</span></span><br><span class="line"><span class="meta">@Entry</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line">struct <span class="title class_">ToDoListPage</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">totalTasks</span>: <span class="title class_">Array</span>&lt;<span class="built_in">string</span>&gt; = [];</span><br><span class="line"></span><br><span class="line">  <span class="title function_">aboutToAppear</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">totalTasks</span> = <span class="title class_">DataModel</span>.<span class="title function_">getData</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">build</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//  列布局</span></span><br><span class="line">    <span class="title class_">Column</span>(&#123; <span class="attr">space</span>: <span class="title class_">CommonConstants</span>.<span class="property">COLUMN_SPACE</span> &#125;) &#123;</span><br><span class="line">    <span class="comment">// 标题文案</span></span><br><span class="line">      <span class="title class_">Text</span>($r(<span class="string">&#x27;app.string.page_title&#x27;</span>))</span><br><span class="line">        .<span class="title function_">fontSize</span>($r(<span class="string">&#x27;app.float.title_font_size&#x27;</span>))</span><br><span class="line">        .<span class="title function_">fontWeight</span>(<span class="title class_">FontWeight</span>.<span class="property">Bold</span>)</span><br><span class="line">        .<span class="title function_">lineHeight</span>($r(<span class="string">&#x27;app.float.title_font_height&#x27;</span>))</span><br><span class="line">        .<span class="title function_">width</span>(<span class="title class_">CommonConstants</span>.<span class="property">TITLE_WIDTH</span>)</span><br><span class="line">        .<span class="title function_">margin</span>(&#123;</span><br><span class="line">          <span class="attr">top</span>: $r(<span class="string">&#x27;app.float.title_margin_top&#x27;</span>),</span><br><span class="line">          <span class="attr">bottom</span>: $r(<span class="string">&#x27;app.float.title_margin_bottom&#x27;</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">        .<span class="title function_">textAlign</span>(<span class="title class_">TextAlign</span>.<span class="property">Start</span>)</span><br><span class="line">        </span><br><span class="line">      <span class="comment">// 遍历添加item元素</span></span><br><span class="line">      <span class="title class_">ForEach</span>(<span class="variable language_">this</span>.<span class="property">totalTasks</span>, <span class="function">(<span class="params">item: <span class="built_in">string</span></span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="title class_">ToDoItem</span>(&#123; <span class="attr">content</span>: item &#125;)</span><br><span class="line">      &#125;, <span class="function">(<span class="params">item: <span class="built_in">string</span></span>) =&gt;</span> <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(item))</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 一个按钮</span></span><br><span class="line">      <span class="title class_">Button</span>() &#123;</span><br><span class="line">        <span class="title class_">Text</span>(<span class="string">&#x27;跳转页面&#x27;</span>)</span><br><span class="line">          .<span class="title function_">fontSize</span>(<span class="number">30</span>)</span><br><span class="line">          .<span class="title function_">fontWeight</span>(<span class="title class_">FontWeight</span>.<span class="property">Bold</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      .<span class="title function_">onClick</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">`Succeeded in clicking the &#x27;Next&#x27; button.`</span>)</span><br><span class="line">        <span class="comment">// 跳转到第二页</span></span><br><span class="line">        router.<span class="title function_">pushUrl</span>(&#123; <span class="attr">url</span>: <span class="string">&#x27;pages/NextPage&#x27;</span> &#125;).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&#x27;Succeeded in jumping to the second page.&#x27;</span>)</span><br><span class="line">        &#125;).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">`Failed to jump to the second page.Code is <span class="subst">$&#123;err.code&#125;</span>, message is <span class="subst">$&#123;err.message&#125;</span>`</span>)</span><br><span class="line">        &#125;)&#125;</span><br><span class="line">      )</span><br><span class="line">      .<span class="title function_">type</span>(<span class="title class_">ButtonType</span>.<span class="property">Capsule</span>)</span><br><span class="line">      .<span class="title function_">margin</span>(&#123;</span><br><span class="line">        <span class="attr">top</span>: <span class="number">20</span></span><br><span class="line">      &#125;)</span><br><span class="line">      .<span class="title function_">backgroundColor</span>(<span class="string">&#x27;#0D9FFB&#x27;</span>)</span><br><span class="line">      .<span class="title function_">width</span>(<span class="string">&#x27;40%&#x27;</span>)</span><br><span class="line">      .<span class="title function_">height</span>(<span class="string">&#x27;5%&#x27;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    .<span class="title function_">width</span>(<span class="title class_">CommonConstants</span>.<span class="property">FULL_LENGTH</span>)</span><br><span class="line">    .<span class="title function_">height</span>(<span class="title class_">CommonConstants</span>.<span class="property">FULL_LENGTH</span>)</span><br><span class="line">    .<span class="title function_">backgroundColor</span>($r(<span class="string">&#x27;app.color.page_background&#x27;</span>))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义组件</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> struct <span class="title class_">ToDoItem</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> content?: <span class="built_in">string</span>;</span><br><span class="line">  <span class="comment">// 数据驱动UI</span></span><br><span class="line">  <span class="comment">// @State当这些状态数据被修改时，将会调用所在组件的build方法进行UI刷新。</span></span><br><span class="line">  <span class="meta">@State</span> <span class="attr">isComplete</span>: <span class="built_in">boolean</span> = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Builder</span> <span class="title function_">labelIcon</span>(<span class="params">icon: Resource</span>) &#123;</span><br><span class="line">    <span class="title class_">Image</span>(icon)</span><br><span class="line">      .<span class="title function_">objectFit</span>(<span class="title class_">ImageFit</span>.<span class="property">Contain</span>)</span><br><span class="line">      .<span class="title function_">width</span>($r(<span class="string">&#x27;app.float.checkbox_width&#x27;</span>))</span><br><span class="line">      .<span class="title function_">height</span>($r(<span class="string">&#x27;app.float.checkbox_width&#x27;</span>))</span><br><span class="line">      .<span class="title function_">margin</span>($r(<span class="string">&#x27;app.float.checkbox_margin&#x27;</span>))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">build</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 行布局</span></span><br><span class="line">    <span class="title class_">Row</span>() &#123;</span><br><span class="line">    <span class="comment">// 切换label的样式</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">isComplete</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">labelIcon</span>($r(<span class="string">&#x27;app.media.ic_ok&#x27;</span>));</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">labelIcon</span>($r(<span class="string">&#x27;app.media.ic_default&#x27;</span>));</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 文案内容</span></span><br><span class="line">      <span class="title class_">Text</span>(<span class="variable language_">this</span>.<span class="property">content</span>)</span><br><span class="line">        .<span class="title function_">fontSize</span>($r(<span class="string">&#x27;app.float.item_font_size&#x27;</span>))</span><br><span class="line">        .<span class="title function_">fontWeight</span>(<span class="title class_">CommonConstants</span>.<span class="property">FONT_WEIGHT</span>)</span><br><span class="line">        <span class="comment">// 切换文案的样式</span></span><br><span class="line">        .<span class="title function_">opacity</span>(<span class="variable language_">this</span>.<span class="property">isComplete</span> ? <span class="title class_">CommonConstants</span>.<span class="property">OPACITY_COMPLETED</span> : <span class="title class_">CommonConstants</span>.<span class="property">OPACITY_DEFAULT</span>)</span><br><span class="line">        .<span class="title function_">decoration</span>(&#123; <span class="attr">type</span>: <span class="variable language_">this</span>.<span class="property">isComplete</span> ? <span class="title class_">TextDecorationType</span>.<span class="property">LineThrough</span> : <span class="title class_">TextDecorationType</span>.<span class="property">None</span> &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    .<span class="title function_">borderRadius</span>(<span class="title class_">CommonConstants</span>.<span class="property">BORDER_RADIUS</span>)</span><br><span class="line">    .<span class="title function_">backgroundColor</span>($r(<span class="string">&#x27;app.color.start_window_background&#x27;</span>))</span><br><span class="line">    .<span class="title function_">width</span>(<span class="title class_">CommonConstants</span>.<span class="property">LIST_DEFAULT_WIDTH</span>)</span><br><span class="line">    .<span class="title function_">height</span>($r(<span class="string">&#x27;app.float.list_item_height&#x27;</span>))</span><br><span class="line">    .<span class="title function_">onClick</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 点击后设置数据</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">isComplete</span> = !<span class="variable language_">this</span>.<span class="property">isComplete</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="状态管理"><a href="#状态管理" class="headerlink" title="状态管理"></a>状态管理</h4><p>组件状态管理装饰器用来管理组件中的状态，它们分别是：@State、@Prop、@Link。</p>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/arkts-state-0000001474017162-V3" >@State<i class="fas fa-external-link-alt"></i></a>装饰的变量是组件内部的状态数据，当这些状态数据被修改时，将会调用所在组件的build方法进行UI刷新。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/arkts-prop-0000001473537702-V3" >@Prop<i class="fas fa-external-link-alt"></i></a>与@State有相同的语义，但初始化方式不同。@Prop装饰的变量必须使用其父组件提供的@State变量进行初始化，允许组件内部修改@Prop变量，但更改不会通知给父组件，即@Prop属于单向数据绑定。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/arkts-link-0000001524297305-V3" >@Link<i class="fas fa-external-link-alt"></i></a>装饰的变量可以和父组件的@State变量建立双向数据绑定，需要注意的是：@Link变量不能在组件内部进行初始化。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/arkts-builder-0000001524176981-V3" >@Builder<i class="fas fa-external-link-alt"></i></a>装饰的方法用于定义组件的声明式UI描述，在一个自定义组件内快速生成多个布局内容。</li>
+</ul>
+<p>@State、@Prop、@Link三者关系如图所示：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=NDg1Y2M0MmE2YTAzNzMxNWUwNzk4NDQ4YjE2OTk1NmVfR1hlUFVxT0dFVUltWW5Ec0JaZEdMUURuWG9yVXBNcHJfVG9rZW46RXJvQmI2eWVPbzJ4MEt4R0t3WmNqUTBSblZlXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<h2 id="简单UI界面开发"><a href="#简单UI界面开发" class="headerlink" title="简单UI界面开发"></a>简单UI界面开发</h2><h3 id="1、UIAbility应用组件"><a href="#1、UIAbility应用组件" class="headerlink" title="1、UIAbility应用组件"></a>1、UIAbility应用组件</h3><p>UIAbility组件是一种包含UI界面的应用组件，主要用于和用户交互。</p>
+<p>UIAbility组件是系统调度的基本单元，为应用提供绘制界面的窗口</p>
+<p>一个UIAbility组件中可以通过多个页面来实现一个功能模块。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=NDYyOTEyOTY0ZjY0MWVkNjZjNDY4YWFhNThjNTA3NjVfM1M3VFdrZ0pGQ2NFbXdrTm9QOFBiN1lkUjcwOTJoYWpfVG9rZW46T2J3dGJaSmZGb0xBUkd4bzVBTWNBQ240bnNkXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">EntryAbility</span> <span class="keyword">extends</span> <span class="title class_ inherited__">UIAbility</span> &#123;</span><br><span class="line">    <span class="title function_">onWindowStageCreate</span>(<span class="params">windowStage: <span class="variable language_">window</span>.WindowStage</span>) &#123;</span><br><span class="line">        <span class="comment">// Main window is created, set main page for this ability</span></span><br><span class="line">        hilog.<span class="title function_">info</span>(<span class="number">0x0000</span>, <span class="string">&#x27;testTag&#x27;</span>, <span class="string">&#x27;%&#123;public&#125;s&#x27;</span>, <span class="string">&#x27;Ability onWindowStageCreate&#x27;</span>);</span><br><span class="line">        <span class="comment">// 启动该应用组件后进入的页面为：ToDoListPage</span></span><br><span class="line">        windowStage.<span class="title function_">loadContent</span>(<span class="string">&#x27;pages/ToDoListPage&#x27;</span>, <span class="function">(<span class="params">err, data</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (err.<span class="property">code</span>) &#123;</span><br><span class="line">                hilog.<span class="title function_">error</span>(<span class="number">0x0000</span>, <span class="string">&#x27;testTag&#x27;</span>, <span class="string">&#x27;Failed to load the content. Cause: %&#123;public&#125;s&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(err) ?? <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            hilog.<span class="title function_">info</span>(<span class="number">0x0000</span>, <span class="string">&#x27;testTag&#x27;</span>, <span class="string">&#x27;Succeeded in loading the content. Data: %&#123;public&#125;s&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data) ?? <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、ArkTs编写对应的页面"><a href="#2、ArkTs编写对应的页面" class="headerlink" title="2、ArkTs编写对应的页面"></a>2、ArkTs编写对应的页面</h3><p>上述的<a class="link"   target="_blank" rel="noopener" href="https://bytedance.feishu.cn/docx/OjVKdBmEZo1QWAxKGi1czVKxnlf#W2PmdtiRdoQEuVxU6yac8LKonWu" >声明式UI<i class="fas fa-external-link-alt"></i></a>中编写了两个页面</p>
+<h3 id="3、设置新页面路由信息"><a href="#3、设置新页面路由信息" class="headerlink" title="3、设置新页面路由信息"></a>3、设置新页面路由信息</h3><p><code>main_page.json</code>文件内，编写页面信息</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;src&quot;</span>: [</span><br><span class="line">    <span class="comment">// 第一个页面</span></span><br><span class="line">    <span class="string">&quot;pages/ToDoListPage&quot;</span>,</span><br><span class="line">    <span class="comment">// 第二个页面</span></span><br><span class="line">    <span class="string">&quot;pages/NextPage&quot;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="服务卡片开发"><a href="#服务卡片开发" class="headerlink" title="服务卡片开发"></a>服务卡片开发</h2><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=MzM3ZDRiOTY3NzVmZjI1MDUwZTIxMjA1NzQyMmY4M2RfaXJhR2RCUEM4RE4yNWN6aGQ0aHJCZVE1R3MzUWZjY1RfVG9rZW46S0JyU2JVM2h2b0h6SzZ4czFjOWNXendtbm5nXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=NTcxZDJmMDQ3Nzg4NzNjY2MxNWQ0YTA4NWM0ZDEzY2ZfSGRXWk1Rc3FxMjFFeEozSGE4REt5QVJ5ZjdzejdWZlZfVG9rZW46Q3JFTGIyejJDb3ZrVEx4bGkyOGNDenhsbmJjXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=Mjg2ZDk5YTQ1NDY5NzJmZjUzOWJkZDcxYWQ0ZDRiNzRfQnNRd01PR0tDdHo0bEd3SjlWdG1Wa2NUTWxZbWtqUmtfVG9rZW46UDh4amJQWEFzb2RobmF4a0NqN2NmbFRvbmRiXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<p>服务卡片，在体验上类似于widget的表现，但是鸿蒙系统做了些优化，比如<strong>多个卡片可以折叠在一块</strong>、<strong>鸿蒙小艺建议可以显示应用的服务卡片等等。</strong></p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTQzMTRjZjRkYTEyYTRhMjI4MWRkMjRiZDUxMzhiZmZfUFNvSXB0Wm5FcHBXTmR0M0hQMExpa3c1dVB4U1NvNXhfVG9rZW46RHJpZmJmYjBIb1dZdTV4em1meGNTUFNhblpiXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<ul>
+<li>卡片使用方：如上图中的桌面，显示卡片内容的宿主应用，控制卡片在宿主中展示的位置。<ul>
+<li>应用图标：应用入口图标，点击后可拉起应用进程，图标内容不支持交互。</li>
+<li>卡片：具备不同规格大小的界面展示，卡片的内容可以进行交互，如实现按钮进行<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/arkts-ui-widget-event-formextensionability-0000001502350018-V3" >界面的刷新<i class="fas fa-external-link-alt"></i></a>、<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/arkts-ui-widget-event-router-0000001502352142-V3" >应用的跳转<i class="fas fa-external-link-alt"></i></a>等。</li>
+</ul>
+</li>
+<li>卡片提供方：包含卡片的应用，提供卡片的显示内容、控件布局以及控件点击处理逻辑。<ul>
+<li>FormExtensionAbility：卡片业务逻辑模块，提供卡片创建、销毁、刷新等生命周期回调。</li>
+<li>卡片页面：卡片UI模块，包含页面控件、布局、事件等显示和交互信息。</li>
+</ul>
+</li>
+</ul>
+<h3 id="IDE创建卡片"><a href="#IDE创建卡片" class="headerlink" title="IDE创建卡片"></a>IDE创建卡片</h3><p>卡片的开发目前相对简单，IDE快速创建即可。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=MWE4NmY3ZDIxODQ4OWRmNjkyYmJmZjM1MWU5OTFjMTZfT3dCbFM0eURnTU5ZdzhxNGhkUWcxejVBb3ZVd1JsWkdfVG9rZW46TEM0dGJFbVJnb0FMVkZ4Y2VpUWNBTnpmbmhnXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=NTdiZDIyZDM2NmM5MjFhMzYwYmEyZDFmYjkwNjBlYWZfM0lWa09jcEJhUmdQVVlmQ1E2RGVqdmFtS3pLREg1VVFfVG9rZW46RGwyMWJ4WTdDb1dWY2x4dmhDU2NEMzBablBkXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<h3 id="卡片Ability"><a href="#卡片Ability" class="headerlink" title="卡片Ability"></a>卡片Ability</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">EntryFormAbility</span> <span class="keyword">extends</span> <span class="title class_ inherited__">FormExtensionAbility</span> &#123;</span><br><span class="line">  <span class="title function_">onAddForm</span>(<span class="params">want</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&#x27;[EntryFormAbility] onAddForm&#x27;</span>);</span><br><span class="line">    <span class="comment">// 在入参want中可以取出卡片的唯一标识：formId</span></span><br><span class="line">    <span class="keyword">let</span> <span class="attr">formId</span>: <span class="built_in">string</span> = want.<span class="property">parameters</span>[formInfo.<span class="property">FormParam</span>.<span class="property">IDENTITY_KEY</span>];</span><br><span class="line">    <span class="comment">// 使用方创建卡片时触发，提供方需要返回卡片数据绑定类</span></span><br><span class="line">    <span class="keyword">let</span> obj = &#123;</span><br><span class="line">      <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;titleOnAddForm&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;detail&#x27;</span>: <span class="string">&#x27;detailOnAddForm&#x27;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">let</span> formData = formBindingData.<span class="title function_">createFormBindingData</span>(obj);</span><br><span class="line">    <span class="keyword">return</span> formData;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">onUpdateForm</span>(<span class="params">formId</span>) &#123;</span><br><span class="line">    <span class="comment">// 若卡片支持定时更新/定点更新/卡片使用方主动请求更新功能，则提供方需要重写该方法以支持数据更新</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&#x27;[EntryFormAbility] onUpdateForm&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> obj = &#123;</span><br><span class="line">      <span class="string">&#x27;title&#x27;</span>: <span class="string">&#x27;titleOnUpdateForm&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;detail&#x27;</span>: <span class="string">&#x27;detailOnUpdateForm&#x27;</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">let</span> formData = formBindingData.<span class="title function_">createFormBindingData</span>(obj);</span><br><span class="line">    formProvider.<span class="title function_">updateForm</span>(formId, formData).<span class="title function_">catch</span>(<span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123;</span><br><span class="line">        <span class="comment">// 异常分支打印</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">`[EntryFormAbility] Failed to updateForm. Code: <span class="subst">$&#123;err.code&#125;</span>, message: <span class="subst">$&#123;err.message&#125;</span>`</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">onRemoveForm</span>(<span class="params">formId</span>) &#123;</span><br><span class="line">    <span class="comment">// Called to notify the form provider that a specified form has been destroyed.</span></span><br><span class="line">    <span class="comment">// 当对应的卡片删除时触发的回调，入参是被删除的卡片ID</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">info</span>(<span class="string">&#x27;[EntryFormAbility] onRemoveForm&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="卡片UI"><a href="#卡片UI" class="headerlink" title="卡片UI"></a>卡片UI</h3><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=MzM2M2M5MTQxODg3Y2IxYThjYzM0NTQzNzY4ODU3OGZfeU9YaXRpVHNpSU0yNGJ5SzJuaW1Fbm5wUGYwODdaU3VfVG9rZW46UlFaQmJUbXNnb1pOQUN4YW12YWM4MWlQbjNrXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=N2Y5ZjE3ZTU0ZTVkMDk1MGJhNWI0NTY0NGIwZGE2ZjVfbnRJQ21uYklzSnVKUkNZSHhqZVExZWlXRUFzc3Y4dEVfVG9rZW46R3EzdWJKV2w5b3hJbmN4Y01DRWN2eElabldjXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<p>实现简单的点击旋转</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Entry</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line">struct <span class="title class_">WidgetCard</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*</span></span><br><span class="line"><span class="comment">   * The height percentage setting.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">readonly</span> <span class="attr">FULL_HEIGHT_PERCENT</span>: <span class="built_in">string</span> = <span class="string">&#x27;100%&#x27;</span>;</span><br><span class="line">  <span class="meta">@State</span> <span class="attr">myWidth</span>: <span class="built_in">number</span> = <span class="number">100</span>;</span><br><span class="line">  <span class="meta">@State</span> <span class="attr">myHeight</span>: <span class="built_in">number</span> = <span class="number">50</span>;</span><br><span class="line">  <span class="comment">// 标志位，true和false分别对应一组myWidth、myHeight值</span></span><br><span class="line">  <span class="meta">@State</span> <span class="attr">flag</span>: <span class="built_in">boolean</span> = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">build</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title class_">Column</span>(&#123; <span class="attr">space</span>: <span class="number">10</span> &#125;) &#123;</span><br><span class="line">      <span class="title class_">Button</span>(<span class="string">&quot;text&quot;</span>)</span><br><span class="line">        .<span class="title function_">type</span>(<span class="title class_">ButtonType</span>.<span class="property">Normal</span>)</span><br><span class="line">        .<span class="title function_">width</span>(<span class="variable language_">this</span>.<span class="property">myWidth</span>)</span><br><span class="line">        .<span class="title function_">height</span>(<span class="variable language_">this</span>.<span class="property">myHeight</span>)</span><br><span class="line">        .<span class="title function_">margin</span>(<span class="number">20</span>)</span><br><span class="line">      <span class="title class_">Button</span>(<span class="string">&quot;area: click me&quot;</span>)</span><br><span class="line">        .<span class="title function_">fontSize</span>(<span class="number">12</span>)</span><br><span class="line">        .<span class="title function_">margin</span>(<span class="number">20</span>)</span><br><span class="line">        .<span class="title function_">onClick</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">          <span class="title function_">animateTo</span>(&#123; <span class="attr">duration</span>: <span class="number">1000</span>, <span class="attr">curve</span>: <span class="title class_">Curve</span>.<span class="property">Ease</span> &#125;, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">// 动画闭包中根据标志位改变控制第一个Button宽高的状态变量，使第一个Button做宽高动画</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">flag</span>) &#123;</span><br><span class="line">              <span class="variable language_">this</span>.<span class="property">myWidth</span> = <span class="number">100</span>;</span><br><span class="line">              <span class="variable language_">this</span>.<span class="property">myHeight</span> = <span class="number">50</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="variable language_">this</span>.<span class="property">myWidth</span> = <span class="number">200</span>;</span><br><span class="line">              <span class="variable language_">this</span>.<span class="property">myHeight</span> = <span class="number">100</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">flag</span> = !<span class="variable language_">this</span>.<span class="property">flag</span>;</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    .<span class="title function_">width</span>(<span class="string">&quot;100%&quot;</span>)</span><br><span class="line">    .<span class="title function_">height</span>(<span class="string">&quot;100%&quot;</span>)</span><br><span class="line">    .<span class="title function_">onClick</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">postCardAction</span>(<span class="variable language_">this</span>, &#123;</span><br><span class="line">        <span class="string">&quot;action&quot;</span>: <span class="string">&#x27;router&#x27;</span>,</span><br><span class="line">        <span class="string">&quot;abilityName&quot;</span>: <span class="string">&#x27;EntryAbility&#x27;</span>,</span><br><span class="line">        <span class="string">&quot;params&quot;</span>: &#123;</span><br><span class="line">          <span class="string">&quot;message&quot;</span>: <span class="string">&#x27;add detail&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="卡片数据交互"><a href="#卡片数据交互" class="headerlink" title="卡片数据交互"></a>卡片数据交互</h3><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=YzJmMGM3MTZiMjIzODg5NjY5Mjg2YzVlN2YxOWI3NDVfRHFQdlVDOHBndjlISTQyazBBY2dJU3g2RGtnTEhtU01fVG9rZW46QUt1T2JTd1Vzb2M4ZHd4ZWpQMGNINnhwbjVvXzE2OTg4NTAzNTU6MTY5ODg1Mzk1NV9WNA"
+                      alt="img"
+                ></p>
+<ul>
+<li>系统刷新后，调用FormExtensionAbility去刷新widget。</li>
+<li>业务逻辑主动更改卡片数据。</li>
+</ul>
+<h1 id="元服务"><a href="#元服务" class="headerlink" title="元服务"></a>元服务</h1><p>元服务和应用开发的差别主要在于是否免安装。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;installationFree&quot;: false</span><br></pre></td></tr></table></figure>
+
+<p>主要通过该参数来确定应用是否免安装。</p>
+<blockquote>
+<p>目前经过测试发现</p>
+<p>Stage应用模型不支持修改该参数</p>
+<p>FA应用模型支持修改该参数将正常应用更改为不需安装的元服务应用。</p>
+</blockquote>
+<p><a class="link"   target="_blank" rel="noopener" href="https://developer.huawei.com/consumer/cn/doc/distribution/service/fa-dev-process-0000001491675000" >https://developer.huawei.com/consumer/cn/doc/distribution/service/fa-dev-process-0000001491675000<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><h1 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h1><p>官方文档：<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/start-overview-0000001478061421-V3?catalogVersion=V3" >https://developer.harmonyos.com/cn/docs/documentation/doc-guides-V3/start-overview-0000001478061421-V3?catalogVersion=V3<i class="fas fa-external-link-alt"></i></a></p>
+<p>鸿蒙开发者文档：<a class="link"   target="_blank" rel="noopener" href="https://developer.huawei.com/consumer/cn/" >https://developer.huawei.com/consumer/cn/<i class="fas fa-external-link-alt"></i></a> HelloWorld：<a class="link"   target="_blank" rel="noopener" href="https://developer.huawei.com/consumer/cn/training/course/slightMooc/C101667303102887820?ha_linker=eyJ0cyI6MTY5NTgwNDc2MTUyMiwiaWQiOiI3Yzk1MzQzNTk0ZTJhMjUzNTZjOWYyNzQ0MmI5Mjk5OSJ9" >https://developer.huawei.com/consumer/cn/training/course/slightMooc/C101667303102887820?ha_linker=eyJ0cyI6MTY5NTgwNDc2MTUyMiwiaWQiOiI3Yzk1MzQzNTk0ZTJhMjUzNTZjOWYyNzQ0MmI5Mjk5OSJ9<i class="fas fa-external-link-alt"></i></a></p>
+<p>分布式文件服务：<a class="link"   target="_blank" rel="noopener" href="https://bbs.huaweicloud.com/blogs/381553" >https://bbs.huaweicloud.com/blogs/381553<i class="fas fa-external-link-alt"></i></a></p>
+<p>系统能力API文档：<a class="link"   target="_blank" rel="noopener" href="https://developer.harmonyos.com/cn/docs/documentation/doc-references-V3/syscap-0000001408089368-V3?catalogVersion=V3" >https://developer.harmonyos.com/cn/docs/documentation/doc-references-V3/syscap-0000001408089368-V3?catalogVersion=V3<i class="fas fa-external-link-alt"></i></a></p>
+<p>暂时无法在飞书文档外展示此内容</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">鸿蒙开发入门与实践</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2023-11-01 22:43:11</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2023/11/01/鸿蒙开发入门与实践/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/01/14/2023/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">2022年终总结</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E3%80%90%E9%81%A5%E9%81%A5%E9%A2%86%E5%85%88%EF%BC%81%E3%80%91"><span class="nav-number">1.</span> <span class="nav-text">背景【遥遥领先！】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%B8%BF%E8%92%99%E7%89%B9%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">鸿蒙特点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%BC%80%E5%8F%91%E6%A6%82%E5%BF%B5"><span class="nav-number">3.</span> <span class="nav-text">基本开发概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UI%E6%A1%86%E6%9E%B6%EF%BC%88%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80%EF%BC%89"><span class="nav-number">3.1.</span> <span class="nav-text">UI框架（开发语言）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E6%A8%A1%E5%9E%8B%EF%BC%88%E5%BC%80%E5%8F%91%E6%A1%86%E6%9E%B6%EF%BC%89"><span class="nav-number">3.2.</span> <span class="nav-text">应用模型（开发框架）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%8C%BA%E5%88%AB"><span class="nav-number">3.2.1.</span> <span class="nav-text">模型区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85%E7%BB%93%E6%9E%84"><span class="nav-number">3.3.</span> <span class="nav-text">包结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%EF%BC%9A%E5%BE%85%E5%8A%9E%E6%B8%85%E5%8D%95"><span class="nav-number">4.</span> <span class="nav-text">应用开发：待办清单</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E5%9F%BA%E7%A1%80"><span class="nav-number">4.1.</span> <span class="nav-text">前置基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IDE%E9%85%8D%E7%BD%AE"><span class="nav-number">4.1.1.</span> <span class="nav-text">IDE配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ArkTS%E7%AE%80%E5%8D%95%E5%85%A5%E9%97%A8"><span class="nav-number">4.1.2.</span> <span class="nav-text">ArkTS简单入门</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8FUI"><span class="nav-number">4.1.2.1.</span> <span class="nav-text">声明式UI</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86"><span class="nav-number">4.1.2.2.</span> <span class="nav-text">状态管理</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95UI%E7%95%8C%E9%9D%A2%E5%BC%80%E5%8F%91"><span class="nav-number">4.2.</span> <span class="nav-text">简单UI界面开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81UIAbility%E5%BA%94%E7%94%A8%E7%BB%84%E4%BB%B6"><span class="nav-number">4.2.1.</span> <span class="nav-text">1、UIAbility应用组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81ArkTs%E7%BC%96%E5%86%99%E5%AF%B9%E5%BA%94%E7%9A%84%E9%A1%B5%E9%9D%A2"><span class="nav-number">4.2.2.</span> <span class="nav-text">2、ArkTs编写对应的页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81%E8%AE%BE%E7%BD%AE%E6%96%B0%E9%A1%B5%E9%9D%A2%E8%B7%AF%E7%94%B1%E4%BF%A1%E6%81%AF"><span class="nav-number">4.2.3.</span> <span class="nav-text">3、设置新页面路由信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%8D%A1%E7%89%87%E5%BC%80%E5%8F%91"><span class="nav-number">4.3.</span> <span class="nav-text">服务卡片开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">4.3.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IDE%E5%88%9B%E5%BB%BA%E5%8D%A1%E7%89%87"><span class="nav-number">4.3.2.</span> <span class="nav-text">IDE创建卡片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%A1%E7%89%87Ability"><span class="nav-number">4.3.3.</span> <span class="nav-text">卡片Ability</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%A1%E7%89%87UI"><span class="nav-number">4.3.4.</span> <span class="nav-text">卡片UI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%A1%E7%89%87%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92"><span class="nav-number">4.3.5.</span> <span class="nav-text">卡片数据交互</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%83%E6%9C%8D%E5%8A%A1"><span class="nav-number">5.</span> <span class="nav-text">元服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">5.1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3%EF%BC%9A"><span class="nav-number">6.</span> <span class="nav-text">参考文档：</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
