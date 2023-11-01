@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="liduoan.efls">
+    
+    <title>
+        
+            ChatGpt的api使用入门 |
+        
+        liduoan修炼笔记
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/fontawesome.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/regular.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/solid.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/font/css/brands.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"zh-CN","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","favicon":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","avatar":"https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg","font_size":"17px","font_family":"STSong","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"header_transparent":true,"background_img":"/images/bg.svg","description":"世之奇伟、瑰怪，非常之观，常在于险远 || 而人之所罕至焉，故非有志者不能至也","font_color":null,"hitokoto":false},"scroll":{"progress_bar":true,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":true,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":false,"custom_label_list":["Engineer"]},"word_count":{"enable":true,"wordcount":true,"min2read":true},"img_align":"left","copyright_info":true},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"}
+    KEEP.language_code_block = {"copy":"复制代码","copied":"已复制","fold":"折叠代码块","folded":"已折叠"}
+    KEEP.language_copy_copyright = {"copy":"复制版权信息","copied":"已复制","title":"原文标题","author":"原文作者","link":"原文链接"}
+  </script>
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               liduoan修炼笔记
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">ChatGpt的api使用入门</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="https://i.postimg.cc/MpmSbVgT/4-U-3-AU-6-0-R8-L6-K5658-H.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">liduoan.efls</span>
+                            
+                                <span class="author-label">Engineer</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-03-14 22:59:36</span>
+        <span class="mobile">2023-03-14 22:59</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-11-01 23:02:20</span>
+    </span>
+    
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.6k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>14 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><p>两周前已经介绍了ChatGpt的相关账号注册、apiKey的获取，以及关键的Prompt提示语。</p>
+<p>而在知晓了如何注册、如何通过引导语获得我们想要的回答之后，本文将介绍如何使用openai的一些接口，让我们能够使用现有的AI接口来构建一些应用和工具。</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=OTRkZmNiZTgzZDIyMTQzM2ZkOTUxOTI4M2Y2YmU0ZGFfNHI5ZG9hVGxIZmJQNjdVTVNrZjhUbG16NFhlNXllUHdfVG9rZW46Ym94Y25Ld2hTNTY3a0lKUmZaSFZQNENreHRkXzE2OTg4NTA3NTg6MTY5ODg1NDM1OF9WNA"
+                      alt="img"
+                ></p>
+<h1 id="二、API介绍"><a href="#二、API介绍" class="headerlink" title="二、API介绍"></a>二、API介绍</h1><p>openapi官网：<a class="link"   target="_blank" rel="noopener" href="https://openai.com/blog/openai-api" >OpenAI API<i class="fas fa-external-link-alt"></i></a></p>
+<p>官方doc文档：<a class="link"   target="_blank" rel="noopener" href="https://platform.openai.com/docs/introduction" >https://platform.openai.com/docs/introduction<i class="fas fa-external-link-alt"></i></a></p>
+<p>OpenAI API 几乎可以应用于任何涉及理解或生成自然语言、代码或图像的任务。</p>
+<p>其提供一系列具有不同功率级别的<a class="link"   target="_blank" rel="noopener" href="https://platform.openai.com/docs/models" >模型<i class="fas fa-external-link-alt"></i></a>，适用于不同的任务，这些模型可用于从内容生成到语义搜索和分类的所有领域。</p>
+<h2 id="1、名词解释"><a href="#1、名词解释" class="headerlink" title="1、名词解释"></a>1、名词解释</h2><h3 id="Token："><a href="#Token：" class="headerlink" title="Token："></a>Token：</h3><p>openai的模型是通过将文本分解为名为token的较小单元来处理文本。token可以是单词，单词块或单个字符。</p>
+<p>通过下面的文本来举例，其是如何被分解为token的： <strong>I have an orange cat named Butterscotch.</strong> 常见的单词，如“cat”，是一个单独的token，而不常用的单词通常会分解为多个token。例如，“Butterscotch”会转换为四个token：“But”、“ters”、“cot”和“ch”。</p>
+<p>当前gpt-3.5-turbo计费价格为1000token&#x2F;0.002美元</p>
+<h3 id="Temperature"><a href="#Temperature" class="headerlink" title="Temperature"></a><strong>Temperature</strong></h3><p>temperature是一种超参数，在一些自然语言处理模型中被使用，包括ChatGPT，用于控制生成文本中的<strong>随机性或“创造性”水平。</strong></p>
+<p> 简而言之，温度越低，结果就越确定，因为模型将始终选择最可能的下一个token。增加温度可能会导致更多的随机性，从而鼓励更多样化或创造性的输出。我们实际上是增加了其他可能token的权重。</p>
+<p>在应用方面，我们可能希望对于<strong>基于事实的问答等任务使用较低的温度值</strong>，以鼓励更加事实和简洁的回答。对于<strong>生成诗歌或其他创意任务，增加温度值可能会更有益。</strong></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=YjM0NzU5NTdhOTk2YjY4NWMyOTM4ODY1ZWRmZDU3MDFfWGNxUUVKQ011aTJhM2VFVzJKQXJXVkF0Q3c2NHZ5OENfVG9rZW46Ym94Y253TmdrS0JEWGFKRnQ5N3FQOWt3c2dmXzE2OTg4NTA3NTg6MTY5ODg1NDM1OF9WNA"
+                      alt="img"
+                ></p>
+<blockquote>
+<p>有兴趣可以在文档中拖动temperature尝试 <a class="link"   target="_blank" rel="noopener" href="https://platform.openai.com/docs/quickstart/adjust-your-settings" >https://platform.openai.com/docs/quickstart/adjust-your-settings<i class="fas fa-external-link-alt"></i></a></p>
+</blockquote>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=YTE0ZDUxNDAzZGJhMDhlNmQwMmYzZDcwNjA0NDdjYzNfZFpGcXJIc05xQlhjT1BtcE5nT255TGphUXhIUlFwTHdfVG9rZW46Ym94Y25GVXRMcEo2cXhNaXpWUmp0MmVWRGFkXzE2OTg4NTA3NTg6MTY5ODg1NDM1OF9WNA"
+                      alt="img"
+                ></p>
+<h3 id="Top-p"><a href="#Top-p" class="headerlink" title="Top_p"></a>Top_p</h3><p><code>top_p</code> 是 OpenAI GPT 系列模型中的一个参数，用于控制生成文本的多样性。</p>
+<p>通过调整 <code>top_p</code> 的值，可以控制生成文本的多样性。较小的 <code>top_p</code> 值会导致生成文本较为保守，而较大的 <code>top_p</code> 值会导致生成文本更加自由和多样化。</p>
+<p>通常，建议在调整 <code>top_p</code> 值时，将其设置在 0.1 到 0.9 的范围内，一般改变top_p或Temperature，但不是两者兼而有之。</p>
+<h2 id="2、Api的简单使用"><a href="#2、Api的简单使用" class="headerlink" title="2、Api的简单使用"></a>2、Api的简单使用</h2><h3 id="1、直接发起请求"><a href="#1、直接发起请求" class="headerlink" title="1、直接发起请求"></a>1、直接发起请求</h3><p><a class="link"   target="_blank" rel="noopener" href="https://platform.openai.com/docs/api-reference/chat/create" >platform.openai.com<i class="fas fa-external-link-alt"></i></a></p>
+<p>既然是RESTful的请求，当然可以直接按照http的格式发起请求</p>
+<p>官网中的实例如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">curl https:<span class="comment">//api.openai.com/v1/chat/completions \</span></span><br><span class="line"><span class="comment">  -H &quot;Content-Type: application/json&quot; \</span></span><br><span class="line"><span class="comment">  -H &quot;Authorization: Bearer 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&quot; \</span></span><br><span class="line"><span class="comment">  -d &#x27;&#123;</span></span><br><span class="line">    <span class="string">&quot;model&quot;</span>: <span class="string">&quot;gpt-3.5-turbo&quot;</span>,</span><br><span class="line">    <span class="string">&quot;messages&quot;</span>: [&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;Hello!&quot;</span>&#125;]</span><br><span class="line">  &#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>一般我们在网页上使用chatGpt直接就传入一段prompt就完了，但是api中有所不同。</p>
+<p>api的入参从<strong>一段</strong> <strong>Prompt</strong> <strong>变成了一个数组</strong>，数组的每个元素都有 role 和 content 两个字段。</p>
+<p> role 这个字段一共有三个参数可以选择，分别是 </p>
+<ul>
+<li><strong>user 代表用户</strong></li>
+<li><strong>assistant 代表 AI 的回答。</strong> </li>
+<li><strong>system 代表系统，其content里的内容代表我们给 AI 的一个指令，也就是告诉 AI 应该怎么回答用户的问题</strong></li>
+</ul>
+<ol>
+<li>当 role 是 user 或者 assistant 的时候，content 里面的内容就代表用户和 AI 对话的内容。</li>
+</ol>
+<p>发起请求，得到对应的返回值：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=Mzk0NmVjZTkxNDI0ZTYyMzc5YWU2YTNhYWViMWZmYzFfZGQ3eTlzNXJCNzh5MXlsdjJWaWR0WVdTZWNWdWltcEJfVG9rZW46Ym94Y25mdDkxY2Q1VnNKT3FVeWJnZFNsSWZNXzE2OTg4NTA3NTg6MTY5ODg1NDM1OF9WNA"
+                      alt="img"
+                ></p>
+<h3 id="2、使用openai封装的库"><a href="#2、使用openai封装的库" class="headerlink" title="2、使用openai封装的库"></a>2、使用openai封装的库</h3><p>openai官方提供了python、node.js的脚本库，此外其他开源爱好者也提供了各类语言的sdk接入方式。</p>
+<p>例如go的接入方式：<a class="link"   target="_blank" rel="noopener" href="https://github.com/sashabaranov/go-openai" >https://github.com/sashabaranov/go-openai<i class="fas fa-external-link-alt"></i></a></p>
+<p>这里主要以Python为例，简要的使用python完成调用</p>
+<p>其必要的东西是：</p>
+<ul>
+<li>Openai的python库<ul>
+<li><code>pip install openai</code></li>
+</ul>
+</li>
+<li>openai的key</li>
+</ul>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import openai</span><br><span class="line"></span><br><span class="line">openai.api_key = <span class="string">&quot;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&quot;</span></span><br><span class="line"></span><br><span class="line">response = openai.ChatCompletion.create(</span><br><span class="line">  model=<span class="string">&quot;gpt-3.5-turbo&quot;</span><span class="punctuation">,</span></span><br><span class="line">  messages=<span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span><span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="string">&quot;system&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;You are a helpful assistant.&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span><span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Who won the world series in 2020?&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span><span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="string">&quot;assistant&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;The Los Angeles Dodgers won the World Series in 2020.&quot;</span><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span><span class="attr">&quot;role&quot;</span><span class="punctuation">:</span> <span class="string">&quot;user&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;content&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Where was it played?&quot;</span><span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h1 id="三、基于python-ChatGpt构建一个听懂人话的命令行工具"><a href="#三、基于python-ChatGpt构建一个听懂人话的命令行工具" class="headerlink" title="三、基于python+ChatGpt构建一个听懂人话的命令行工具"></a>三、基于python+ChatGpt构建一个听懂人话的命令行工具</h1><h2 id="1、需求介绍"><a href="#1、需求介绍" class="headerlink" title="1、需求介绍"></a>1、需求介绍</h2><p>制作一个能够听懂人话的工具，我们表达想要完成的内容，它能够告诉我们应该怎么去写对应的命令</p>
+<p>例如下面的创建5个txt文件，名字类似，我们不需要写完整所有的内容，ai就能够告知我们最终的是什么命令：</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDExMzRhNmNhYTAzZjQ3MTk1ZmM1NjUwMjM0MTU4MzdfVkZSSldyaVZmWDJrRG95a1dodmdVWFhLQXZlTnlvNHhfVG9rZW46Ym94Y25PRWFWM3p5bU1WZ1BJdzZla3pPMTBiXzE2OTg4NTA3NTg6MTY5ODg1NDM1OF9WNA"
+                      alt="img"
+                ></p>
+<p>需求分析：</p>
+<p>1、能够使用cgpt xxx就可以执行</p>
+<p>2、能够理解文本的内容转化成mac可执行的命令</p>
+<p>3、能够按下enter运行，同时输入任意命令可以不执行</p>
+<p>4、终端上的输出相对美观</p>
+<h2 id="2、使用cgpt-xxx就可以执行对应脚本"><a href="#2、使用cgpt-xxx就可以执行对应脚本" class="headerlink" title="2、使用cgpt xxx就可以执行对应脚本"></a>2、使用cgpt xxx就可以执行对应脚本</h2><p>实质上就是将python文件变为mac的执行脚本文件，直接问！</p>
+<blockquote>
+<p>Prompt:</p>
+<p>我有一个名为cgpt的python命令行工具的脚本，我想将这个脚本变为mac上的可执行脚本文件 这样我打开终端，无论在任何位置直接输入cgpt命令，就可以运行这个python脚本</p>
+</blockquote>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=NmFhYTIzYmI0NDRhZjAzZjY1NDBmZjk4ODhjZWRlNmFfUmlyN0tvdG5RMkR0ZUZIVU9tVHE5S3g4Rjh1dmNBYW1fVG9rZW46Ym94Y25jZ1VrZUduSWJDVGtvUDd0M0NRakFnXzE2OTg4NTA3NTg6MTY5ODg1NDM1OF9WNA"
+                      alt="img"
+                ></p>
+<h2 id="2、构建可用的prompt"><a href="#2、构建可用的prompt" class="headerlink" title="2、构建可用的prompt"></a>2、构建可用的prompt</h2><p>理解文本的内容转化成mac可执行的命令，这一步是整个工具的关键能力。</p>
+<p>而「转化文本内容并只输出对应的命令」，其实质就是<strong>构建一个能够满足我们需求的****prompt</strong>。</p>
+<p>prompt调试的工具可以使用：</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://platform.openai.com/docs/api-reference/chat/create" >platform.openai.com<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="a、你是mac电脑专家"><a href="#a、你是mac电脑专家" class="headerlink" title="a、你是mac电脑专家"></a>a、你是mac电脑专家</h3><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=NjJlMTQzZDVkZDY2M2M3MGIxZjcyZGNmYmVjNGVlZjFfbXViT1VXTnNBSWpGQUl6ZEw1dEpQVEo4TlU2RGNBMWhfVG9rZW46Ym94Y24yZWFreWhMWVlmWU9OVGZnaU1VZGJmXzE2OTg4NTA3NTg6MTY5ODg1NDM1OF9WNA"
+                      alt="img"
+                ></p>
+<p>我们希望输出的命令行是正确的，不需要ai的输出有创造性和多样性，所以在右边设置了其Temperature和Top P都为0。</p>
+<p>在完成设置之后，可以看到在上述promot下，其输出含有大量的解释，和预期的输出不一致。</p>
+<p>可以增加限制和举例，让ai能够理解我们的诉求，输出我们想要的东西。</p>
+<h3 id="b、举例和增加限制"><a href="#b、举例和增加限制" class="headerlink" title="b、举例和增加限制"></a>b、举例和增加限制</h3><p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=MTVhYzgwYTI5ODAxMTY4YWI5MjAxYmQ3OTE2NDU3NzBfOUtNVFFOdUtkQUI4NDlJbFdhaU5SVFRPa3VXS1RmN3RfVG9rZW46Ym94Y25nQklmQUV5Tm9yU0I3NDdKSm00M0tjXzE2OTg4NTA3NTg6MTY5ODg1NDM1OF9WNA"
+                      alt="img"
+                ></p>
+<p>如此我们就通过增加限制和简单的举例，得到了想要的输出。</p>
+<p>最终的prompt为：</p>
+<blockquote>
+<p>你是一个mac电脑专家，能够把自然语言翻译成在mac上命令行语句。</p>
+<p>另外你要遵循下面的几条规则：</p>
+<p>1、简单地输出翻译后的指令,不需要做任何说明或解释。</p>
+<p>2、如果你不理解我在说什么或者不确定如何将我的指令转换成计算机命令行，简单地输出7个字母“UNKNOWN”。</p>
+<p>3、如果翻译结果包含多行命令，请使用“&amp;”或“&amp;&amp;”将它们组合成一行命令。</p>
+<p>#USER        </p>
+<p>翻墙</p>
+<p>#ASSISTANT</p>
+<p>UNKNOWN</p>
+</blockquote>
+<h2 id="3、编写python脚本"><a href="#3、编写python脚本" class="headerlink" title="3、编写python脚本"></a>3、编写python脚本</h2><p>对于python也没有非常的熟悉，直接上手去写一个命令行工具可能需要一定的时间去查阅各类库包等等。</p>
+<p>对此，直接咨询chatgpt好了。</p>
+<h3 id="a、Basic-Prompt-Framework"><a href="#a、Basic-Prompt-Framework" class="headerlink" title="a、Basic Prompt Framework"></a>a、Basic Prompt Framework</h3><p>查阅了关于 ChatGPT prompt 的框架资料，这里使用的是Elavis Saravia <a class="link"   target="_blank" rel="noopener" href="https://github.com/dair-ai/Prompt-Engineering-Guide/blob/main/guides/prompts-intro.md" >总结<i class="fas fa-external-link-alt"></i></a>的框架，他认为一个 prompt 里需包含以下几个元素：</p>
+<ul>
+<li><strong>Instruction（必须）：</strong> 指令，即你希望模型执行的具体任务。</li>
+<li><strong>Context（选填）：</strong> 背景信息，或者说是上下文信息，这可以引导模型做出更好的反应。</li>
+<li><strong>Input Data（选填）：</strong> 输入数据，告知模型需要处理的数据。</li>
+<li><strong>Output Indicator（选填）：</strong> 输出指示器，告知模型我们要输出的类型或格式。</li>
+</ul>
+<p>只要你按照这个框架写 prompt ，模型返回的结果都不会差。</p>
+<p>当然，你在写 prompt 的时候，并不一定要包含所有4个元素，而是可以根据自己的需求排列组合，一般使用Instruction + Context + Input Data就可以</p>
+<h3 id="b、python脚本对应的prompt"><a href="#b、python脚本对应的prompt" class="headerlink" title="b、python脚本对应的prompt"></a>b、python脚本对应的prompt</h3><blockquote>
+<p>我希望创建一个python命令行工具脚本，它的名字为cligpt</p>
+<p>这个python脚本在mac上运行，例如我在mac终端上执行：</p>
+<p>python3 cligpt 查看当前所有文件</p>
+<p>脚本会将「查看当前所有文件」认为是一个输入值，他会将这个输入值给chatgpt的api，api会返回一个mac上的可执行的命令并显示在终端上，如其返回了：</p>
+<p>ls </p>
+<p>这时我按下enter键就可以执行这个命令，另外输入非enter键就不会执行这个文件</p>
+</blockquote>
+<p>输入上述的prompt就可以得到下面的脚本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> openai_secret_manager</span><br><span class="line"><span class="keyword">import</span> openai</span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"></span><br><span class="line"><span class="comment"># 连接到OpenAI API</span></span><br><span class="line">openai.api_key = <span class="string">&quot;api_key&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义解析器</span></span><br><span class="line">parser = argparse.ArgumentParser(description=<span class="string">&quot;CLI for running terminal commands using OpenAI&#x27;s GPT language model&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加参数</span></span><br><span class="line">parser.add_argument(<span class="string">&quot;command&quot;</span>, <span class="built_in">help</span>=<span class="string">&quot;The command to run in the terminal&quot;</span>, nargs=<span class="string">&quot;+&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解析参数</span></span><br><span class="line">args = parser.parse_args()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将命令组合成一个字符串</span></span><br><span class="line">command = <span class="string">&quot; &quot;</span>.join(args.command)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用OpenAI GPT-3 API生成命令</span></span><br><span class="line">response = openai.Completion.create(</span><br><span class="line">    engine=<span class="string">&quot;davinci-codex&quot;</span>,</span><br><span class="line">    prompt=<span class="string">f&quot;Given the following command-line input, generate the corresponding command:\n\n<span class="subst">&#123;command&#125;</span>\n\nCommand:&quot;</span>,</span><br><span class="line">    temperature=<span class="number">0.5</span>,</span><br><span class="line">    max_tokens=<span class="number">2048</span>,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取API返回的生成的命令</span></span><br><span class="line">generated_command = response.choices[<span class="number">0</span>].text.strip()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在终端中打印生成的命令</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Generated command: <span class="subst">&#123;generated_command&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果用户按下回车，则执行生成的命令</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">input</span>(<span class="string">&quot;Press enter to run the command, or any other key to cancel...&quot;</span>) == <span class="string">&quot;&quot;</span>:</span><br><span class="line">    subprocess.run(generated_command, shell=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这个脚本能够初步满足我们的要求，但是还有以下的问题存在：</p>
+<p>1、脚本中chatgpt的模型为davinci-codex，不是chat-gpt3.5</p>
+<p>2、脚本的执行太粗糙，终端上的显示效果不够美观</p>
+<h3 id="c、优化样式及修改model"><a href="#c、优化样式及修改model" class="headerlink" title="c、优化样式及修改model"></a>c、优化样式及修改model</h3><p>我们让chatgpt优化及美化脚本</p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=ODA5Mzc1ZDg0NDRmM2JhNTZiZDM0NzFmYTdlYmU3MWRfMFVpNDNkSWhMRDFXWnR5YmZqUXpzT3RkVUdWOTQ1aFRfVG9rZW46Ym94Y25vbjFORVlnQ3IwSGdDbzlRTlQ4UzNmXzE2OTg4NTA3NTg6MTY5ODg1NDM1OF9WNA"
+                      alt="img"
+                ><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=NjQ0YjkyNTUzNWYxNjQ0MDk0ZmQ0NzJiZDZiYWJhMTFfVTBpdWJuMUFtSlh4VEMzT1NLcUJvU3dmdndFZk1nVmxfVG9rZW46Ym94Y25EZ0FDVHZHQzhQYzFaSTdKWG9yZmpjXzE2OTg4NTA3NTg6MTY5ODg1NDM1OF9WNA"
+                      alt="img"
+                ></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTA5MDg1NjcyMmMxNTU1NDBkYjZmNTZmOTM2MWM0ZjRfWk00Z2FmU0ZseGx6TGFqbENFNndTSjRFRXZNSlRCNTVfVG9rZW46Ym94Y25pODl0RndNcXZRUDZrMFJjYzR3bWNkXzE2OTg4NTA3NTg6MTY5ODg1NDM1OF9WNA"
+                      alt="img"
+                ><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=YWJjNTU1ZjYzMDM4MWM5YjhhZjk5NzJkNDYwMTQ1MGJfZzZaZENEQjZ2bm5EamVPQXVyQW5FcU5BOFo5MzI0aU9fVG9rZW46Ym94Y25kTjg0aWVkVFdaZUxQQVJpaXVtMzViXzE2OTg4NTA3NTg6MTY5ODg1NDM1OF9WNA"
+                      alt="img"
+                ></p>
+<p>之后我将模型和对应上文设计好的prompt放入脚本之中</p>
+<p>最终的产物如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> click</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">from</span> rich.console <span class="keyword">import</span> Console</span><br><span class="line"><span class="keyword">from</span> questionary <span class="keyword">import</span> confirm</span><br><span class="line"><span class="keyword">from</span> typing <span class="keyword">import</span> <span class="type">Optional</span></span><br><span class="line"><span class="keyword">import</span> openai</span><br><span class="line"></span><br><span class="line">openai.api_key = <span class="string">&quot;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&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Call OpenAI GPT-3 API to get command based on user input</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">generate_command</span>(<span class="params">user_input: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span><br><span class="line">    <span class="comment"># 使用OpenAI GPT-3 API生成命令</span></span><br><span class="line">    response = openai.ChatCompletion.create(</span><br><span class="line">        model=<span class="string">&quot;gpt-3.5-turbo&quot;</span>,</span><br><span class="line">        messages=[</span><br><span class="line">        &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;system&quot;</span>, <span class="string">&quot;content&quot;</span>: <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        你是一个命令行翻译程序。你可以将自然语言指令从人类语言翻译成mac上相应的命令行语句。</span></span><br><span class="line"><span class="string">        1、简单地输出翻译后的指令,不需要做任何解释。</span></span><br><span class="line"><span class="string">        2、如果你不理解我在说什么或者不确定如何将我的指令转换成计算机命令行，简单地输出7个字母“UNKNOWN”，不做其他解释。</span></span><br><span class="line"><span class="string">        3、如果翻译结果包含多行命令，请使用“&amp;”或“&amp;&amp;”将它们组合成一行命令。</span></span><br><span class="line"><span class="string">        # USER</span></span><br><span class="line"><span class="string">        查看当前文件</span></span><br><span class="line"><span class="string">        # ASSISTANT</span></span><br><span class="line"><span class="string">        cat</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span>&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;user&quot;</span>, <span class="string">&quot;content&quot;</span>: user_input&#125;</span><br><span class="line">        ],</span><br><span class="line">        temperature = <span class="number">0</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 获取API返回的生成的命令</span></span><br><span class="line">    <span class="keyword">return</span> response[<span class="string">&#x27;choices&#x27;</span>][<span class="number">0</span>][<span class="string">&#x27;message&#x27;</span>][<span class="string">&#x27;content&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="meta">@click.command()</span></span><br><span class="line"><span class="meta">@click.argument(<span class="params"><span class="string">&quot;user_input&quot;</span></span>)</span></span><br><span class="line"><span class="meta">@click.option(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="meta">    <span class="string">&quot;--dry-run&quot;</span>, is_flag=<span class="literal">True</span>, <span class="built_in">help</span>=<span class="string">&quot;Display the generated command but don&#x27;t run it.&quot;</span></span></span></span><br><span class="line"><span class="params"><span class="meta"></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">main</span>(<span class="params">user_input: <span class="built_in">str</span>, dry_run: <span class="built_in">bool</span></span>):</span><br><span class="line">    <span class="comment"># Generate command based on user input</span></span><br><span class="line">    generated_command = generate_command(user_input)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Print formatted output</span></span><br><span class="line">    console = Console()</span><br><span class="line">    console.<span class="built_in">print</span>(<span class="string">f&quot;[bold green]User input:[/bold green] <span class="subst">&#123;user_input&#125;</span>&quot;</span>)</span><br><span class="line">    console.<span class="built_in">print</span>(<span class="string">f&quot;[bold green]Generated command:[/bold green] <span class="subst">&#123;generated_command&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Prompt user to execute command</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> dry_run <span class="keyword">and</span> confirm(<span class="string">&quot;Do you want to execute this command?&quot;</span>).ask():</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            subprocess.run(</span><br><span class="line">                    [generated_command],</span><br><span class="line">                    shell=<span class="literal">True</span></span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">except</span> subprocess.CalledProcessError <span class="keyword">as</span> e:</span><br><span class="line">            console.<span class="built_in">print</span>(</span><br><span class="line">                <span class="string">f&quot;[bold red]Command execution failed with exit code <span class="subst">&#123;e.returncode&#125;</span>[/bold red]&quot;</span></span><br><span class="line">            )</span><br><span class="line">            <span class="keyword">if</span> verbose:</span><br><span class="line">                console.<span class="built_in">print</span>(</span><br><span class="line">                    <span class="string">f&quot;[bold red]Standard output:[/bold red] <span class="subst">&#123;e.stdout.decode(<span class="string">&#x27;utf-8&#x27;</span>).strip()&#125;</span>&quot;</span></span><br><span class="line">                )</span><br><span class="line">                console.<span class="built_in">print</span>(</span><br><span class="line">                    <span class="string">f&quot;[bold red]Standard error:[/bold red] <span class="subst">&#123;e.stderr.decode(<span class="string">&#x27;utf-8&#x27;</span>).strip()&#125;</span>&quot;</span></span><br><span class="line">                )</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            console.<span class="built_in">print</span>(<span class="string">&quot;[bold green]Command executed successfully.[/bold green]&quot;</span>)</span><br><span class="line">    <span class="keyword">elif</span> dry_run:</span><br><span class="line">        console.<span class="built_in">print</span>(</span><br><span class="line">            <span class="string">&quot;[bold cyan]Dry run mode activated. Command not executed.[/bold cyan]&quot;</span></span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        console.<span class="built_in">print</span>(<span class="string">&quot;[bold yellow]Command execution canceled.[/bold yellow]&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<h1 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h1><p>基于openai的接口，我们能够完成以往相对困难的nlp处理，同时也大大简化了书写脚本的复杂度。</p>
+<p>上文的实践Demo中，我们主要是使用了prompt工程和chatgpt3.5的Api接口，同时利用简单的prompt描述框架，快速的得到我们想要的信息，和api组合在一起，我们就得到一个稳定可用的工具。</p>
+<p>openai提供的模型远不止chat一种，还有语音、图片等相关的api，可以组合或者单一使用这些api来构建一些有趣的应用。</p>
+<h2 id="业务上的可能性"><a href="#业务上的可能性" class="headerlink" title="业务上的可能性"></a>业务上的可能性</h2><p><a class="link"   target="_blank" rel="noopener" href="https://learningprompt.wiki/docs/chatGPT/tutorial-extras/%E6%90%AD%E5%BB%BA%E5%9F%BA%E4%BA%8E%E7%9F%A5%E8%AF%86%E5%BA%93%E5%86%85%E5%AE%B9%E7%9A%84%E6%9C%BA%E5%99%A8%E4%BA%BA" >搭建基于知识库内容的机器人 | Learning Prompt<i class="fas fa-external-link-alt"></i></a></p>
+<p>此外针对xxxxx的大量oncall，也可以尝试编写一个较好的prompt接入chatgpt的api来完成相关的oncall，预期可以降低oncall的数量～。下面是一个简单的举例：</p>
+<blockquote>
+<p>prompt：</p>
+<p>你是个专注且严谨的问答专家，你需要理解清楚上下文并尽可能按上下文如实的回答问题，如果你不知道或不确定，就只回答：你不知道。不要多输出。</p>
+<p>上下文：</p>
+<p>[  xxxxxxxxxxxxxxxxxxx</p>
+<p>]</p>
+</blockquote>
+<p>【图片】</p>
+<p>准确的上下文和准确的答案是息息相关的，但是openai的参数限制最大的 token 数是 4096，大约是 16000 多个字符，也就是说我们没有办法导入很多的上下文给到ai。</p>
+<p>现有的解决这个限制的思路是：我们仅需要传符合你咨询的信息的上下文的给 AI，然后 AI 仅用该上下文来生成答案。</p>
+<p>目前现有的是使用ChatIndex来帮助：<a class="link"   target="_blank" rel="noopener" href="https://gpt-index.readthedocs.io/en/latest/guides/primer.html" >A Primer to using LlamaIndex ‒ LlamaIndex documentation<i class="fas fa-external-link-alt"></i></a></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="https://bytedance.feishu.cn/space/api/box/stream/download/asynccode/?code=MzRjZGUwMGVjNmRjMjRmZWE5N2M4Mzk5ZGZhOWIwYWFfek9pWUpJTE5NSk5ZeDdtSGVXejVRVmJGb0dkVktQdlBfVG9rZW46Ym94Y24xTEVWdFJacnlnOWNhVjBwTTE5d0ZnXzE2OTg4NTA3NTg6MTY5ODg1NDM1OF9WNA"
+                      alt="img"
+                ></p>
+<p>GPTIndex 这个库简单理解就是做上图左边的那个部分，它的工作原理是这这样的：</p>
+<ol>
+<li>创建文档索引</li>
+<li>找到最相关的索引</li>
+<li>最后将对应索引的内容作为上下文给 GPT-3</li>
+</ol>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><p>参考资料</p>
+<ul>
+<li>[译] Prompt Engineering: 循循善诱 <a class="link"   target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/526299013" >阅读文档<i class="fas fa-external-link-alt"></i></a></li>
+<li>用 ChatGPT 开发一个能听懂人话的命令行工具 <a class="link"   target="_blank" rel="noopener" href="https://tech.bytedance.net/articles/7207752687642181693" >阅读文档<i class="fas fa-external-link-alt"></i></a></li>
+<li>如何快速开发一个OpenAI&#x2F;GPT应用 <a class="link"   target="_blank" rel="noopener" href="https://github.com/easychen/openai-gpt-dev-notes-for-cn-developer" >仓库地址<i class="fas fa-external-link-alt"></i></a></li>
+<li>Node.js client for the official ChatGPT API <a class="link"   target="_blank" rel="noopener" href="https://github.com/transitive-bullshit/chatgpt-api" >仓库地址<i class="fas fa-external-link-alt"></i></a></li>
+<li>Awesome ChatGPT API <a class="link"   target="_blank" rel="noopener" href="https://github.com/reorx/awesome-chatgpt-api" >仓库地址<i class="fas fa-external-link-alt"></i></a></li>
+<li>ChatGPT 中文调教指南 <a class="link"   target="_blank" rel="noopener" href="https://github.com/PlexPt/awesome-chatgpt-prompts-zh" >仓库地址<i class="fas fa-external-link-alt"></i></a></li>
+<li>Awesome ChatGPT Prompts <a class="link"   target="_blank" rel="noopener" href="https://github.com/f/awesome-chatgpt-prompts" >仓库地址<i class="fas fa-external-link-alt"></i></a></li>
+<li>Prompt 编写模式：如何将思维框架赋予机器 <a class="link"   target="_blank" rel="noopener" href="https://github.com/prompt-engineering/prompt-patterns" >仓库地址<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://tech.bytedance.net/articles/7207752687642181693#heading12" >https://tech.bytedance.net/articles/7207752687642181693#heading12<i class="fas fa-external-link-alt"></i></a></li>
+<li>[ChatGPT Prompt Framework | Learning Prompt](<a class="link"   target="_blank" rel="noopener" href="https://learningprompt.wiki/docs/tutorial-extras/ChatGPT" >https://learningprompt.wiki/docs/tutorial-extras/ChatGPT<i class="fas fa-external-link-alt"></i></a> Prompt Framework)</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://bytedance.feishu.cn/docx/XKu0dItSGo1jIixaXYzctMRcn7b" >工程师眼中的 GPT 技术<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    
+<div class="article-copyright-info-container">
+    <ul class="copyright-info-content">
+        <li class="post-title">
+            <span class="type">本文标题</span>：<span class="content">ChatGpt的api使用入门</span>
+        </li>
+        <li class="post-author">
+            <span class="type">本文作者</span>：<span class="content">liduoan.efls</span>
+        </li>
+        <li class="post-time">
+            <span class="type">创建时间</span>：<span class="content">2023-03-14 22:59:36</span>
+        </li>
+        <li class="post-link">
+            <span class="type">本文链接</span>：<span class="content">2023/03/14/ChatGpt的api使用入门/</span>
+        </li>
+        <li class="post-license">
+            <span class="type">版权声明</span>：<span class="content">本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！</span>
+        </li>
+    </ul>
+    <div class="copy-copyright-info flex-center tooltip" data-content="复制版权信息" data-offset-y="-2px">
+        <i class="fa-solid fa-copy"></i>
+    </div>
+</div>
+
+                </div>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/11/01/%E9%B8%BF%E8%92%99%E5%BC%80%E5%8F%91%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E8%B7%B5/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">鸿蒙开发入门与实践</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/01/14/2023/2022%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">2022年终总结</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81API%E4%BB%8B%E7%BB%8D"><span class="nav-number">2.</span> <span class="nav-text">二、API介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="nav-number">2.1.</span> <span class="nav-text">1、名词解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Token%EF%BC%9A"><span class="nav-number">2.1.1.</span> <span class="nav-text">Token：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Temperature"><span class="nav-number">2.1.2.</span> <span class="nav-text">Temperature</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Top-p"><span class="nav-number">2.1.3.</span> <span class="nav-text">Top_p</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81Api%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">2、Api的简单使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E7%9B%B4%E6%8E%A5%E5%8F%91%E8%B5%B7%E8%AF%B7%E6%B1%82"><span class="nav-number">2.2.1.</span> <span class="nav-text">1、直接发起请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E4%BD%BF%E7%94%A8openai%E5%B0%81%E8%A3%85%E7%9A%84%E5%BA%93"><span class="nav-number">2.2.2.</span> <span class="nav-text">2、使用openai封装的库</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%9F%BA%E4%BA%8Epython-ChatGpt%E6%9E%84%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%90%AC%E6%87%82%E4%BA%BA%E8%AF%9D%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7"><span class="nav-number">3.</span> <span class="nav-text">三、基于python+ChatGpt构建一个听懂人话的命令行工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E9%9C%80%E6%B1%82%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.1.</span> <span class="nav-text">1、需求介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E4%BD%BF%E7%94%A8cgpt-xxx%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%89%A7%E8%A1%8C%E5%AF%B9%E5%BA%94%E8%84%9A%E6%9C%AC"><span class="nav-number">3.2.</span> <span class="nav-text">2、使用cgpt xxx就可以执行对应脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E6%9E%84%E5%BB%BA%E5%8F%AF%E7%94%A8%E7%9A%84prompt"><span class="nav-number">3.3.</span> <span class="nav-text">2、构建可用的prompt</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a%E3%80%81%E4%BD%A0%E6%98%AFmac%E7%94%B5%E8%84%91%E4%B8%93%E5%AE%B6"><span class="nav-number">3.3.1.</span> <span class="nav-text">a、你是mac电脑专家</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b%E3%80%81%E4%B8%BE%E4%BE%8B%E5%92%8C%E5%A2%9E%E5%8A%A0%E9%99%90%E5%88%B6"><span class="nav-number">3.3.2.</span> <span class="nav-text">b、举例和增加限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E7%BC%96%E5%86%99python%E8%84%9A%E6%9C%AC"><span class="nav-number">3.4.</span> <span class="nav-text">3、编写python脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a%E3%80%81Basic-Prompt-Framework"><span class="nav-number">3.4.1.</span> <span class="nav-text">a、Basic Prompt Framework</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b%E3%80%81python%E8%84%9A%E6%9C%AC%E5%AF%B9%E5%BA%94%E7%9A%84prompt"><span class="nav-number">3.4.2.</span> <span class="nav-text">b、python脚本对应的prompt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E3%80%81%E4%BC%98%E5%8C%96%E6%A0%B7%E5%BC%8F%E5%8F%8A%E4%BF%AE%E6%94%B9model"><span class="nav-number">3.4.3.</span> <span class="nav-text">c、优化样式及修改model</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">四、总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%9A%E5%8A%A1%E4%B8%8A%E7%9A%84%E5%8F%AF%E8%83%BD%E6%80%A7"><span class="nav-number">4.1.</span> <span class="nav-text">业务上的可能性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">liduoan.efls</a>
+            
+        </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/dark-light-toggle.js"></script>
+
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/local-search.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/code-block.js"></script>
+
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/lazyload.js"></script>
+
+
+<div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/post-helper.js"></script>
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/anime.min.js"></script>
+        
+        
+            <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/toc.js"></script>
+        
+    
+</div>
+
+
+    <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.6.1/source/js/libs/pjax.min.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
